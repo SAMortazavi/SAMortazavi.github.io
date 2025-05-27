@@ -230,12 +230,11 @@
                     <a href="https://www.instagram.com/Mortazavi_Sabolfazl/" target="_blank" class="text-gray-400 hover-text-primary-accent-lighter transition duration-300 transform hover:scale-110" aria-label="Instagram">
                          <svg xmlns="http://www.w3.org/2000/svg" width="32" height="32" viewBox="0 0 24 24" fill="currentColor"><path d="M12 2.163c3.204 0 3.584.012 4.85.07 3.252.148 4.771 1.691 4.919 4.919.058 1.265.069 1.645.069 4.849 0 3.205-.012 3.584-.069 4.849-.149 3.225-1.664 4.771-4.919 4.919-1.266.058-1.644.07-4.85.07-3.204 0-3.584-.012-4.849-.07-3.26-.149-4.771-1.699-4.919-4.92-.058-1.265-.07-1.644-.07-4.849 0-3.204.013-3.583.07-4.849.149-3.227 1.664-4.771 4.919-4.919 1.266-.057 1.645-.069 4.849-.069zm0-2.163c-3.259 0-3.667.014-4.947.072-4.358.2-6.78 2.618-6.98 6.98-.059 1.281-.073 1.689-.073 4.948 0 3.259.014 3.668.072 4.948.2 4.358 2.618 6.78 6.98 6.98 1.281.059 1.689.073 4.948.073 3.259 0 3.668-.014 4.948-.072 4.354-.2 6.782-2.618 6.979-6.98.059-1.28.073-1.689.073-4.948 0-3.259-.014-3.667-.072-4.947-.196-4.354-2.617-6.78-6.979-6.98-1.281-.059-1.69-.073-4.948-.073zm0 5.838c-3.403 0-6.162 2.759-6.162 6.162s2.759 6.162 6.162 6.162 6.162-2.759 6.162-6.162-2.759-6.162-6.162-6.162zm0 10.162c-2.209 0-4-1.79-4-4s1.791-4 4-4 4 1.79 4 4-1.791 4-4 4zm6.406-11.845c-.796 0-1.441.645-1.441 1.44s.645 1.44 1.441 1.44c.795 0 1.439-.645 1.439-1.44s-.644-1.44-1.439-1.44z"/></svg>
                     </a>
-                    <a href="https://t.me/Abolfazl_Mortazavi79" target="_blank" 
-                       class="text-gray-400 hover-text-primary-accent-lighter transition duration-300 transform hover:scale-110" 
-                       aria-label="Telegram">
-                       <img src="./Images/icons8-telegram-64.png" alt="Telegram Icon" width="32" height="32" class="object-contain" />
+                    <a href="https://t.me/Abolfazl_Mortazavi79" target="_blank" class="text-gray-400 hover-text-primary-accent-lighter transition duration-300 transform hover:scale-110" aria-label="Telegram">
+                        <svg xmlns="http://www.w3.org/2000/svg" width="32" height="32" viewBox="0 0 24 24" fill="currentColor">
+                            <path d="M1.946 9.315c-.522-.174-.527-.455.01-.634l19.087-6.362c.529-.176.832.12.684.638l-5.454 19.086c-.15.529-.455.547-.679.045L12 14l6-8-8 6-8.054-2.685z"/>
+                        </svg>
                     </a>
-
                 </div>
             </div>
         </div>
@@ -245,13 +244,10 @@
         <div class="container mx-auto px-6">
             <h2 class="text-4xl font-bold mb-12 text-center section-title animate-on-scroll">About Me</h2>
             <div class="grid md:grid-cols-5 gap-12 items-center">
-                <div class="md:col-span-2 animate-on-scroll">
-                     <img src="./Images/IMG_20240102_095520_458.jpg" 
-                             alt="About Seyed Abolfazl Mortazavi" 
-                             class="w-1/2 rounded-lg shadow-xl object-cover transform hover:scale-105 transition-transform duration-300" />
-
+                <div class="md:col-span-3 animate-on-scroll"> 
+                     <img src="https://placehold.co/600x400/1F252E/F9532D?text=About+Image" alt="About Seyed Abolfazl Mortazavi" class="rounded-lg shadow-xl object-cover aspect-video transform hover:scale-105 transition-transform duration-300">
                      </div>
-                <div class="md:col-span-3">
+                <div class="md:col-span-2"> 
                     <p class="text-lg text-gray-300 mb-6 leading-relaxed animate-on-scroll" data-delay="100">
                         I am Seyed Abolfazl Mortazavi, currently pursuing a Master's degree in Electrical Engineering at Sharif University of Technology. My academic and professional journey is driven by a profound enthusiasm for the captivating realms of artificial intelligence, computational neuroscience, and digital signal/image processing. I am committed to exploring and contributing to cutting-edge developments in these fields, reflecting a deep passion for innovation and technology.
                     </p>
@@ -611,25 +607,25 @@
             entries.forEach(entry => {
                 if (entry.isIntersecting) {
                     const target = entry.target;
-                    // Add 'animated' class for general scroll animations
-                    target.classList.add('animated');
                     
-                    // Specific animation for section title underline
-                    if (target.classList.contains('section-title')) {
-                        target.classList.add('animate-underline');
-                    }
-                    
-                    // Apply delay if data-delay attribute is present
+                    // Apply delay if data-delay attribute is present for staggered animation
                     const delay = target.dataset.delay;
                     if (delay) {
                         setTimeout(() => {
-                            target.classList.add('animated'); // This was applying 'animated' twice if delay was present. Corrected logic.
+                            target.classList.add('animated');
+                             // Specific animation for section title underline after delay
+                            if (target.classList.contains('section-title')) {
+                                target.classList.add('animate-underline');
+                            }
                         }, parseInt(delay));
-                    } 
-                    // No 'else' needed here, as 'animated' is added above for all intersecting elements.
-                    // The delay logic is specifically for staggering, the initial animation is applied immediately upon intersection.
-
-                    observer.unobserve(target); // Optional: stop observing after animation
+                    } else {
+                         target.classList.add('animated');
+                         // Specific animation for section title underline immediately
+                         if (target.classList.contains('section-title')) {
+                            target.classList.add('animate-underline');
+                        }
+                    }
+                    observer.unobserve(target); // Stop observing after animation is triggered
                 }
             });
         };
