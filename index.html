@@ -1,450 +1,638 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="en" class="scroll-smooth">
 
 <head>
     <meta charset="UTF-8">
-    <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <link href='https://unpkg.com/boxicons@2.1.4/css/boxicons.min.css' rel='stylesheet'>
-    <link rel="stylesheet" href="index.css">
-    <title>SAMortazavi</title>
-    
+    <title>Seyed Abolfazl Mortazavi - Portfolio</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
     <style>
-        @import url('https://fonts.googleapis.com/css2?family=Poppins:wght@100;200;300;400;500;600;700;800&display=swap');
-@import url('https://fonts.googleapis.com/css2?family=Outfit:wght@200;300;400;500;600;700;800&family=Roboto:wght@100;300;400&display=swap');
+        body {
+            font-family: 'Inter', sans-serif;
+            background-color: #111827; /* Tailwind gray-900 */
+            color: #f3f4f6; /* Tailwind gray-100 */
+            opacity: 0; /* Initially hidden for preloader */
+            transition: opacity 0.5s ease-in-out;
+        }
 
-:root {
-    --primary-color: #f9532d;
-    --primary-dark: #1F252E;
-}
+        body.loaded {
+            opacity: 1;
+        }
 
-* {
-    margin: 0;
-    padding: 0;
-    scroll-behavior: smooth;
-}
+        .primary-accent {
+            color: #f97316; /* Tailwind orange-500 */
+        }
 
-body {
-    font-family: 'Outfit', sans-serif;
-    background-color: #1F252E;
-    height: 100vh;
-    color: #ffffff;
-}
-/* Genral */
-.container {
-    padding: 0 8.4rem;
-}
+        .bg-primary-accent {
+            background-color: #f97316; /* Tailwind orange-500 */
+        }
+        
+        .border-primary-accent {
+            border-color: #f97316; /* Tailwind orange-500 */
+        }
 
-.img-w {
-    width: 100%;
-    height: auto;
-}
-/* Nav */
-header {
-    background: var(--primary-dark);
-    position: relative;
-    box-shadow: 0 4px 17px rgb(255 255 255 / 10%);
-    position: sticky;
-    top: 0;
-    z-index: 1;
-}
+        .hover-bg-primary-accent-darker:hover {
+            background-color: #ea580c; /* Tailwind orange-600 */
+        }
+        
+        .hover-text-primary-accent-lighter:hover {
+            color: #fb923c; /* Tailwind orange-400 */
+        }
 
-.page-header {
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
-    padding: 1rem 0;
-}
+        /* Custom scrollbar */
+        ::-webkit-scrollbar {
+            width: 8px;
+        }
+        ::-webkit-scrollbar-track {
+            background: #1f2937; /* Tailwind gray-800 */
+        }
+        ::-webkit-scrollbar-thumb {
+            background: #f97316; /* Tailwind orange-500 */
+            border-radius: 4px;
+        }
+        ::-webkit-scrollbar-thumb:hover {
+            background: #ea580c; /* Tailwind orange-600 */
+        }
 
-.logo {
-    font-size: 1.5rem;
-    font-weight: 800;
-    opacity: 0;
-    animation: leftSideAni 1s ease forwards;
-}
+        section {
+            padding-top: 5rem; /* Increased padding */
+            padding-bottom: 5rem; /* Increased padding */
+        }
 
-.logo a {
-    color: #fff;
-    text-decoration: none;
-}
+        /* Section Title Animation */
+        .section-title::after {
+            content: '';
+            display: block;
+            width: 0px; /* Initial width for animation */
+            height: 3px;
+            background-color: #f97316; /* Tailwind orange-500 */
+            margin-top: 0.75rem; /* 12px */
+            transition: width 0.5s ease-in-out;
+        }
+        .section-title.animate-underline::after {
+            width: 70px; /* Final width */
+        }
 
-ul {
-    display: flex;
-    gap: .6rem;
-    list-style-type: none;
-    background-color: transparent;
-    overflow: hidden;
-}
+        /* Animations for scroll */
+        .animate-on-scroll {
+            opacity: 0;
+            transform: translateY(30px);
+            transition: opacity 0.6s ease-out, transform 0.6s ease-out;
+        }
 
-li a {
-    display: inline-block;
-    padding: .3rem 1rem;
-    color: #fff;
-    text-decoration: none;
-    font-size: 1.05rem;
-    font-weight: 600;
-    letter-spacing: .7px;
-    border-radius: 36px;
-    line-height: 2;
-    transition: .3s;
-    opacity: 0;
-    animation: navani .3s ease forwards;
-    animation-delay: calc(.15s * var(--navAni));
-}
+        .animate-on-scroll.animated {
+            opacity: 1;
+            transform: translateY(0);
+        }
+        
+        /* Card hover effect */
+        .card-hover-effect {
+            transition: transform 0.3s ease-out, box-shadow 0.3s ease-out;
+        }
+        .card-hover-effect:hover {
+            transform: translateY(-8px) scale(1.03);
+            box-shadow: 0 20px 25px -5px rgba(249, 115, 22, 0.2), 0 10px 10px -5px rgba(249, 115, 22, 0.1);
+        }
 
-li a.active,
-li a:hover {
-    color: var(--primary-color);
-}
+        /* Profile image pulse animation */
+        @keyframes pulse {
+            0%, 100% {
+                transform: scale(1);
+                box-shadow: 0 0 0 0 rgba(249, 115, 22, 0.7);
+            }
+            50% {
+                transform: scale(1.05);
+                box-shadow: 0 0 0 10px rgba(249, 115, 22, 0);
+            }
+        }
+        .profile-image-pulse {
+            animation: pulse 2.5s infinite;
+        }
 
-#click {
-    display: none;
-}
-
-
-
-.mode i {
-    font-size: 1.4rem;
-    cursor: pointer;
-    color: var(--primary-color);
-    opacity: 0;
-    animation: rightSideAni 1.5s ease forwards;
-}
-
-/* Nav End */
-
-/* Section 1 */
-
-.main {
-    padding: 6rem 0;
-    display: grid;
-    grid-template-columns: repeat(auto-fit, minmax(277px, 1fr));
-    row-gap: 2rem;
-    column-gap: 6rem;
-    align-items: center;
-}
-.main h3 {
-    color: #fff;
-    font-size: 1.5rem;
-    opacity: 0;
-    animation: topSideAni 1s ease forwards;
-}
-.main h1 {
-    color: #fff;
-    font-size: 4rem;
-    font-weight: 600;
-    opacity: 0;
-    animation: leftSideAni 1s ease forwards;
-    animation-delay: 1s;
-}
-.main button {
-    background-color: transparent;
-    color: var(--primary-color);
-    border: 2px solid var(--primary-color);
-    padding: 0.8rem 1rem;
-    font-size: 1.1rem;
-    border-radius: 7px;
-    margin-top: 2rem;
-    cursor: pointer;
-}
-.images {
-    margin-left: auto;
-    width: 300px;
-}   
-.images img {
-    border-radius: 50%;
-    box-shadow: 0 0 10px #D1D9E6;
-}
-
-/* Section 1 End */
-
-/* Roundin sec */
-  .main {
-    position: relative;
-  }
-  .big-circle {
-    height: 100%;
-    width: 100%;
-    position: relative;
-    border: 3px solid #bbbbbb;
-    border-radius: 50%;
-    display: flex;
-    display: -webkit-flex;
-    align-items: center;
-    -webkit-align-items: center;
-    justify-content: center;
-    -webkit-justify-content: center;
-    animation: Rotate 20s linear infinite;
-    -webkit-animation: Rotate 20s linear infinite;
-  }
-  .icon-block {
-    width: 64px;
-    height: 64px;
-    position: absolute;
-    border-radius: 50%;
-    display: flex;
-    display: -webkit-flex;
-    align-items: center;
-    -webkit-align-items: center;
-    justify-content: center;
-    -webkit-justify-content: center;
-    background-color: #fff;
-    box-shadow: 0 0 10px #fff;
-  }
-  .icon-block img {
-    margin: 0px auto;
-    width: 60%;
-    animation: Rotate-reverse 20s linear infinite;
-    -webkit-animation: Rotate-reverse 20s linear infinite;
-  }
-  .icon-block:first-child {
-    top: 0;
-    left: 50%;
-    transform: translate(-50%, -50%);
-    -webkit-transform: translate(-50%, -50%);
-  }
-  .icon-block:nth-child(2) {
-    top: 50%;
-    right: 0;
-    transform: translate(50%, -50%);
-    -webkit-transform: translate(50%, -50%);
-  }
-  .icon-block:nth-child(3) {
-    bottom: 0;
-    left: 50%;
-    transform: translate(-50%, 50%);
-    -webkit-transform: translate(-50%, 50%);
-  }
-  .icon-block:nth-child(4) {
-    top: 50%;
-    left: 0;
-    transform: translate(-50%, -50%);
-    -webkit-transform: translate(-50%, -50%);
-  }
-  .rounding-sec {
-    position: relative;
-    height: 400px;
-    width: 400px;
-  }
-  .images {
-    position: absolute;
-    top: 50%;
-    left: 50%;
-    transform: translate(-50%, -50%);
-    -webkit-transform: translate(-50%, -50%);
-  }
-  /* keyframe animation */
-  
-  @keyframes Rotate {
-    from {
-      transform: rotate(0deg);
-    }
-    to {
-      transform: rotate(360deg);
-    }
-  }
-  
-  @-webkit-keyframes Rotate {
-    from {
-      -webkit-transform: rotate(0deg);
-    }
-    to {
-      -webkit-transform: rotate(360deg);
-    }
-  }
-  
-  @keyframes Rotate-reverse {
-    from {
-      transform: rotate(360deg);
-    }
-    to {
-      transform: rotate(0deg);
-    }
-  }
-  
-  @-webkit-keyframes Rotate-reverse {
-    from {
-      -webkit-transform: rotate(360deg);
-    }
-    to {
-      -webkit-transform: rotate(0deg);
-    }
-  }
-  
-/* Animation */
-@keyframes leftSideAni {
-    0% {
-        transform: translateX(-100px);
-        opacity: 0;
-    }
-    100% {
-        transform: translateX(0);
-        opacity: 1;
-    }
-}
-@keyframes navani {
-    0% {
-        transform: translateY(100px);
-        opacity: 0;
-    }
-    100% {
-        transform: translateY(0);
-        opacity: 1;
-    }
-}
-@keyframes topSideAni {
-    0% {
-        transform: translateY(-100px);
-        opacity: 0;
-    }
-    100% {
-        transform: translateY(0);
-        opacity: 1;
-    }
-}
-
-@media screen and (max-width: 1024px) {
-    .container {
-        padding: 0 4.4rem;
-    }
-    .main h3 {
-        color: #000;
-        margin-top: 1rem;
-    }
-}
-@media screen and (max-width: 990px) {
-    .main {
-        grid-template-columns: repeat(auto-fit, minmax(420px, 1fr));
-    }
-    .rounding-sec {
-        margin: auto;
-    }
-}
-
-@media screen and (max-width: 768px) {
-    .container {
-        padding: 0 1.6rem;
-    }
-}
-
-@media screen and (max-width:600px) {
-    body {
-        height: auto;
-    }
-    header {
-        height: auto;
-        background-color: var(--primary-dark);
-    }
-
-    ul {
-        background: var(--primary-dark);
-        width: 100%;
-        height: 100vh;
-        position: absolute;
-        display: flex;
-        flex-direction: column;
-        text-align: center;
-        top: 3.4rem;
-        left: -100%;
-        z-index: 111111;
-    }
+        /* Hero text animation */
+        .hero-text-animate {
+            opacity: 0;
+            transform: translateY(20px);
+            animation: fadeInSlideUp 1s ease-out forwards;
+        }
+        .hero-text-animate.delay-1 { animation-delay: 0.3s; }
+        .hero-text-animate.delay-2 { animation-delay: 0.6s; }
+        .hero-text-animate.delay-3 { animation-delay: 0.9s; }
+        .hero-text-animate.delay-4 { animation-delay: 1.2s; }
 
 
+        @keyframes fadeInSlideUp {
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
 
-    #click:checked~ul {
-        left: 0%;
-        transition: all 0.3s ease;
-    }
-    .main {
-        grid-template-columns: repeat(auto-fit, minmax(266px, 1fr));
-        margin-top: 2rem;
-        overflow-x: hidden;
-    }
-    .icon-block {
-        width: 50px;
-        height: 50px;
-    }
-    .rounding-sec {
-        height: 300px;
-        width: 300px;
-    }
-    .images {
-        width: 200px;
-    }
-}
+        /* Preloader styles */
+        #preloader {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background-color: #111827; /* Tailwind gray-900 */
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            z-index: 9999;
+            transition: opacity 0.5s ease-out, visibility 0.5s ease-out;
+        }
+        #preloader.hidden {
+            opacity: 0;
+            visibility: hidden;
+        }
+        .spinner {
+            width: 50px;
+            height: 50px;
+            border: 5px solid #374151; /* Tailwind gray-700 */
+            border-top-color: #f97316; /* Tailwind orange-500 */
+            border-radius: 50%;
+            animation: spin 1s linear infinite;
+        }
+        @keyframes spin {
+            to { transform: rotate(360deg); }
+        }
+
     </style>
 </head>
 
-<body>
-    <header class="container">
-        <div class="page-header">
-            <input type="checkbox" id="click">
-            <label for="click" class="mainicon">
-            </label>
+<body class="antialiased">
+
+    <div id="preloader">
+        <div class="spinner"></div>
+    </div>
+
+    <header class="bg-gray-900/70 backdrop-blur-lg shadow-xl sticky top-0 z-50 transition-all duration-300">
+        <div class="container mx-auto px-6 py-4">
+            <div class="flex items-center justify-between">
+                <a href="#" class="text-2xl font-bold text-white hover:opacity-80 transition-opacity">S.A. <span class="primary-accent">Mortazavi</span></a>
+                <nav class="hidden md:flex space-x-6">
+                    <a href="#about" class="text-gray-300 hover-text-primary-accent-lighter transition duration-300 px-2 py-1">About</a>
+                    <a href="#experience" class="text-gray-300 hover-text-primary-accent-lighter transition duration-300 px-2 py-1">Experience</a>
+                    <a href="#projects" class="text-gray-300 hover-text-primary-accent-lighter transition duration-300 px-2 py-1">Projects</a>
+                    <a href="#skills" class="text-gray-300 hover-text-primary-accent-lighter transition duration-300 px-2 py-1">Skills</a>
+                    <a href="#education" class="text-gray-300 hover-text-primary-accent-lighter transition duration-300 px-2 py-1">Education</a>
+                    <a href="#contact" class="text-gray-300 hover-text-primary-accent-lighter transition duration-300 px-2 py-1">Contact</a>
+                </nav>
+                <div class="md:hidden">
+                    <button id="mobile-menu-button" class="text-gray-300 focus:outline-none p-2 rounded-md hover:bg-gray-700 transition-colors">
+                        <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" class="w-7 h-7">
+                            <path stroke-linecap="round" stroke-linejoin="round" d="M3.75 6.75h16.5M3.75 12h16.5m-16.5 5.25h16.5" />
+                        </svg>
+                    </button>
+                </div>
+            </div>
+        </div>
+        <div id="mobile-menu" class="hidden md:hidden bg-gray-800/95 backdrop-blur-sm">
+            <a href="#about" class="block px-6 py-3 text-gray-300 hover:bg-gray-700 hover-text-primary-accent-lighter transition duration-300">About</a>
+            <a href="#experience" class="block px-6 py-3 text-gray-300 hover:bg-gray-700 hover-text-primary-accent-lighter transition duration-300">Experience</a>
+            <a href="#projects" class="block px-6 py-3 text-gray-300 hover:bg-gray-700 hover-text-primary-accent-lighter transition duration-300">Projects</a>
+            <a href="#skills" class="block px-6 py-3 text-gray-300 hover:bg-gray-700 hover-text-primary-accent-lighter transition duration-300">Skills</a>
+            <a href="#education" class="block px-6 py-3 text-gray-300 hover:bg-gray-700 hover-text-primary-accent-lighter transition duration-300">Education</a>
+            <a href="#contact" class="block px-6 py-3 text-gray-300 hover:bg-gray-700 hover-text-primary-accent-lighter transition duration-300">Contact</a>
         </div>
     </header>
 
-
-    <section class="container">
-        <div class="main">
-            <div class="rounding-sec">
-                <div class="big-circle">
-                    <div class="icon-block">
-                        <div class="icon-block" style="width: 64px; height: 64px; position: absolute; top: 50%; left: 50%; transform: translate(-50%, -50%);">
-                            <a href="https://github.com/SAMortazavi" target="_blank">
-                                <img src="./Images/icons8-github-50.png"
-                                    alt="GitHub" style="width: 60%; margin: 0 auto; display: block;">
-                            </a>
-                        </div>
-                    </div>
-                    <div class="icon-block">
-                        <div class="icon-block" style="width: 64px; height: 64px; position: absolute; top: 50%; left: 50%; transform: translate(-50%, -50%);">
-                            <a href="https://www.instagram.com/Mortazavi_Sabolfazl/" target="_blank" style="display: flex; align-items: center; justify-content: center; width: 100%; height: 100%;">
-                                <img src="./Images/icons8-instagram-50.png"
-                                    alt="Instagram" style="width: 50%; height: 50%; object-fit: contain;">
-                            </a>
-                        </div>
-                        
-                        
-                        
-                    </div>
-                    <div class="icon-block">
-                        <div class="icon-block" style="width: 32px; height: 32px; position: absolute; top: 50%; left: 50%; transform: translate(-50%, -50%);">
-                            <a href="https://www.linkedin.com/in/SAMortazavi" target="_blank" style="display: flex; align-items: center; justify-content: center; width: 100%; height: 100%;">
-                                <img src="./Images/icons8-linkedin-50.png" alt="LinkedIn" style="width: 100%; height: 100%; object-fit: contain;">
-                            </a>
-                        </div>
-                        
-                    </div>
-                    <div class="icon-block">
-                        <div class="icon-block" style="width: 48px; height: 48px; position: absolute; top: 50%; left: 50%; transform: translate(-50%, -50%);">
-                            <a href="https://t.me/Abolfazl_Mortazavi79" target="_blank" style="display: flex; align-items: center; justify-content: center; width: 100%; height: 100%;">
-                                <img src="./Images/icons8-telegram-64.png" alt="Telegram" style="width: 100%; height: 100%; object-fit: contain;">
-                            </a>
-                        </div>                        
-                    </div>
+    <section id="hero" class="min-h-screen flex items-center bg-gradient-to-br from-gray-900 to-gray-800">
+        <div class="container mx-auto px-6 py-16 text-center">
+            <div class="max-w-4xl mx-auto">
+                <img src="./Images/IMG_20240102_095520_458.jpg" alt="Seyed Abolfazl Mortazavi" class="w-48 h-48 md:w-56 md:h-56 mx-auto rounded-full shadow-2xl mb-8 border-4 border-orange-500 object-cover profile-image-pulse hero-text-animate">
+                <h3 class="text-2xl md:text-3xl text-gray-200 font-light mb-2 hero-text-animate delay-1">Hi, I'm</h3>
+                <h1 class="text-5xl md:text-7xl font-extrabold mb-4 hero-text-animate delay-2">
+                    <span class="primary-accent">Seyed Abolfazl</span> Mortazavi
+                </h1>
+                <p class="text-xl md:text-2xl text-gray-400 mb-8 leading-relaxed hero-text-animate delay-3">
+                    M.Sc. in Electrical Engineering with a passion for AI, Neuroscience, and Digital Signal Processing.
+                </p>
+                <div class="flex flex-col sm:flex-row justify-center space-y-4 sm:space-y-0 sm:space-x-4 mb-10 hero-text-animate delay-4">
+                    <a href="https://drive.google.com/file/d/1hpgbYraukpAXLOl8lRA3iZl4__Z9Rr0p/view?usp=drive_link" target="_blank" download class="bg-primary-accent text-white font-semibold py-3 px-8 rounded-lg shadow-md hover-bg-primary-accent-darker transition duration-300 text-lg transform hover:scale-105">
+                        View Resume
+                    </a>
+                    <a href="#contact" class="bg-gray-700 text-white font-semibold py-3 px-8 rounded-lg shadow-md hover:bg-gray-600 transition duration-300 text-lg transform hover:scale-105">
+                        Contact Me
+                    </a>
                 </div>
-                <div class="images">
-                    <img src="./Images/IMG_20240102_095520_458.jpg" alt="" class="img-w">
+                <div class="flex justify-center space-x-6 hero-text-animate delay-4">
+                    <a href="https://github.com/SAMortazavi" target="_blank" class="text-gray-400 hover-text-primary-accent-lighter transition duration-300 transform hover:scale-110" aria-label="GitHub">
+                        <svg xmlns="http://www.w3.org/2000/svg" width="32" height="32" viewBox="0 0 24 24" fill="currentColor"><path d="M12 0c-6.626 0-12 5.373-12 12 0 5.302 3.438 9.8 8.207 11.387.599.111.793-.261.793-.577v-2.234c-3.338.726-4.033-1.416-4.033-1.416-.546-1.387-1.333-1.756-1.333-1.756-1.089-.745.083-.729.083-.729 1.205.084 1.839 1.237 1.839 1.237 1.07 1.834 2.807 1.304 3.492.997.107-.775.418-1.305.762-1.604-2.665-.305-5.467-1.334-5.467-5.931 0-1.311.469-2.381 1.236-3.221-.124-.303-.535-1.524.117-3.176 0 0 1.008-.322 3.301 1.23.957-.266 1.983-.399 3.003-.404 1.02.005 2.047.138 3.006.404 2.291-1.552 3.297-1.23 3.297-1.23.653 1.653.242 2.874.118 3.176.77.84 1.235 1.911 1.235 3.221 0 4.609-2.807 5.624-5.479 5.921.43.372.823 1.102.823 2.222v3.293c0 .319.192.694.801.576 4.765-1.589 8.199-6.086 8.199-11.386 0-6.627-5.373-12-12-12z"/></svg>
+                    </a>
+                    <a href="https://www.linkedin.com/in/SAMortazavi" target="_blank" class="text-gray-400 hover-text-primary-accent-lighter transition duration-300 transform hover:scale-110" aria-label="LinkedIn">
+                        <svg xmlns="http://www.w3.org/2000/svg" width="32" height="32" viewBox="0 0 24 24" fill="currentColor"><path d="M19 0h-14c-2.761 0-5 2.239-5 5v14c0 2.761 2.239 5 5 5h14c2.762 0 5-2.239 5-5v-14c0-2.761-2.238-5-5-5zm-11 19h-3v-11h3v11zm-1.5-12.268c-.966 0-1.75-.79-1.75-1.764s.784-1.764 1.75-1.764 1.75.79 1.75 1.764-.783 1.764-1.75 1.764zm13.5 12.268h-3v-5.604c0-3.368-4-3.113-4 0v5.604h-3v-11h3v1.765c1.396-2.586 7-2.777 7 2.476v6.759z"/></svg>
+                    </a>
+                    <a href="https://www.instagram.com/Mortazavi_Sabolfazl/" target="_blank" class="text-gray-400 hover-text-primary-accent-lighter transition duration-300 transform hover:scale-110" aria-label="Instagram">
+                         <svg xmlns="http://www.w3.org/2000/svg" width="32" height="32" viewBox="0 0 24 24" fill="currentColor"><path d="M12 2.163c3.204 0 3.584.012 4.85.07 3.252.148 4.771 1.691 4.919 4.919.058 1.265.069 1.645.069 4.849 0 3.205-.012 3.584-.069 4.849-.149 3.225-1.664 4.771-4.919 4.919-1.266.058-1.644.07-4.85.07-3.204 0-3.584-.012-4.849-.07-3.26-.149-4.771-1.699-4.919-4.92-.058-1.265-.07-1.644-.07-4.849 0-3.204.013-3.583.07-4.849.149-3.227 1.664-4.771 4.919-4.919 1.266-.057 1.645-.069 4.849-.069zm0-2.163c-3.259 0-3.667.014-4.947.072-4.358.2-6.78 2.618-6.98 6.98-.059 1.281-.073 1.689-.073 4.948 0 3.259.014 3.668.072 4.948.2 4.358 2.618 6.78 6.98 6.98 1.281.059 1.689.073 4.948.073 3.259 0 3.668-.014 4.948-.072 4.354-.2 6.782-2.618 6.979-6.98.059-1.28.073-1.689.073-4.948 0-3.259-.014-3.667-.072-4.947-.196-4.354-2.617-6.78-6.979-6.98-1.281-.059-1.69-.073-4.948-.073zm0 5.838c-3.403 0-6.162 2.759-6.162 6.162s2.759 6.162 6.162 6.162 6.162-2.759 6.162-6.162-2.759-6.162-6.162-6.162zm0 10.162c-2.209 0-4-1.79-4-4s1.791-4 4-4 4 1.79 4 4-1.791 4-4 4zm6.406-11.845c-.796 0-1.441.645-1.441 1.44s.645 1.44 1.441 1.44c.795 0 1.439-.645 1.439-1.44s-.644-1.44-1.439-1.44z"/></svg>
+                    </a>
+                    <a href="https://t.me/Abolfazl_Mortazavi79" target="_blank" class="text-gray-400 hover-text-primary-accent-lighter transition duration-300 transform hover:scale-110" aria-label="Telegram">
+                        <svg xmlns="http://www.w3.org/2000/svg" width="32" height="32" viewBox="0 0 24 24" fill="currentColor"><path d="M9.78 18.46c-.18.08-.38.13-.59.13-.41 0-.79-.16-1.09-.45l-3.07-2.99c-.2-.2-.29-.47-.26-.72s.15-.48.39-.61l17.73-7.11c.51-.21.91-.84.7-1.35s-.84-.91-1.35-.7L1.39 11.85c-.24.1-.43.3-.54.55s-.12.52.01.76l3.07 5.54c.2.36.58.59.99.59.07 0 .14-.01.21-.03l3.49-1.1V20c0 .55.45 1 1 1s1-.45 1-1v-2.51l4.73 3.48c.23.17.5.27.77.27.22 0 .43-.06.63-.18.41-.25.64-.72.59-1.21l-2.4-10.79c-.09-.42-.48-.71-.91-.71-.09 0-.19.02-.28.05l-6.01 2.58-1.72-1.68c-.19-.19-.45-.29-.71-.29s-.52.1-.71.29-.29.45-.29.71v1.73l-1.4 1.36c-.22.21-.36.5-.36.82 0 .32.14.61.36.82l1.4 1.36v2.53l1.94-1.42c.2-.15.46-.19.69-.1.24.09.42.29.49.53l1.03 3.6z"/></svg>
+                    </a>
                 </div>
-            </div>
-            <div class="detail">
-                <h3>Hi, I'm</h3>
-                <h1><span style="color:#f9532d;">Abolfazl</span> Mortazavi</h1>
-                <p>Currently, I am pursuing a Master's degree in Electrical Engineering with a profound enthusiasm for the captivating realms of artificial intelligence and neuroscience. Committed to exploring and contributing to the cutting-edge developments in these fields, my academic journey reflects a passion for innovation and technology.</p>
-
-                <a href="https://drive.google.com/file/d/1hpgbYraukpAXLOl8lRA3iZl4__Z9Rr0p/view?usp=drive_link" download>
-                    <button style="background-color: #1F252E; color: #f9532d;"> CV </button>
-                </a>
-                <a href="mailto:Seyyed79abolfazl@gmail.com" >
-                    <button style=" background-color: #1F252E; color: #f9532d;"> Contact me</button>
-                </a>
-                
             </div>
         </div>
     </section>
+
+    <section id="about" class="bg-gray-800">
+        <div class="container mx-auto px-6">
+            <h2 class="text-4xl font-bold mb-12 text-center section-title animate-on-scroll">About Me</h2>
+            <div class="grid md:grid-cols-5 gap-12 items-center">
+                <div class="md:col-span-2 animate-on-scroll">
+                     <img src="./Images/IMG_20240102_095520_458.jpg" alt="About Seyed Abolfazl Mortazavi" class="rounded-lg shadow-xl object-cover aspect-video transform hover:scale-105 transition-transform duration-300">
+                     </div>
+                <div class="md:col-span-3">
+                    <p class="text-lg text-gray-300 mb-6 leading-relaxed animate-on-scroll" data-delay="100">
+                        I am Seyed Abolfazl Mortazavi, currently pursuing a Master's degree in Electrical Engineering at Sharif University of Technology. My academic and professional journey is driven by a profound enthusiasm for the captivating realms of artificial intelligence, computational neuroscience, and digital signal/image processing. I am committed to exploring and contributing to cutting-edge developments in these fields, reflecting a deep passion for innovation and technology.
+                    </p>
+                    <p class="text-lg text-gray-300 mb-6 leading-relaxed animate-on-scroll" data-delay="200">
+                        With a strong foundation from my Bachelor's degrees in Biomedical Engineering and Electrical Engineering from Amirkabir University of Technology, where I consistently ranked first in my class, I am eager to apply my knowledge and skills to solve complex challenges.
+                    </p>
+                    <div class="mb-8 animate-on-scroll" data-delay="300">
+                        <h3 class="text-2xl font-semibold primary-accent mb-3">Research Interests</h3>
+                        <ul class="list-disc list-inside text-gray-300 space-y-1">
+                            <li>Artificial Intelligence</li>
+                            <li>Digital Signal Processing</li>
+                            <li>Digital Image Processing</li>
+                            <li>Computational Neuroscience</li>
+                        </ul>
+                    </div>
+                    <div class="animate-on-scroll" data-delay="400">
+                        <h3 class="text-2xl font-semibold primary-accent mb-3">Language Skills</h3>
+                        <ul class="list-disc list-inside text-gray-300 space-y-1">
+                            <li>Persian: Native</li>
+                            <li>Turkish: Native</li>
+                            <li>English: Upper Intermediate</li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section id="experience" class="bg-gray-900">
+        <div class="container mx-auto px-6">
+            <h2 class="text-4xl font-bold mb-16 text-center section-title animate-on-scroll">Work Experience</h2>
+            <div class="space-y-12">
+                <div class="bg-gray-800 p-8 rounded-xl shadow-xl card-hover-effect animate-on-scroll">
+                    <div class="flex flex-col md:flex-row justify-between items-start md:items-center mb-3">
+                        <h3 class="text-2xl font-semibold primary-accent">AI Developer - Speech Team</h3>
+                        <p class="text-gray-400 text-sm md:text-base">[Start Date] - Present | Shatel, Tehran, Iran</p>
+                        </div>
+                    <p class="text-gray-300 mb-4 leading-relaxed">
+                        As a member of the Speech Team, I contribute to the development and enhancement of cutting-edge speech technologies. My responsibilities include:
+                        <ul class="list-disc list-inside text-gray-300 space-y-1 mt-2 mb-3">
+                            <li><strong>Text-to-Speech (TTS):</strong> Developing and fine-tuning neural network models for natural-sounding Persian speech synthesis, focusing on improving prosody, intonation, and overall voice quality. This involves data preprocessing, model training, and evaluation.</li>
+                            <li><strong>Automatic Speech Recognition (ASR):</strong> Working on training and evaluating ASR models to enhance accuracy and robustness for the Persian language, particularly in noisy call center environments and across diverse accents. This includes acoustic and language model development.</li>
+                            <li><strong>Call Center Quality Control:</strong> Designing and implementing AI-driven solutions to analyze call recordings for quality assurance. This involves leveraging ASR and NLP techniques for sentiment analysis, keyword spotting, topic modeling, and automated compliance checking to provide actionable insights for performance improvement.</li>
+                        </ul>
+                         Collaborating with cross-functional teams to integrate these speech technologies into various Shatel products and services, and utilizing Linux environments for development, testing, and deployment of AI models.
+                    </p>
+                    <p class="font-medium text-gray-200 mb-1">Technologies Used:</p>
+                    <div class="flex flex-wrap gap-2">
+                        <span class="bg-gray-700 text-orange-400 px-3 py-1 rounded-full text-sm">Python</span>
+                        <span class="bg-gray-700 text-orange-400 px-3 py-1 rounded-full text-sm">Linux</span>
+                        <span class="bg-gray-700 text-orange-400 px-3 py-1 rounded-full text-sm">PyTorch</span>
+                        <span class="bg-gray-700 text-orange-400 px-3 py-1 rounded-full text-sm">TensorFlow</span>
+                        <span class="bg-gray-700 text-orange-400 px-3 py-1 rounded-full text-sm">Hugging Face Transformers</span>
+                        <span class="bg-gray-700 text-orange-400 px-3 py-1 rounded-full text-sm">Librosa</span>
+                        <span class="bg-gray-700 text-orange-400 px-3 py-1 rounded-full text-sm">Docker</span>
+                        <span class="bg-gray-700 text-orange-400 px-3 py-1 rounded-full text-sm">Git</span>
+                    </div>
+                </div>
+
+                <div class="bg-gray-800 p-8 rounded-xl shadow-xl card-hover-effect animate-on-scroll" data-delay="100">
+                    <div class="flex flex-col md:flex-row justify-between items-start md:items-center mb-3">
+                        <h3 class="text-2xl font-semibold primary-accent">Researcher at Computational Neuroscience Lab</h3>
+                        <p class="text-gray-400 text-sm md:text-base">Aug 2022 - Oct 2023 | Tehran, Iran</p>
+                    </div>
+                    <p class="text-gray-300 mb-4 leading-relaxed">
+                        Conducted research on BCI systems and EEG signals under the supervision of Dr. Farnaz Ghasemi. Key responsibilities included developing metrics to evaluate EEG signal quality, analyzing statistical parameters of EEG signals, and conducting statistical tests for EEG signal datasets.
+                    </p>
+                    <p class="font-medium text-gray-200 mb-1">Technologies Used:</p>
+                    <div class="flex flex-wrap gap-2">
+                        <span class="bg-gray-700 text-orange-400 px-3 py-1 rounded-full text-sm">MATLAB</span>
+                        <span class="bg-gray-700 text-orange-400 px-3 py-1 rounded-full text-sm">Python</span>
+                        <span class="bg-gray-700 text-orange-400 px-3 py-1 rounded-full text-sm">IBM SPSS Statistics</span>
+                    </div>
+                </div>
+
+                <div class="bg-gray-800 p-8 rounded-xl shadow-xl card-hover-effect animate-on-scroll" data-delay="200">
+                    <div class="flex flex-col md:flex-row justify-between items-start md:items-center mb-3">
+                        <h3 class="text-2xl font-semibold primary-accent">SP Signal Processing Intern at Radialmed Company</h3>
+                        <p class="text-gray-400 text-sm md:text-base">Aug 2022 - Nov 2023</p>
+                    </div>
+                    <p class="text-gray-300 mb-4 leading-relaxed">
+                        Worked on signal processing tasks, focusing on ECG and PPG signal analysis and feature extraction for machine learning applications. Major contributions included developing algorithms for calibrating blood pressure devices and creating methods to remove EMG noise from signals.
+                    </p>
+                    <p class="font-medium text-gray-200 mb-1">Technologies Used:</p>
+                    <div class="flex flex-wrap gap-2">
+                        <span class="bg-gray-700 text-orange-400 px-3 py-1 rounded-full text-sm">MATLAB</span>
+                        <span class="bg-gray-700 text-orange-400 px-3 py-1 rounded-full text-sm">Python</span>
+                    </div>
+                </div>
+
+                <div class="bg-gray-800 p-8 rounded-xl shadow-xl card-hover-effect animate-on-scroll" data-delay="300">
+                    <div class="flex flex-col md:flex-row justify-between items-start md:items-center mb-3">
+                        <h3 class="text-2xl font-semibold primary-accent">Freelance Programmer</h3>
+                        <p class="text-gray-400 text-sm md:text-base">Nov 2023 - Present</p>
+                    </div>
+                    <p class="text-gray-300 mb-4 leading-relaxed">
+                        Working on diverse programming projects, specializing in Signal Processing, Artificial Intelligence, and Image Processing.
+                    </p>
+                    <p class="font-medium text-gray-200 mb-1">Technologies Used:</p>
+                    <div class="flex flex-wrap gap-2">
+                        <span class="bg-gray-700 text-orange-400 px-3 py-1 rounded-full text-sm">MATLAB</span>
+                        <span class="bg-gray-700 text-orange-400 px-3 py-1 rounded-full text-sm">Python</span>
+                    </div>
+                </div>
+            </div>
+             <h2 class="text-3xl font-bold mt-16 mb-12 text-center section-title animate-on-scroll">Teaching Experience</h2>
+             <div class="bg-gray-800 p-8 rounded-xl shadow-xl card-hover-effect animate-on-scroll">
+                <h3 class="text-2xl font-semibold primary-accent mb-2">Teaching Assistant</h3>
+                <ul class="list-disc list-inside text-gray-300 space-y-2">
+                    <li>Mathematical Engineering - Amirkabir University of Technology (Fall 2022)</li>
+                    <li>Machine Learning - Sharif University of Technology (Fall 2024)</li>
+                    <li>Neural Modeling - Sharif University of Technology (Fall 2024)</li>
+                </ul>
+            </div>
+        </div>
+    </section>
+
+    <section id="projects" class="bg-gray-800">
+        <div class="container mx-auto px-6">
+            <h2 class="text-4xl font-bold mb-16 text-center section-title animate-on-scroll">Projects</h2>
+            <div class="grid md:grid-cols-2 lg:grid-cols-3 gap-8">
+                <div class="bg-gray-900 rounded-lg shadow-xl overflow-hidden card-hover-effect flex flex-col animate-on-scroll">
+                    <img src="https://placehold.co/400x250/1F252E/F9532D?text=Project+1" alt="Project 1" class="w-full h-48 object-cover">
+                    <div class="p-6 flex flex-col flex-grow">
+                        <h3 class="text-xl font-semibold primary-accent mb-2">Image Classification Project</h3>
+                        <p class="text-gray-400 text-sm mb-4 flex-grow">Developed an image classification system using Python and relevant ML libraries.</p>
+                        <div class="mb-4">
+                             <span class="inline-block bg-gray-700 text-orange-400 text-xs px-2 py-1 rounded-full mr-1 mb-1">Python</span>
+                        </div>
+                        <a href="https://github.com/SAMortazavi/Image-Classification" target="_blank" class="mt-auto inline-block text-center bg-primary-accent text-white font-semibold py-2 px-4 rounded-md hover-bg-primary-accent-darker transition duration-300 transform hover:scale-105">View on GitHub</a>
+                    </div>
+                </div>
+                <div class="bg-gray-900 rounded-lg shadow-xl overflow-hidden card-hover-effect flex flex-col animate-on-scroll" data-delay="100">
+                    <img src="https://placehold.co/400x250/1F252E/F9532D?text=Project+2" alt="Project 2" class="w-full h-48 object-cover">
+                    <div class="p-6 flex flex-col flex-grow">
+                        <h3 class="text-xl font-semibold primary-accent mb-2">NLP for Fake News Detection</h3>
+                        <p class="text-gray-400 text-sm mb-4 flex-grow">Implemented NLP algorithms to detect fake news articles.</p>
+                         <div class="mb-4">
+                             <span class="inline-block bg-gray-700 text-orange-400 text-xs px-2 py-1 rounded-full mr-1 mb-1">Python</span>
+                             <span class="inline-block bg-gray-700 text-orange-400 text-xs px-2 py-1 rounded-full mr-1 mb-1">NLP</span>
+                        </div>
+                        <a href="https://github.com/SAMortazavi/Fake_News_Detection_NLP" target="_blank" class="mt-auto inline-block text-center bg-primary-accent text-white font-semibold py-2 px-4 rounded-md hover-bg-primary-accent-darker transition duration-300 transform hover:scale-105">View on GitHub</a>
+                    </div>
+                </div>
+                <div class="bg-gray-900 rounded-lg shadow-xl overflow-hidden card-hover-effect flex flex-col animate-on-scroll" data-delay="200">
+                    <img src="https://placehold.co/400x250/1F252E/F9532D?text=Project+3" alt="Project 3" class="w-full h-48 object-cover">
+                    <div class="p-6 flex flex-col flex-grow">
+                        <h3 class="text-xl font-semibold primary-accent mb-2">Speech Enhancement Algorithm</h3>
+                        <p class="text-gray-400 text-sm mb-4 flex-grow">Designed and implemented a speech enhancement algorithm using MATLAB.</p>
+                        <div class="mb-4">
+                             <span class="inline-block bg-gray-700 text-orange-400 text-xs px-2 py-1 rounded-full mr-1 mb-1">MATLAB</span>
+                             <span class="inline-block bg-gray-700 text-orange-400 text-xs px-2 py-1 rounded-full mr-1 mb-1">Signal Processing</span>
+                        </div>
+                        <a href="https://github.com/SAMortazavi/Speech-Enhancement" target="_blank" class="mt-auto inline-block text-center bg-primary-accent text-white font-semibold py-2 px-4 rounded-md hover-bg-primary-accent-darker transition duration-300 transform hover:scale-105">View on GitHub</a>
+                    </div>
+                </div>
+                <div class="bg-gray-900 rounded-lg shadow-xl overflow-hidden card-hover-effect flex flex-col animate-on-scroll" data-delay="300">
+                    <img src="https://placehold.co/400x250/1F252E/F9532D?text=Project+4" alt="Project 4" class="w-full h-48 object-cover">
+                    <div class="p-6 flex flex-col flex-grow">
+                        <h3 class="text-xl font-semibold primary-accent mb-2">EMG Signal Classification (SVM)</h3>
+                        <p class="text-gray-400 text-sm mb-4 flex-grow">Classified EMG signals using Support Vector Machine (SVM) classifier in MATLAB.</p>
+                        <div class="mb-4">
+                             <span class="inline-block bg-gray-700 text-orange-400 text-xs px-2 py-1 rounded-full mr-1 mb-1">MATLAB</span>
+                             <span class="inline-block bg-gray-700 text-orange-400 text-xs px-2 py-1 rounded-full mr-1 mb-1">Machine Learning</span>
+                             <span class="inline-block bg-gray-700 text-orange-400 text-xs px-2 py-1 rounded-full mr-1 mb-1">SVM</span>
+                        </div>
+                        <a href="https://github.com/SAMortazavi/EMG-Signal-Classification-Using-SVM-Classifier" target="_blank" class="mt-auto inline-block text-center bg-primary-accent text-white font-semibold py-2 px-4 rounded-md hover-bg-primary-accent-darker transition duration-300 transform hover:scale-105">View on GitHub</a>
+                    </div>
+                </div>
+                 <div class="bg-gray-900 rounded-lg shadow-xl overflow-hidden card-hover-effect flex flex-col animate-on-scroll" data-delay="400">
+                    <img src="https://placehold.co/400x250/1F252E/F9532D?text=More+Projects" alt="More Projects" class="w-full h-48 object-cover">
+                    <div class="p-6 flex flex-col flex-grow">
+                        <h3 class="text-xl font-semibold primary-accent mb-2">Other Notable Projects</h3>
+                        <p class="text-gray-400 text-sm mb-4 flex-grow">Includes EEG signal algorithms (DFA, RQA), statistical tests for EEG, algorithms for artificial ribosome, EEG signal quality assessment, object tracking, emotion detection, and more. Many projects, including freelance work, are in private repositories.</p>
+                        <p class="text-gray-400 text-sm mb-4 flex-grow">Access to private repositories can be provided upon request for review.</p>
+                        <a href="https://github.com/SAMortazavi" target="_blank" class="mt-auto inline-block text-center bg-primary-accent text-white font-semibold py-2 px-4 rounded-md hover-bg-primary-accent-darker transition duration-300 transform hover:scale-105">View GitHub Profile</a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section id="skills" class="bg-gray-900">
+        <div class="container mx-auto px-6">
+            <h2 class="text-4xl font-bold mb-16 text-center section-title animate-on-scroll">Technical Skills</h2>
+            <div class="grid md:grid-cols-2 lg:grid-cols-3 gap-8">
+                <div class="bg-gray-800 p-6 rounded-lg shadow-lg card-hover-effect animate-on-scroll">
+                    <h3 class="text-2xl font-semibold primary-accent mb-4">Programming/Scripting</h3>
+                    <ul class="space-y-2 text-gray-300">
+                        <li class="flex items-center"><svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5 mr-2 primary-accent" viewBox="0 0 20 20" fill="currentColor"><path fill-rule="evenodd" d="M16.707 5.293a1 1 0 010 1.414l-8 8a1 1 0 01-1.414 0l-4-4a1 1 0 011.414-1.414L8 12.586l7.293-7.293a1 1 0 011.414 0z" clip-rule="evenodd" /></svg>Python</li>
+                        <li class="flex items-center"><svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5 mr-2 primary-accent" viewBox="0 0 20 20" fill="currentColor"><path fill-rule="evenodd" d="M16.707 5.293a1 1 0 010 1.414l-8 8a1 1 0 01-1.414 0l-4-4a1 1 0 011.414-1.414L8 12.586l7.293-7.293a1 1 0 011.414 0z" clip-rule="evenodd" /></svg>MATLAB</li>
+                        <li class="flex items-center"><svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5 mr-2 primary-accent" viewBox="0 0 20 20" fill="currentColor"><path fill-rule="evenodd" d="M16.707 5.293a1 1 0 010 1.414l-8 8a1 1 0 01-1.414 0l-4-4a1 1 0 011.414-1.414L8 12.586l7.293-7.293a1 1 0 011.414 0z" clip-rule="evenodd" /></svg>HTML5/CSS3</li>
+                        <li class="flex items-center"><svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5 mr-2 primary-accent" viewBox="0 0 20 20" fill="currentColor"><path fill-rule="evenodd" d="M16.707 5.293a1 1 0 010 1.414l-8 8a1 1 0 01-1.414 0l-4-4a1 1 0 011.414-1.414L8 12.586l7.293-7.293a1 1 0 011.414 0z" clip-rule="evenodd" /></svg>LaTeX</li>
+                    </ul>
+                </div>
+                <div class="bg-gray-800 p-6 rounded-lg shadow-lg card-hover-effect animate-on-scroll" data-delay="100">
+                    <h3 class="text-2xl font-semibold primary-accent mb-4">Libraries/Frameworks</h3>
+                    <ul class="space-y-2 text-gray-300">
+                        <li class="flex items-center"><svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5 mr-2 primary-accent" viewBox="0 0 20 20" fill="currentColor"><path fill-rule="evenodd" d="M16.707 5.293a1 1 0 010 1.414l-8 8a1 1 0 01-1.414 0l-4-4a1 1 0 011.414-1.414L8 12.586l7.293-7.293a1 1 0 011.414 0z" clip-rule="evenodd" /></svg>Pandas, NumPy, Matplotlib</li>
+                        <li class="flex items-center"><svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5 mr-2 primary-accent" viewBox="0 0 20 20" fill="currentColor"><path fill-rule="evenodd" d="M16.707 5.293a1 1 0 010 1.414l-8 8a1 1 0 01-1.414 0l-4-4a1 1 0 011.414-1.414L8 12.586l7.293-7.293a1 1 0 011.414 0z" clip-rule="evenodd" /></svg>TensorFlow, PyTorch, Scikit-learn</li>
+                        <li class="flex items-center"><svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5 mr-2 primary-accent" viewBox="0 0 20 20" fill="currentColor"><path fill-rule="evenodd" d="M16.707 5.293a1 1 0 010 1.414l-8 8a1 1 0 01-1.414 0l-4-4a1 1 0 011.414-1.414L8 12.586l7.293-7.293a1 1 0 011.414 0z" clip-rule="evenodd" /></svg>OpenCV</li>
+                        <li class="flex items-center"><svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5 mr-2 primary-accent" viewBox="0 0 20 20" fill="currentColor"><path fill-rule="evenodd" d="M16.707 5.293a1 1 0 010 1.414l-8 8a1 1 0 01-1.414 0l-4-4a1 1 0 011.414-1.414L8 12.586l7.293-7.293a1 1 0 011.414 0z" clip-rule="evenodd" /></svg>Hugging Face Transformers, Librosa</li>
+                        <li class="flex items-center"><svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5 mr-2 primary-accent" viewBox="0 0 20 20" fill="currentColor"><path fill-rule="evenodd" d="M16.707 5.293a1 1 0 010 1.414l-8 8a1 1 0 01-1.414 0l-4-4a1 1 0 011.414-1.414L8 12.586l7.293-7.293a1 1 0 011.414 0z" clip-rule="evenodd" /></svg>Lightning, MLFlow</li>
+                    </ul>
+                </div>
+                <div class="bg-gray-800 p-6 rounded-lg shadow-lg card-hover-effect animate-on-scroll" data-delay="200">
+                    <h3 class="text-2xl font-semibold primary-accent mb-4">IDEs/Tools</h3>
+                    <ul class="space-y-2 text-gray-300">
+                        <li class="flex items-center"><svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5 mr-2 primary-accent" viewBox="0 0 20 20" fill="currentColor"><path fill-rule="evenodd" d="M16.707 5.293a1 1 0 010 1.414l-8 8a1 1 0 01-1.414 0l-4-4a1 1 0 011.414-1.414L8 12.586l7.293-7.293a1 1 0 011.414 0z" clip-rule="evenodd" /></svg>VSCode, PyCharm, Spyder</li>
+                        <li class="flex items-center"><svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5 mr-2 primary-accent" viewBox="0 0 20 20" fill="currentColor"><path fill-rule="evenodd" d="M16.707 5.293a1 1 0 010 1.414l-8 8a1 1 0 01-1.414 0l-4-4a1 1 0 011.414-1.414L8 12.586l7.293-7.293a1 1 0 011.414 0z" clip-rule="evenodd" /></svg>Linux Environment</li>
+                        <li class="flex items-center"><svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5 mr-2 primary-accent" viewBox="0 0 20 20" fill="currentColor"><path fill-rule="evenodd" d="M16.707 5.293a1 1 0 010 1.414l-8 8a1 1 0 01-1.414 0l-4-4a1 1 0 011.414-1.414L8 12.586l7.293-7.293a1 1 0 011.414 0z" clip-rule="evenodd" /></svg>Docker, Git & GitHub</li>
+                        <li class="flex items-center"><svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5 mr-2 primary-accent" viewBox="0 0 20 20" fill="currentColor"><path fill-rule="evenodd" d="M16.707 5.293a1 1 0 010 1.414l-8 8a1 1 0 01-1.414 0l-4-4a1 1 0 011.414-1.414L8 12.586l7.293-7.293a1 1 0 011.414 0z" clip-rule="evenodd" /></svg>Conda</li>
+                        <li class="flex items-center"><svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5 mr-2 primary-accent" viewBox="0 0 20 20" fill="currentColor"><path fill-rule="evenodd" d="M16.707 5.293a1 1 0 010 1.414l-8 8a1 1 0 01-1.414 0l-4-4a1 1 0 011.414-1.414L8 12.586l7.293-7.293a1 1 0 011.414 0z" clip-rule="evenodd" /></svg>IBM SPSS Statistics 26</li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section id="education" class="bg-gray-800">
+        <div class="container mx-auto px-6">
+            <h2 class="text-4xl font-bold mb-16 text-center section-title animate-on-scroll">Education & Certifications</h2>
+            <div class="grid md:grid-cols-2 gap-12">
+                <div class="animate-on-scroll">
+                    <h3 class="text-3xl font-semibold primary-accent mb-8 text-center md:text-left">Education</h3>
+                    <div class="space-y-8">
+                        <div class="bg-gray-900 p-6 rounded-lg shadow-lg card-hover-effect">
+                            <h4 class="text-xl font-semibold text-white">Master of Science (M.Sc.) - Electrical Engineering (Bioelectric)</h4>
+                            <p class="text-orange-400 mb-1">Sharif University of Technology | 2023 - Present</p>
+                            <p class="text-gray-400">Current Score: 19.02/20.0 (GPA: 4.0/4.0)</p>
+                            <p class="text-gray-400">Ranked 1st in class.</p>
+                        </div>
+                        <div class="bg-gray-900 p-6 rounded-lg shadow-lg card-hover-effect">
+                            <h4 class="text-xl font-semibold text-white">Bachelor of Science (B.Sc.) - Electrical Engineering (Telecommunication)</h4>
+                            <p class="text-orange-400 mb-1">Amirkabir University of Technology | 2019 - 2023</p>
+                            <p class="text-gray-400">Final Score: 19.38/20.0 (GPA: 4.0/4.0)</p>
+                             <p class="text-gray-400">Ranked 1st in class.</p>
+                        </div>
+                        <div class="bg-gray-900 p-6 rounded-lg shadow-lg card-hover-effect">
+                            <h4 class="text-xl font-semibold text-white">Bachelor of Science (B.Sc.) - Biomedical Engineering (Bioelectric)</h4>
+                            <p class="text-orange-400 mb-1">Amirkabir University of Technology | 2019 - 2023</p>
+                            <p class="text-gray-400">Final Score: 19.07/20.0 (GPA: 4.0/4.0)</p>
+                            <p class="text-gray-400">Ranked 1st in class.</p>
+                        </div>
+                    </div>
+                </div>
+                <div class="animate-on-scroll" data-delay="100">
+                    <h3 class="text-3xl font-semibold primary-accent mb-8 text-center md:text-left">Licenses & Certifications</h3>
+                    <div class="space-y-4 bg-gray-900 p-6 rounded-lg shadow-lg card-hover-effect">
+                        <p class="text-gray-300 flex items-start"><svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5 mr-2 mt-1 primary-accent flex-shrink-0" viewBox="0 0 20 20" fill="currentColor"><path fill-rule="evenodd" d="M6.267 3.455a3.066 3.066 0 001.745-.723 3.066 3.066 0 013.976 0 3.066 3.066 0 001.745.723 3.066 3.066 0 012.812 2.812c.051.643.304 1.254.723 1.745a3.066 3.066 0 010 3.976 3.066 3.066 0 00-.723 1.745 3.066 3.066 0 01-2.812 2.812 3.066 3.066 0 00-1.745.723 3.066 3.066 0 01-3.976 0 3.066 3.066 0 00-1.745-.723 3.066 3.066 0 01-2.812-2.812 3.066 3.066 0 00-.723-1.745 3.066 3.066 0 010-3.976 3.066 3.066 0 00.723-1.745 3.066 3.066 0 012.812-2.812zm7.469 6.469a1 1 0 01-1.414-1.414L10 10.586 8.707 9.293a1 1 0 00-1.414 1.414L8.586 12l-1.293 1.293a1 1 0 101.414 1.414L10 13.414l1.293 1.293a1 1 0 001.414-1.414L11.414 12l1.293-1.293z" clip-rule="evenodd" /></svg>EEG Signal Processing - Amirkabir University (Aug 2022)</p>
+                        <p class="text-gray-300 flex items-start"><svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5 mr-2 mt-1 primary-accent flex-shrink-0" viewBox="0 0 20 20" fill="currentColor"><path fill-rule="evenodd" d="M6.267 3.455a3.066 3.066 0 001.745-.723 3.066 3.066 0 013.976 0 3.066 3.066 0 001.745.723 3.066 3.066 0 012.812 2.812c.051.643.304 1.254.723 1.745a3.066 3.066 0 010 3.976 3.066 3.066 0 00-.723 1.745 3.066 3.066 0 01-2.812 2.812 3.066 3.066 0 00-1.745.723 3.066 3.066 0 01-3.976 0 3.066 3.066 0 00-1.745-.723 3.066 3.066 0 01-2.812-2.812 3.066 3.066 0 00-.723-1.745 3.066 3.066 0 010-3.976 3.066 3.066 0 00.723-1.745 3.066 3.066 0 012.812-2.812zm7.469 6.469a1 1 0 01-1.414-1.414L10 10.586 8.707 9.293a1 1 0 00-1.414 1.414L8.586 12l-1.293 1.293a1 1 0 101.414 1.414L10 13.414l1.293 1.293a1 1 0 001.414-1.414L11.414 12l1.293-1.293z" clip-rule="evenodd" /></svg>Supervised Machine Learning: Regression and Classification - Coursera (Jan 2023)</p>
+                        <p class="text-gray-300 flex items-start"><svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5 mr-2 mt-1 primary-accent flex-shrink-0" viewBox="0 0 20 20" fill="currentColor"><path fill-rule="evenodd" d="M6.267 3.455a3.066 3.066 0 001.745-.723 3.066 3.066 0 013.976 0 3.066 3.066 0 001.745.723 3.066 3.066 0 012.812 2.812c.051.643.304 1.254.723 1.745a3.066 3.066 0 010 3.976 3.066 3.066 0 00-.723 1.745 3.066 3.066 0 01-2.812 2.812 3.066 3.066 0 00-1.745.723 3.066 3.066 0 01-3.976 0 3.066 3.066 0 00-1.745-.723 3.066 3.066 0 01-2.812-2.812 3.066 3.066 0 00-.723-1.745 3.066 3.066 0 010-3.976 3.066 3.066 0 00.723-1.745 3.066 3.066 0 012.812-2.812zm7.469 6.469a1 1 0 01-1.414-1.414L10 10.586 8.707 9.293a1 1 0 00-1.414 1.414L8.586 12l-1.293 1.293a1 1 0 101.414 1.414L10 13.414l1.293 1.293a1 1 0 001.414-1.414L11.414 12l1.293-1.293z" clip-rule="evenodd" /></svg>Advanced Learning Algorithms - Coursera (Mar 2023)</p>
+                        <p class="text-gray-300 flex items-start"><svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5 mr-2 mt-1 primary-accent flex-shrink-0" viewBox="0 0 20 20" fill="currentColor"><path fill-rule="evenodd" d="M6.267 3.455a3.066 3.066 0 001.745-.723 3.066 3.066 0 013.976 0 3.066 3.066 0 001.745.723 3.066 3.066 0 012.812 2.812c.051.643.304 1.254.723 1.745a3.066 3.066 0 010 3.976 3.066 3.066 0 00-.723 1.745 3.066 3.066 0 01-2.812 2.812 3.066 3.066 0 00-1.745.723 3.066 3.066 0 01-3.976 0 3.066 3.066 0 00-1.745-.723 3.066 3.066 0 01-2.812-2.812 3.066 3.066 0 00-.723-1.745 3.066 3.066 0 010-3.976 3.066 3.066 0 00.723-1.745 3.066 3.066 0 012.812-2.812zm7.469 6.469a1 1 0 01-1.414-1.414L10 10.586 8.707 9.293a1 1 0 00-1.414 1.414L8.586 12l-1.293 1.293a1 1 0 101.414 1.414L10 13.414l1.293 1.293a1 1 0 001.414-1.414L11.414 12l1.293-1.293z" clip-rule="evenodd" /></svg>Linear Algebra for Machine Learning and Data Science - Coursera (Jan 2023)</p>
+                        <p class="text-gray-300 flex items-start"><svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5 mr-2 mt-1 primary-accent flex-shrink-0" viewBox="0 0 20 20" fill="currentColor"><path fill-rule="evenodd" d="M6.267 3.455a3.066 3.066 0 001.745-.723 3.066 3.066 0 013.976 0 3.066 3.066 0 001.745.723 3.066 3.066 0 012.812 2.812c.051.643.304 1.254.723 1.745a3.066 3.066 0 010 3.976 3.066 3.066 0 00-.723 1.745 3.066 3.066 0 01-2.812 2.812 3.066 3.066 0 00-1.745.723 3.066 3.066 0 01-3.976 0 3.066 3.066 0 00-1.745-.723 3.066 3.066 0 01-2.812-2.812 3.066 3.066 0 00-.723-1.745 3.066 3.066 0 010-3.976 3.066 3.066 0 00.723-1.745 3.066 3.066 0 012.812-2.812zm7.469 6.469a1 1 0 01-1.414-1.414L10 10.586 8.707 9.293a1 1 0 00-1.414 1.414L8.586 12l-1.293 1.293a1 1 0 101.414 1.414L10 13.414l1.293 1.293a1 1 0 001.414-1.414L11.414 12l1.293-1.293z" clip-rule="evenodd" /></svg>Neuromatch Academy Deep Learning Course - Neuromatch (July 2023)</p>
+                        <p class="text-gray-300 flex items-start"><svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5 mr-2 mt-1 primary-accent flex-shrink-0" viewBox="0 0 20 20" fill="currentColor"><path fill-rule="evenodd" d="M6.267 3.455a3.066 3.066 0 001.745-.723 3.066 3.066 0 013.976 0 3.066 3.066 0 001.745.723 3.066 3.066 0 012.812 2.812c.051.643.304 1.254.723 1.745a3.066 3.066 0 010 3.976 3.066 3.066 0 00-.723 1.745 3.066 3.066 0 01-2.812 2.812 3.066 3.066 0 00-1.745.723 3.066 3.066 0 01-3.976 0 3.066 3.066 0 00-1.745-.723 3.066 3.066 0 01-2.812-2.812 3.066 3.066 0 00-.723-1.745 3.066 3.066 0 010-3.976 3.066 3.066 0 00.723-1.745 3.066 3.066 0 012.812-2.812zm7.469 6.469a1 1 0 01-1.414-1.414L10 10.586 8.707 9.293a1 1 0 00-1.414 1.414L8.586 12l-1.293 1.293a1 1 0 101.414 1.414L10 13.414l1.293 1.293a1 1 0 001.414-1.414L11.414 12l1.293-1.293z" clip-rule="evenodd" /></svg>Complete Neural Signal Processing and Analysis: Zero to Hero - Udemy (Oct 2023 - Present)</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section id="contact" class="bg-gray-900">
+        <div class="container mx-auto px-6">
+            <h2 class="text-4xl font-bold mb-12 text-center section-title animate-on-scroll">Get In Touch</h2>
+            <div class="max-w-lg mx-auto bg-gray-800 p-8 rounded-xl shadow-xl text-center card-hover-effect animate-on-scroll">
+                <p class="text-lg text-gray-300 mb-6">
+                    I'm always open to discussing new projects, research collaborations, or opportunities. Feel free to reach out!
+                </p>
+                <a href="mailto:Seyyed79abolfazl@gmail.com" class="inline-block bg-primary-accent text-white font-semibold py-3 px-8 rounded-lg shadow-md hover-bg-primary-accent-darker transition duration-300 text-lg mb-6 transform hover:scale-105">
+                    Email: Seyyed79abolfazl@gmail.com
+                </a>
+                <p class="text-gray-400 mb-2">Connect with me on:</p>
+                <div class="flex justify-center space-x-6">
+                     <a href="https://github.com/SAMortazavi" target="_blank" class="text-gray-400 hover-text-primary-accent-lighter transition duration-300 transform hover:scale-110" aria-label="GitHub">
+                        <svg xmlns="http://www.w3.org/2000/svg" width="32" height="32" viewBox="0 0 24 24" fill="currentColor"><path d="M12 0c-6.626 0-12 5.373-12 12 0 5.302 3.438 9.8 8.207 11.387.599.111.793-.261.793-.577v-2.234c-3.338.726-4.033-1.416-4.033-1.416-.546-1.387-1.333-1.756-1.333-1.756-1.089-.745.083-.729.083-.729 1.205.084 1.839 1.237 1.839 1.237 1.07 1.834 2.807 1.304 3.492.997.107-.775.418-1.305.762-1.604-2.665-.305-5.467-1.334-5.467-5.931 0-1.311.469-2.381 1.236-3.221-.124-.303-.535-1.524.117-3.176 0 0 1.008-.322 3.301 1.23.957-.266 1.983-.399 3.003-.404 1.02.005 2.047.138 3.006.404 2.291-1.552 3.297-1.23 3.297-1.23.653 1.653.242 2.874.118 3.176.77.84 1.235 1.911 1.235 3.221 0 4.609-2.807 5.624-5.479 5.921.43.372.823 1.102.823 2.222v3.293c0 .319.192.694.801.576 4.765-1.589 8.199-6.086 8.199-11.386 0-6.627-5.373-12-12-12z"/></svg>
+                    </a>
+                    <a href="https://www.linkedin.com/in/SAMortazavi" target="_blank" class="text-gray-400 hover-text-primary-accent-lighter transition duration-300 transform hover:scale-110" aria-label="LinkedIn">
+                        <svg xmlns="http://www.w3.org/2000/svg" width="32" height="32" viewBox="0 0 24 24" fill="currentColor"><path d="M19 0h-14c-2.761 0-5 2.239-5 5v14c0 2.761 2.239 5 5 5h14c2.762 0 5-2.239 5-5v-14c0-2.761-2.238-5-5-5zm-11 19h-3v-11h3v11zm-1.5-12.268c-.966 0-1.75-.79-1.75-1.764s.784-1.764 1.75-1.764 1.75.79 1.75 1.764-.783 1.764-1.75 1.764zm13.5 12.268h-3v-5.604c0-3.368-4-3.113-4 0v5.604h-3v-11h3v1.765c1.396-2.586 7-2.777 7 2.476v6.759z"/></svg>
+                    </a>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <footer class="bg-gray-900 border-t border-gray-700">
+        <div class="container mx-auto px-6 py-8 text-center text-gray-400">
+            <p>&copy; <span id="currentYear"></span> Seyed Abolfazl Mortazavi. All Rights Reserved.</p>
+            <p class="text-sm mt-1">Designed with <span class="primary-accent">&hearts;</span> using Tailwind CSS.</p>
+        </div>
+    </footer>
+
+    <script>
+        // Preloader logic
+        window.addEventListener('load', () => {
+            const preloader = document.getElementById('preloader');
+            const body = document.body;
+            
+            // Ensure preloader is visible for a minimum time if needed, or remove timeout for instant fade
+            setTimeout(() => {
+                preloader.classList.add('hidden');
+                body.classList.add('loaded'); // Make body visible after preloader
+            }, 200); // Adjust time as needed, or set to 0
+        });
+
+        // Mobile menu toggle
+        const mobileMenuButton = document.getElementById('mobile-menu-button');
+        const mobileMenu = document.getElementById('mobile-menu');
+        mobileMenuButton.addEventListener('click', () => {
+            mobileMenu.classList.toggle('hidden');
+            // Optional: Toggle ARIA attribute for accessibility
+            const expanded = mobileMenuButton.getAttribute('aria-expanded') === 'true' || false;
+            mobileMenuButton.setAttribute('aria-expanded', !expanded);
+        });
+
+        // Close mobile menu when a link is clicked
+        const mobileMenuLinks = mobileMenu.querySelectorAll('a');
+        mobileMenuLinks.forEach(link => {
+            link.addEventListener('click', () => {
+                mobileMenu.classList.add('hidden');
+                mobileMenuButton.setAttribute('aria-expanded', 'false');
+            });
+        });
+        
+        // Set current year in footer
+        document.getElementById('currentYear').textContent = new Date().getFullYear();
+
+        // Smooth scroll for navigation links
+        document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+            anchor.addEventListener('click', function (e) {
+                if (this.getAttribute('href').startsWith('#') && this.getAttribute('href').length > 1) {
+                    e.preventDefault();
+                    const targetId = this.getAttribute('href');
+                    const targetElement = document.querySelector(targetId);
+                    if (targetElement) {
+                        // Calculate offset for sticky header if necessary
+                        const headerOffset = document.querySelector('header').offsetHeight || 70; // Adjust if header height changes
+                        const elementPosition = targetElement.getBoundingClientRect().top;
+                        const offsetPosition = elementPosition + window.pageYOffset - headerOffset;
+        
+                        window.scrollTo({
+                            top: offsetPosition,
+                            behavior: 'smooth'
+                        });
+                    }
+                }
+            });
+        });
+
+        // Intersection Observer for animations on scroll
+        const observerOptions = {
+            root: null, // relative to document viewport
+            rootMargin: '0px',
+            threshold: 0.1 // trigger when 10% of the element is visible
+        };
+
+        const observerCallback = (entries, observer) => {
+            entries.forEach(entry => {
+                if (entry.isIntersecting) {
+                    const target = entry.target;
+                    // Add 'animated' class for general scroll animations
+                    target.classList.add('animated');
+                    
+                    // Specific animation for section title underline
+                    if (target.classList.contains('section-title')) {
+                        target.classList.add('animate-underline');
+                    }
+                    
+                    // Apply delay if data-delay attribute is present
+                    const delay = target.dataset.delay;
+                    if (delay) {
+                        setTimeout(() => {
+                            target.classList.add('animated'); // This was applying 'animated' twice if delay was present. Corrected logic.
+                        }, parseInt(delay));
+                    } 
+                    // No 'else' needed here, as 'animated' is added above for all intersecting elements.
+                    // The delay logic is specifically for staggering, the initial animation is applied immediately upon intersection.
+
+                    observer.unobserve(target); // Optional: stop observing after animation
+                }
+            });
+        };
+
+        const observer = new IntersectionObserver(observerCallback, observerOptions);
+        const elementsToAnimate = document.querySelectorAll('.animate-on-scroll');
+        elementsToAnimate.forEach(el => observer.observe(el));
+
+    </script>
+
 </body>
-<script>
-    console.log();
-</script>
 </html>
