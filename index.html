@@ -27,6 +27,8 @@
             --spinner-track-color: #374151;
             --button-secondary-bg: #374151; /* gray-700 */
             --button-secondary-hover-bg: #4b5563; /* gray-600 */
+            --tag-bg-color: #374151; /* gray-700 for dark theme tags */
+            --tag-text-color: #fb923c; /* orange-400 for dark theme tags */
         }
 
         html.light-theme {
@@ -38,10 +40,6 @@
             --card-bg-hover-color: #f9fafb; /* gray-50 */
             --text-color: #1f2937; /* gray-800 */
             --secondary-text-color: #4b5563; /* gray-600 */
-            /* Primary accent can remain the same or be adjusted if needed */
-            /* --primary-accent-color: #f97316; */
-            /* --primary-accent-hover-color: #ea580c; */
-            /* --primary-accent-lighter-text-hover: #f59e0b; /* amber-500 for light bg */
             --border-color: #d1d5db; /* gray-300 */
             --header-bg-color: rgba(243, 244, 246, 0.7); /* gray-100 with opacity */
             --shadow-color-strong: rgba(0, 0, 0, 0.1);
@@ -49,6 +47,8 @@
             --spinner-track-color: #e5e7eb; /* gray-200 */
             --button-secondary-bg: #e5e7eb; /* gray-200 */
             --button-secondary-hover-bg: #d1d5db; /* gray-300 */
+            --tag-bg-color: #e5e7eb; /* gray-200 for light theme tags */
+            --tag-text-color: #c2410c; /* orange-700 for light theme tags */
         }
 
         body {
@@ -63,164 +63,79 @@
             opacity: 1;
         }
 
-        /* Apply transitions to elements that change theme colors */
         header, section, footer, div, p, h1, h2, h3, h4, li, a, span, svg, button {
             transition: background-color 0.3s ease-in-out, color 0.3s ease-in-out, border-color 0.3s ease-in-out, fill 0.3s ease-in-out;
         }
         img, .card-hover-effect {
-             transition: transform 0.3s ease-out, box-shadow 0.3s ease-out; /* Keep transform transitions separate */
+             transition: transform 0.3s ease-out, box-shadow 0.3s ease-out;
         }
 
+        .primary-accent { color: var(--primary-accent-color); }
+        .bg-primary-accent { background-color: var(--primary-accent-color); }
+        .border-primary-accent { border-color: var(--primary-accent-color); }
+        .hover-bg-primary-accent-darker:hover { background-color: var(--primary-accent-hover-color); }
+        .hover-text-primary-accent-lighter:hover { color: var(--primary-accent-lighter-text-hover); }
 
-        .primary-accent {
-            color: var(--primary-accent-color);
-        }
-        .bg-primary-accent {
-            background-color: var(--primary-accent-color);
-        }
-        .border-primary-accent {
-            border-color: var(--primary-accent-color);
-        }
-        .hover-bg-primary-accent-darker:hover {
-            background-color: var(--primary-accent-hover-color);
-        }
-        .hover-text-primary-accent-lighter:hover {
-            color: var(--primary-accent-lighter-text-hover);
-        }
+        ::-webkit-scrollbar { width: 8px; }
+        ::-webkit-scrollbar-track { background: var(--card-bg-color); }
+        ::-webkit-scrollbar-thumb { background: var(--primary-accent-color); border-radius: 4px; }
+        ::-webkit-scrollbar-thumb:hover { background: var(--primary-accent-hover-color); }
 
-        /* Custom scrollbar */
-        ::-webkit-scrollbar {
-            width: 8px;
-        }
-        ::-webkit-scrollbar-track {
-            background: var(--card-bg-color); /* Use a theme variable */
-        }
-        ::-webkit-scrollbar-thumb {
-            background: var(--primary-accent-color);
-            border-radius: 4px;
-        }
-        ::-webkit-scrollbar-thumb:hover {
-            background: var(--primary-accent-hover-color);
-        }
+        section { padding-top: 5rem; padding-bottom: 5rem; }
 
-        section {
-            padding-top: 5rem;
-            padding-bottom: 5rem;
-        }
-
-        /* Section Title Animation - MODIFIED for centering */
         .section-title::after {
-            content: '';
-            display: block;
-            width: 0px;
-            height: 3px;
+            content: ''; display: block; width: 0px; height: 3px;
             background-color: var(--primary-accent-color);
-            margin-top: 0.75rem;
-            margin-left: auto; /* Center the underline */
-            margin-right: auto; /* Center the underline */
+            margin-top: 0.75rem; margin-left: auto; margin-right: auto;
             transition: width 0.5s ease-in-out;
         }
-        .section-title.animate-underline::after {
-            width: 70px;
-        }
+        .section-title.animate-underline::after { width: 70px; }
 
-        /* Animations for scroll */
-        .animate-on-scroll {
-            opacity: 0;
-            transform: translateY(30px);
-            transition: opacity 0.6s ease-out, transform 0.6s ease-out;
-        }
-        .animate-on-scroll.animated {
-            opacity: 1;
-            transform: translateY(0);
-        }
+        .animate-on-scroll { opacity: 0; transform: translateY(30px); transition: opacity 0.6s ease-out, transform 0.6s ease-out; }
+        .animate-on-scroll.animated { opacity: 1; transform: translateY(0); }
         
-        /* Card hover effect - Using CSS Variables for shadow */
         .card-hover-effect:hover {
             transform: translateY(-8px) scale(1.03);
             box-shadow: 0 20px 25px -5px var(--shadow-color-strong), 0 10px 10px -5px var(--shadow-color-medium);
         }
 
-        /* Profile image pulse animation */
         @keyframes pulse {
-            0%, 100% {
-                transform: scale(1);
-                box-shadow: 0 0 0 0 rgba(249, 115, 22, 0.7); /* Orange color for pulse, can be themed if desired */
-            }
-            50% {
-                transform: scale(1.05);
-                box-shadow: 0 0 0 10px rgba(249, 115, 22, 0);
-            }
+            0%, 100% { transform: scale(1); box-shadow: 0 0 0 0 rgba(249, 115, 22, 0.7); }
+            50% { transform: scale(1.05); box-shadow: 0 0 0 10px rgba(249, 115, 22, 0); }
         }
-        html.light-theme @keyframes pulse { /* Adjust pulse color for light theme if needed */
-             0%, 100% {
-                transform: scale(1);
-                box-shadow: 0 0 0 0 rgba(249, 115, 22, 0.5);
-            }
-            50% {
-                transform: scale(1.05);
-                box-shadow: 0 0 0 10px rgba(249, 115, 22, 0);
-            }
+        html.light-theme @keyframes pulse {
+             0%, 100% { transform: scale(1); box-shadow: 0 0 0 0 rgba(249, 115, 22, 0.5); }
+            50% { transform: scale(1.05); box-shadow: 0 0 0 10px rgba(249, 115, 22, 0); }
         }
-        .profile-image-pulse {
-            animation: pulse 2.5s infinite;
-        }
+        .profile-image-pulse { animation: pulse 2.5s infinite; }
 
-        /* Hero text animation */
-        .hero-text-animate {
-            opacity: 0;
-            transform: translateY(20px);
-            animation: fadeInSlideUp 1s ease-out forwards;
-        }
+        .hero-text-animate { opacity: 0; transform: translateY(20px); animation: fadeInSlideUp 1s ease-out forwards; }
         .hero-text-animate.delay-1 { animation-delay: 0.3s; }
         .hero-text-animate.delay-2 { animation-delay: 0.6s; }
         .hero-text-animate.delay-3 { animation-delay: 0.9s; }
         .hero-text-animate.delay-4 { animation-delay: 1.2s; }
 
-        @keyframes fadeInSlideUp {
-            to {
-                opacity: 1;
-                transform: translateY(0);
-            }
-        }
+        @keyframes fadeInSlideUp { to { opacity: 1; transform: translateY(0); } }
 
-        /* Preloader styles */
         #preloader {
-            position: fixed;
-            top: 0;
-            left: 0;
-            width: 100%;
-            height: 100%;
-            background-color: var(--bg-color); /* Use theme variable */
-            display: flex;
-            justify-content: center;
-            align-items: center;
-            z-index: 9999;
+            position: fixed; top: 0; left: 0; width: 100%; height: 100%;
+            background-color: var(--bg-color); display: flex;
+            justify-content: center; align-items: center; z-index: 9999;
             transition: opacity 0.5s ease-out, visibility 0.5s ease-out;
         }
-        #preloader.hidden {
-            opacity: 0;
-            visibility: hidden;
-        }
+        #preloader.hidden { opacity: 0; visibility: hidden; }
         .spinner {
-            width: 50px;
-            height: 50px;
-            border: 5px solid var(--spinner-track-color); /* Use theme variable */
-            border-top-color: var(--primary-accent-color); /* Use theme variable */
-            border-radius: 50%;
+            width: 50px; height: 50px; border: 5px solid var(--spinner-track-color);
+            border-top-color: var(--primary-accent-color); border-radius: 50%;
             animation: spin 1s linear infinite;
         }
-        @keyframes spin {
-            to { transform: rotate(360deg); }
-        }
+        @keyframes spin { to { transform: rotate(360deg); } }
     </style>
 </head>
 
 <body class="antialiased">
 
-    <div id="preloader">
-        <div class="spinner"></div>
-    </div>
+    <div id="preloader"><div class="spinner"></div></div>
 
     <header class="bg-[var(--header-bg-color)] backdrop-blur-lg shadow-xl sticky top-0 z-50">
         <div class="container mx-auto px-6 py-4">
@@ -239,8 +154,7 @@
                     </button>
                 </nav>
                 <div class="md:hidden flex items-center">
-                     <button id="theme-toggle-mobile" type="button" class="p-2 mr-2 rounded-lg text-[var(--secondary-text-color)] hover-text-primary-accent-lighter focus:outline-none text-sm">
-                        </button>
+                     <button id="theme-toggle-mobile" type="button" class="p-2 mr-2 rounded-lg text-[var(--secondary-text-color)] hover-text-primary-accent-lighter focus:outline-none text-sm"></button>
                     <button id="mobile-menu-button" class="text-[var(--secondary-text-color)] focus:outline-none p-2 rounded-md hover:bg-[var(--card-bg-hover-color)] transition-colors">
                         <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" class="w-7 h-7"><path stroke-linecap="round" stroke-linejoin="round" d="M3.75 6.75h16.5M3.75 12h16.5m-16.5 5.25h16.5" /></svg>
                     </button>
@@ -277,20 +191,10 @@
                     </a>
                 </div>
                 <div class="flex justify-center space-x-6 hero-text-animate delay-4">
-                    <a href="https://github.com/SAMortazavi" target="_blank" class="text-[var(--secondary-text-color)] hover-text-primary-accent-lighter transform hover:scale-110" aria-label="GitHub">
-                        <svg xmlns="http://www.w3.org/2000/svg" width="32" height="32" viewBox="0 0 24 24" fill="currentColor"><path d="M12 0c-6.626 0-12 5.373-12 12 0 5.302 3.438 9.8 8.207 11.387.599.111.793-.261.793-.577v-2.234c-3.338.726-4.033-1.416-4.033-1.416-.546-1.387-1.333-1.756-1.333-1.756-1.089-.745.083-.729.083-.729 1.205.084 1.839 1.237 1.839 1.237 1.07 1.834 2.807 1.304 3.492.997.107-.775.418-1.305.762-1.604-2.665-.305-5.467-1.334-5.467-5.931 0-1.311.469-2.381 1.236-3.221-.124-.303-.535-1.524.117-3.176 0 0 1.008-.322 3.301 1.23.957-.266 1.983-.399 3.003-.404 1.02.005 2.047.138 3.006.404 2.291-1.552 3.297-1.23 3.297-1.23.653 1.653.242 2.874.118 3.176.77.84 1.235 1.911 1.235 3.221 0 4.609-2.807 5.624-5.479 5.921.43.372.823 1.102.823 2.222v3.293c0 .319.192.694.801.576 4.765-1.589 8.199-6.086 8.199-11.386 0-6.627-5.373-12-12-12z"/></svg>
-                    </a>
-                    <a href="https://www.linkedin.com/in/SAMortazavi" target="_blank" class="text-[var(--secondary-text-color)] hover-text-primary-accent-lighter transform hover:scale-110" aria-label="LinkedIn">
-                        <svg xmlns="http://www.w3.org/2000/svg" width="32" height="32" viewBox="0 0 24 24" fill="currentColor"><path d="M19 0h-14c-2.761 0-5 2.239-5 5v14c0 2.761 2.239 5 5 5h14c2.762 0 5-2.239 5-5v-14c0-2.761-2.238-5-5-5zm-11 19h-3v-11h3v11zm-1.5-12.268c-.966 0-1.75-.79-1.75-1.764s.784-1.764 1.75-1.764 1.75.79 1.75 1.764-.783 1.764-1.75 1.764zm13.5 12.268h-3v-5.604c0-3.368-4-3.113-4 0v5.604h-3v-11h3v1.765c1.396-2.586 7-2.777 7 2.476v6.759z"/></svg>
-                    </a>
-                    <a href="https://www.instagram.com/Mortazavi_Sabolfazl/" target="_blank" class="text-[var(--secondary-text-color)] hover-text-primary-accent-lighter transform hover:scale-110" aria-label="Instagram">
-                         <svg xmlns="http://www.w3.org/2000/svg" width="32" height="32" viewBox="0 0 24 24" fill="currentColor"><path d="M12 2.163c3.204 0 3.584.012 4.85.07 3.252.148 4.771 1.691 4.919 4.919.058 1.265.069 1.645.069 4.849 0 3.205-.012 3.584-.069 4.849-.149 3.225-1.664 4.771-4.919 4.919-1.266.058-1.644.07-4.85.07-3.204 0-3.584-.012-4.849-.07-3.26-.149-4.771-1.699-4.919-4.92-.058-1.265-.07-1.644-.07-4.849 0-3.204.013-3.583.07-4.849.149-3.227 1.664-4.771 4.919-4.919 1.266-.057 1.645-.069 4.849-.069zm0-2.163c-3.259 0-3.667.014-4.947.072-4.358.2-6.78 2.618-6.98 6.98-.059 1.281-.073 1.689-.073 4.948 0 3.259.014 3.668.072 4.948.2 4.358 2.618 6.78 6.98 6.98 1.281.059 1.689.073 4.948.073 3.259 0 3.668-.014 4.948-.072 4.354-.2 6.782-2.618 6.979-6.98.059-1.28.073-1.689.073-4.948 0-3.259-.014-3.667-.072-4.947-.196-4.354-2.617-6.78-6.979-6.98-1.281-.059-1.69-.073-4.948-.073zm0 5.838c-3.403 0-6.162 2.759-6.162 6.162s2.759 6.162 6.162 6.162 6.162-2.759 6.162-6.162-2.759-6.162-6.162-6.162zm0 10.162c-2.209 0-4-1.79-4-4s1.791-4 4-4 4 1.79 4 4-1.791 4-4 4zm6.406-11.845c-.796 0-1.441.645-1.441 1.44s.645 1.44 1.441 1.44c.795 0 1.439-.645 1.439-1.44s-.644-1.44-1.439-1.44z"/></svg>
-                    </a>
-                    <a href="https://t.me/Abolfazl_Mortazavi79" target="_blank" class="text-[var(--secondary-text-color)] hover-text-primary-accent-lighter transform hover:scale-110" aria-label="Telegram">
-                        <svg xmlns="http://www.w3.org/2000/svg" width="32" height="32" viewBox="0 0 24 24" fill="currentColor">
-                            <path d="M1.946 9.315c-.522-.174-.527-.455.01-.634l19.087-6.362c.529-.176.832.12.684.638l-5.454 19.086c-.15.529-.455.547-.679.045L12 14l6-8-8 6-8.054-2.685z"/>
-                        </svg>
-                    </a>
+                    <a href="https://github.com/SAMortazavi" target="_blank" class="text-[var(--secondary-text-color)] hover-text-primary-accent-lighter transform hover:scale-110" aria-label="GitHub"><svg xmlns="http://www.w3.org/2000/svg" width="32" height="32" viewBox="0 0 24 24" fill="currentColor"><path d="M12 0c-6.626 0-12 5.373-12 12 0 5.302 3.438 9.8 8.207 11.387.599.111.793-.261.793-.577v-2.234c-3.338.726-4.033-1.416-4.033-1.416-.546-1.387-1.333-1.756-1.333-1.756-1.089-.745.083-.729.083-.729 1.205.084 1.839 1.237 1.839 1.237 1.07 1.834 2.807 1.304 3.492.997.107-.775.418-1.305.762-1.604-2.665-.305-5.467-1.334-5.467-5.931 0-1.311.469-2.381 1.236-3.221-.124-.303-.535-1.524.117-3.176 0 0 1.008-.322 3.301 1.23.957-.266 1.983-.399 3.003-.404 1.02.005 2.047.138 3.006.404 2.291-1.552 3.297-1.23 3.297-1.23.653 1.653.242 2.874.118 3.176.77.84 1.235 1.911 1.235 3.221 0 4.609-2.807 5.624-5.479 5.921.43.372.823 1.102.823 2.222v3.293c0 .319.192.694.801.576 4.765-1.589 8.199-6.086 8.199-11.386 0-6.627-5.373-12-12-12z"/></svg></a>
+                    <a href="https://www.linkedin.com/in/SAMortazavi" target="_blank" class="text-[var(--secondary-text-color)] hover-text-primary-accent-lighter transform hover:scale-110" aria-label="LinkedIn"><svg xmlns="http://www.w3.org/2000/svg" width="32" height="32" viewBox="0 0 24 24" fill="currentColor"><path d="M19 0h-14c-2.761 0-5 2.239-5 5v14c0 2.761 2.239 5 5 5h14c2.762 0 5-2.239 5-5v-14c0-2.761-2.238-5-5-5zm-11 19h-3v-11h3v11zm-1.5-12.268c-.966 0-1.75-.79-1.75-1.764s.784-1.764 1.75-1.764 1.75.79 1.75 1.764-.783 1.764-1.75 1.764zm13.5 12.268h-3v-5.604c0-3.368-4-3.113-4 0v5.604h-3v-11h3v1.765c1.396-2.586 7-2.777 7 2.476v6.759z"/></svg></a>
+                    <a href="https://www.instagram.com/Mortazavi_Sabolfazl/" target="_blank" class="text-[var(--secondary-text-color)] hover-text-primary-accent-lighter transform hover:scale-110" aria-label="Instagram"><svg xmlns="http://www.w3.org/2000/svg" width="32" height="32" viewBox="0 0 24 24" fill="currentColor"><path d="M12 2.163c3.204 0 3.584.012 4.85.07 3.252.148 4.771 1.691 4.919 4.919.058 1.265.069 1.645.069 4.849 0 3.205-.012 3.584-.069 4.849-.149 3.225-1.664 4.771-4.919 4.919-1.266.058-1.644.07-4.85.07-3.204 0-3.584-.012-4.849-.07-3.26-.149-4.771-1.699-4.919-4.92-.058-1.265-.07-1.644-.07-4.849 0-3.204.013-3.583.07-4.849.149-3.227 1.664-4.771 4.919-4.919 1.266-.057 1.645-.069 4.849-.069zm0-2.163c-3.259 0-3.667.014-4.947.072-4.358.2-6.78 2.618-6.98 6.98-.059 1.281-.073 1.689-.073 4.948 0 3.259.014 3.668.072 4.948.2 4.358 2.618 6.78 6.98 6.98 1.281.059 1.689.073 4.948.073 3.259 0 3.668-.014 4.948-.072 4.354-.2 6.782-2.618 6.979-6.98.059-1.28.073-1.689.073-4.948 0-3.259-.014-3.667-.072-4.947-.196-4.354-2.617-6.78-6.979-6.98-1.281-.059-1.69-.073-4.948-.073zm0 5.838c-3.403 0-6.162 2.759-6.162 6.162s2.759 6.162 6.162 6.162 6.162-2.759 6.162-6.162-2.759-6.162-6.162-6.162zm0 10.162c-2.209 0-4-1.79-4-4s1.791-4 4-4 4 1.79 4 4-1.791 4-4 4zm6.406-11.845c-.796 0-1.441.645-1.441 1.44s.645 1.44 1.441 1.44c.795 0 1.439-.645 1.439-1.44s-.644-1.44-1.439-1.44z"/></svg></a>
+                    <a href="https://t.me/Abolfazl_Mortazavi79" target="_blank" class="text-[var(--secondary-text-color)] hover-text-primary-accent-lighter transform hover:scale-110" aria-label="Telegram"><svg xmlns="http://www.w3.org/2000/svg" width="32" height="32" viewBox="0 0 24 24" fill="currentColor"><path d="M1.946 9.315c-.522-.174-.527-.455.01-.634l19.087-6.362c.529-.176.832.12.684.638l-5.454 19.086c-.15.529-.455.547-.679.045L12 14l6-8-8 6-8.054-2.685z"/></svg></a>
                 </div>
             </div>
         </div>
@@ -305,10 +209,10 @@
                 </div>
                 <div class="md:col-span-2"> 
                     <p class="text-lg text-[var(--secondary-text-color)] mb-6 leading-relaxed animate-on-scroll" data-delay="100">
-                        I am Seyed Abolfazl Mortazavi, currently pursuing a Master's degree in Electrical Engineering at Sharif University of Technology...
+                        I am Seyed Abolfazl Mortazavi, currently pursuing a Master's degree in Electrical Engineering at Sharif University of Technology. My academic and professional journey is driven by a profound enthusiasm for the captivating realms of artificial intelligence, computational neuroscience, and digital signal/image processing. I am committed to exploring and contributing to cutting-edge developments in these fields, reflecting a deep passion for innovation and technology.
                     </p>
                     <p class="text-lg text-[var(--secondary-text-color)] mb-6 leading-relaxed animate-on-scroll" data-delay="200">
-                        With a strong foundation from my Bachelor's degrees...
+                        With a strong foundation from my Bachelor's degrees in Biomedical Engineering and Electrical Engineering from Amirkabir University of Technology, where I consistently ranked first in my class, I am eager to apply my knowledge and skills to solve complex challenges.
                     </p>
                     <div class="mb-8 animate-on-scroll" data-delay="300">
                         <h3 class="text-2xl font-semibold primary-accent mb-3">Research Interests</h3>
@@ -339,27 +243,27 @@
                 <div class="bg-[var(--card-bg-color)] p-8 rounded-xl shadow-xl card-hover-effect animate-on-scroll">
                     <div class="flex flex-col md:flex-row justify-between items-start md:items-center mb-3">
                         <h3 class="text-2xl font-semibold primary-accent">AI Developer - Speech Team</h3>
-                        <p class="text-[var(--secondary-text-color)] text-sm md:text-base">Jan 2025 - Present | Shatel, Tehran, Iran</p>
+                        <p class="text-[var(--secondary-text-color)] text-sm md:text-base">[Start Date] - Present | Shatel, Tehran, Iran</p>
                     </div>
                     <p class="text-[var(--secondary-text-color)] mb-4 leading-relaxed">
-                        As a member of the Speech Team...
+                        As a member of the Speech Team, I contribute to the development and enhancement of cutting-edge speech technologies. My responsibilities include:
                         <ul class="list-disc list-inside text-[var(--secondary-text-color)] space-y-1 mt-2 mb-3">
-                            <li><strong>Text-to-Speech (TTS):</strong> Developing and fine-tuning neural network models...</li>
-                            <li><strong>Automatic Speech Recognition (ASR):</strong> Working on training and evaluating ASR models...</li>
-                            <li><strong>Call Center Quality Control:</strong> Designing and implementing AI-driven solutions...</li>
+                            <li><strong>Text-to-Speech (TTS):</strong> Developing and fine-tuning neural network models for natural-sounding Persian speech synthesis, focusing on improving prosody, intonation, and overall voice quality. This involves data preprocessing, model training, and evaluation.</li>
+                            <li><strong>Automatic Speech Recognition (ASR):</strong> Working on training and evaluating ASR models to enhance accuracy and robustness for the Persian language, particularly in noisy call center environments and across diverse accents. This includes acoustic and language model development.</li>
+                            <li><strong>Call Center Quality Control:</strong> Designing and implementing AI-driven solutions to analyze call recordings for quality assurance. This involves leveraging ASR and NLP techniques for sentiment analysis, keyword spotting, topic modeling, and automated compliance checking to provide actionable insights for performance improvement.</li>
                         </ul>
-                         Collaborating with cross-functional teams...
+                         Collaborating with cross-functional teams to integrate these speech technologies into various Shatel products and services, and utilizing Linux environments for development, testing, and deployment of AI models.
                     </p>
                     <p class="font-medium text-[var(--text-color)] mb-1">Technologies Used:</p>
                     <div class="flex flex-wrap gap-2">
-                        <span class="bg-[var(--button-secondary-bg)] text-[var(--primary-accent-color)] px-3 py-1 rounded-full text-sm">Python</span>
-                        <span class="bg-[var(--button-secondary-bg)] text-[var(--primary-accent-color)] px-3 py-1 rounded-full text-sm">Linux</span>
-                        <span class="bg-[var(--button-secondary-bg)] text-[var(--primary-accent-color)] px-3 py-1 rounded-full text-sm">PyTorch</span>
-                        <span class="bg-[var(--button-secondary-bg)] text-[var(--primary-accent-color)] px-3 py-1 rounded-full text-sm">TensorFlow</span>
-                        <span class="bg-[var(--button-secondary-bg)] text-[var(--primary-accent-color)] px-3 py-1 rounded-full text-sm">Hugging Face Transformers</span>
-                        <span class="bg-[var(--button-secondary-bg)] text-[var(--primary-accent-color)] px-3 py-1 rounded-full text-sm">Librosa</span>
-                        <span class="bg-[var(--button-secondary-bg)] text-[var(--primary-accent-color)] px-3 py-1 rounded-full text-sm">Docker</span>
-                        <span class="bg-[var(--button-secondary-bg)] text-[var(--primary-accent-color)] px-3 py-1 rounded-full text-sm">Git</span>
+                        <span class="bg-[var(--tag-bg-color)] text-[var(--tag-text-color)] px-3 py-1 rounded-full text-sm">Python</span>
+                        <span class="bg-[var(--tag-bg-color)] text-[var(--tag-text-color)] px-3 py-1 rounded-full text-sm">Linux</span>
+                        <span class="bg-[var(--tag-bg-color)] text-[var(--tag-text-color)] px-3 py-1 rounded-full text-sm">PyTorch</span>
+                        <span class="bg-[var(--tag-bg-color)] text-[var(--tag-text-color)] px-3 py-1 rounded-full text-sm">TensorFlow</span>
+                        <span class="bg-[var(--tag-bg-color)] text-[var(--tag-text-color)] px-3 py-1 rounded-full text-sm">Hugging Face Transformers</span>
+                        <span class="bg-[var(--tag-bg-color)] text-[var(--tag-text-color)] px-3 py-1 rounded-full text-sm">Librosa</span>
+                        <span class="bg-[var(--tag-bg-color)] text-[var(--tag-text-color)] px-3 py-1 rounded-full text-sm">Docker</span>
+                        <span class="bg-[var(--tag-bg-color)] text-[var(--tag-text-color)] px-3 py-1 rounded-full text-sm">Git</span>
                     </div>
                 </div>
                 <div class="bg-[var(--card-bg-color)] p-8 rounded-xl shadow-xl card-hover-effect animate-on-scroll" data-delay="100">
@@ -367,12 +271,12 @@
                         <h3 class="text-2xl font-semibold primary-accent">Researcher at Computational Neuroscience Lab</h3>
                         <p class="text-[var(--secondary-text-color)] text-sm md:text-base">Aug 2022 - Oct 2023 | Tehran, Iran</p>
                     </div>
-                    <p class="text-[var(--secondary-text-color)] mb-4 leading-relaxed">Conducted research on BCI systems...</p>
+                    <p class="text-[var(--secondary-text-color)] mb-4 leading-relaxed">Conducted research on BCI systems and EEG signals under the supervision of Dr. Farnaz Ghasemi. Key responsibilities included developing metrics to evaluate EEG signal quality, analyzing statistical parameters of EEG signals, and conducting statistical tests for EEG signal datasets.</p>
                     <p class="font-medium text-[var(--text-color)] mb-1">Technologies Used:</p>
                     <div class="flex flex-wrap gap-2">
-                        <span class="bg-[var(--button-secondary-bg)] text-[var(--primary-accent-color)] px-3 py-1 rounded-full text-sm">MATLAB</span>
-                        <span class="bg-[var(--button-secondary-bg)] text-[var(--primary-accent-color)] px-3 py-1 rounded-full text-sm">Python</span>
-                        <span class="bg-[var(--button-secondary-bg)] text-[var(--primary-accent-color)] px-3 py-1 rounded-full text-sm">IBM SPSS Statistics</span>
+                        <span class="bg-[var(--tag-bg-color)] text-[var(--tag-text-color)] px-3 py-1 rounded-full text-sm">MATLAB</span>
+                        <span class="bg-[var(--tag-bg-color)] text-[var(--tag-text-color)] px-3 py-1 rounded-full text-sm">Python</span>
+                        <span class="bg-[var(--tag-bg-color)] text-[var(--tag-text-color)] px-3 py-1 rounded-full text-sm">IBM SPSS Statistics</span>
                     </div>
                 </div>
                  <div class="bg-[var(--card-bg-color)] p-8 rounded-xl shadow-xl card-hover-effect animate-on-scroll" data-delay="200">
@@ -380,11 +284,11 @@
                         <h3 class="text-2xl font-semibold primary-accent">SP Signal Processing Intern at Radialmed Company</h3>
                         <p class="text-[var(--secondary-text-color)] text-sm md:text-base">Aug 2022 - Nov 2023</p>
                     </div>
-                    <p class="text-[var(--secondary-text-color)] mb-4 leading-relaxed">Worked on signal processing tasks...</p>
+                    <p class="text-[var(--secondary-text-color)] mb-4 leading-relaxed">Worked on signal processing tasks, focusing on ECG and PPG signal analysis and feature extraction for machine learning applications. Major contributions included developing algorithms for calibrating blood pressure devices and creating methods to remove EMG noise from signals.</p>
                     <p class="font-medium text-[var(--text-color)] mb-1">Technologies Used:</p>
                      <div class="flex flex-wrap gap-2">
-                        <span class="bg-[var(--button-secondary-bg)] text-[var(--primary-accent-color)] px-3 py-1 rounded-full text-sm">MATLAB</span>
-                        <span class="bg-[var(--button-secondary-bg)] text-[var(--primary-accent-color)] px-3 py-1 rounded-full text-sm">Python</span>
+                        <span class="bg-[var(--tag-bg-color)] text-[var(--tag-text-color)] px-3 py-1 rounded-full text-sm">MATLAB</span>
+                        <span class="bg-[var(--tag-bg-color)] text-[var(--tag-text-color)] px-3 py-1 rounded-full text-sm">Python</span>
                     </div>
                 </div>
                 <div class="bg-[var(--card-bg-color)] p-8 rounded-xl shadow-xl card-hover-effect animate-on-scroll" data-delay="300">
@@ -392,11 +296,11 @@
                         <h3 class="text-2xl font-semibold primary-accent">Freelance Programmer</h3>
                         <p class="text-[var(--secondary-text-color)] text-sm md:text-base">Nov 2023 - Present</p>
                     </div>
-                    <p class="text-[var(--secondary-text-color)] mb-4 leading-relaxed">Working on diverse programming projects...</p>
+                    <p class="text-[var(--secondary-text-color)] mb-4 leading-relaxed">Working on diverse programming projects, specializing in Signal Processing, Artificial Intelligence, and Image Processing.</p>
                      <p class="font-medium text-[var(--text-color)] mb-1">Technologies Used:</p>
                     <div class="flex flex-wrap gap-2">
-                        <span class="bg-[var(--button-secondary-bg)] text-[var(--primary-accent-color)] px-3 py-1 rounded-full text-sm">MATLAB</span>
-                        <span class="bg-[var(--button-secondary-bg)] text-[var(--primary-accent-color)] px-3 py-1 rounded-full text-sm">Python</span>
+                        <span class="bg-[var(--tag-bg-color)] text-[var(--tag-text-color)] px-3 py-1 rounded-full text-sm">MATLAB</span>
+                        <span class="bg-[var(--tag-bg-color)] text-[var(--tag-text-color)] px-3 py-1 rounded-full text-sm">Python</span>
                     </div>
                 </div>
             </div>
@@ -420,12 +324,58 @@
                     <img src="https://placehold.co/400x250/1F252E/F9532D?text=Project+1" alt="Project 1" class="w-full h-48 object-cover">
                     <div class="p-6 flex flex-col flex-grow">
                         <h3 class="text-xl font-semibold primary-accent mb-2">Image Classification Project</h3>
-                        <p class="text-[var(--secondary-text-color)] text-sm mb-4 flex-grow">Developed an image classification system...</p>
-                        <div class="mb-4"><span class="inline-block bg-[var(--button-secondary-bg)] text-[var(--primary-accent-color)] text-xs px-2 py-1 rounded-full mr-1 mb-1">Python</span></div>
+                        <p class="text-[var(--secondary-text-color)] text-sm mb-4 flex-grow">Developed an image classification system using Python and relevant ML libraries.</p>
+                        <div class="mb-4"><span class="inline-block bg-[var(--tag-bg-color)] text-[var(--tag-text-color)] text-xs px-2 py-1 rounded-full mr-1 mb-1">Python</span></div>
                         <a href="https://github.com/SAMortazavi/Image-Classification" target="_blank" class="mt-auto inline-block text-center bg-primary-accent text-white font-semibold py-2 px-4 rounded-md hover-bg-primary-accent-darker transform hover:scale-105">View on GitHub</a>
                     </div>
                 </div>
-                 </div>
+                <div class="bg-[var(--bg-color)] rounded-lg shadow-xl overflow-hidden card-hover-effect flex flex-col animate-on-scroll" data-delay="100">
+                    <img src="https://placehold.co/400x250/1F252E/F9532D?text=Project+2" alt="Project 2" class="w-full h-48 object-cover">
+                    <div class="p-6 flex flex-col flex-grow">
+                        <h3 class="text-xl font-semibold primary-accent mb-2">NLP for Fake News Detection</h3>
+                        <p class="text-[var(--secondary-text-color)] text-sm mb-4 flex-grow">Implemented NLP algorithms to detect fake news articles.</p>
+                         <div class="mb-4">
+                             <span class="inline-block bg-[var(--tag-bg-color)] text-[var(--tag-text-color)] text-xs px-2 py-1 rounded-full mr-1 mb-1">Python</span>
+                             <span class="inline-block bg-[var(--tag-bg-color)] text-[var(--tag-text-color)] text-xs px-2 py-1 rounded-full mr-1 mb-1">NLP</span>
+                        </div>
+                        <a href="https://github.com/SAMortazavi/Fake_News_Detection_NLP" target="_blank" class="mt-auto inline-block text-center bg-primary-accent text-white font-semibold py-2 px-4 rounded-md hover-bg-primary-accent-darker transform hover:scale-105">View on GitHub</a>
+                    </div>
+                </div>
+                <div class="bg-[var(--bg-color)] rounded-lg shadow-xl overflow-hidden card-hover-effect flex flex-col animate-on-scroll" data-delay="200">
+                    <img src="https://placehold.co/400x250/1F252E/F9532D?text=Project+3" alt="Project 3" class="w-full h-48 object-cover">
+                    <div class="p-6 flex flex-col flex-grow">
+                        <h3 class="text-xl font-semibold primary-accent mb-2">Speech Enhancement Algorithm</h3>
+                        <p class="text-[var(--secondary-text-color)] text-sm mb-4 flex-grow">Designed and implemented a speech enhancement algorithm using MATLAB.</p>
+                        <div class="mb-4">
+                             <span class="inline-block bg-[var(--tag-bg-color)] text-[var(--tag-text-color)] text-xs px-2 py-1 rounded-full mr-1 mb-1">MATLAB</span>
+                             <span class="inline-block bg-[var(--tag-bg-color)] text-[var(--tag-text-color)] text-xs px-2 py-1 rounded-full mr-1 mb-1">Signal Processing</span>
+                        </div>
+                        <a href="https://github.com/SAMortazavi/Speech-Enhancement" target="_blank" class="mt-auto inline-block text-center bg-primary-accent text-white font-semibold py-2 px-4 rounded-md hover-bg-primary-accent-darker transform hover:scale-105">View on GitHub</a>
+                    </div>
+                </div>
+                <div class="bg-[var(--bg-color)] rounded-lg shadow-xl overflow-hidden card-hover-effect flex flex-col animate-on-scroll" data-delay="300">
+                    <img src="https://placehold.co/400x250/1F252E/F9532D?text=Project+4" alt="Project 4" class="w-full h-48 object-cover">
+                    <div class="p-6 flex flex-col flex-grow">
+                        <h3 class="text-xl font-semibold primary-accent mb-2">EMG Signal Classification (SVM)</h3>
+                        <p class="text-[var(--secondary-text-color)] text-sm mb-4 flex-grow">Classified EMG signals using Support Vector Machine (SVM) classifier in MATLAB.</p>
+                        <div class="mb-4">
+                             <span class="inline-block bg-[var(--tag-bg-color)] text-[var(--tag-text-color)] text-xs px-2 py-1 rounded-full mr-1 mb-1">MATLAB</span>
+                             <span class="inline-block bg-[var(--tag-bg-color)] text-[var(--tag-text-color)] text-xs px-2 py-1 rounded-full mr-1 mb-1">Machine Learning</span>
+                             <span class="inline-block bg-[var(--tag-bg-color)] text-[var(--tag-text-color)] text-xs px-2 py-1 rounded-full mr-1 mb-1">SVM</span>
+                        </div>
+                        <a href="https://github.com/SAMortazavi/EMG-Signal-Classification-Using-SVM-Classifier" target="_blank" class="mt-auto inline-block text-center bg-primary-accent text-white font-semibold py-2 px-4 rounded-md hover-bg-primary-accent-darker transform hover:scale-105">View on GitHub</a>
+                    </div>
+                </div>
+                <div class="bg-[var(--bg-color)] rounded-lg shadow-xl overflow-hidden card-hover-effect flex flex-col animate-on-scroll" data-delay="400">
+                    <img src="https://placehold.co/400x250/1F252E/F9532D?text=More+Projects" alt="More Projects" class="w-full h-48 object-cover">
+                    <div class="p-6 flex flex-col flex-grow">
+                        <h3 class="text-xl font-semibold primary-accent mb-2">Other Notable Projects</h3>
+                        <p class="text-[var(--secondary-text-color)] text-sm mb-4 flex-grow">Includes EEG signal algorithms (DFA, RQA), statistical tests for EEG, algorithms for artificial ribosome, EEG signal quality assessment, object tracking, emotion detection, and more. Many projects, including freelance work, are in private repositories.</p>
+                        <p class="text-[var(--secondary-text-color)] text-sm mb-4 flex-grow">Access to private repositories can be provided upon request for review.</p>
+                        <a href="https://github.com/SAMortazavi" target="_blank" class="mt-auto inline-block text-center bg-primary-accent text-white font-semibold py-2 px-4 rounded-md hover-bg-primary-accent-darker transform hover:scale-105">View GitHub Profile</a>
+                    </div>
+                </div>
+            </div>
         </div>
     </section>
 
@@ -437,9 +387,32 @@
                     <h3 class="text-2xl font-semibold primary-accent mb-4">Programming/Scripting</h3>
                     <ul class="space-y-2 text-[var(--secondary-text-color)]">
                         <li class="flex items-center"><svg class="h-5 w-5 mr-2 primary-accent" viewBox="0 0 20 20" fill="currentColor"><path fill-rule="evenodd" d="M16.707 5.293a1 1 0 010 1.414l-8 8a1 1 0 01-1.414 0l-4-4a1 1 0 011.414-1.414L8 12.586l7.293-7.293a1 1 0 011.414 0z" clip-rule="evenodd" /></svg>Python</li>
-                        </ul>
+                        <li class="flex items-center"><svg class="h-5 w-5 mr-2 primary-accent" viewBox="0 0 20 20" fill="currentColor"><path fill-rule="evenodd" d="M16.707 5.293a1 1 0 010 1.414l-8 8a1 1 0 01-1.414 0l-4-4a1 1 0 011.414-1.414L8 12.586l7.293-7.293a1 1 0 011.414 0z" clip-rule="evenodd" /></svg>MATLAB</li>
+                        <li class="flex items-center"><svg class="h-5 w-5 mr-2 primary-accent" viewBox="0 0 20 20" fill="currentColor"><path fill-rule="evenodd" d="M16.707 5.293a1 1 0 010 1.414l-8 8a1 1 0 01-1.414 0l-4-4a1 1 0 011.414-1.414L8 12.586l7.293-7.293a1 1 0 011.414 0z" clip-rule="evenodd" /></svg>HTML5/CSS3</li>
+                        <li class="flex items-center"><svg class="h-5 w-5 mr-2 primary-accent" viewBox="0 0 20 20" fill="currentColor"><path fill-rule="evenodd" d="M16.707 5.293a1 1 0 010 1.414l-8 8a1 1 0 01-1.414 0l-4-4a1 1 0 011.414-1.414L8 12.586l7.293-7.293a1 1 0 011.414 0z" clip-rule="evenodd" /></svg>LaTeX</li>
+                    </ul>
                 </div>
+                <div class="bg-[var(--card-bg-color)] p-6 rounded-lg shadow-lg card-hover-effect animate-on-scroll" data-delay="100">
+                    <h3 class="text-2xl font-semibold primary-accent mb-4">Libraries/Frameworks</h3>
+                    <ul class="space-y-2 text-[var(--secondary-text-color)]">
+                        <li class="flex items-center"><svg class="h-5 w-5 mr-2 primary-accent" viewBox="0 0 20 20" fill="currentColor"><path fill-rule="evenodd" d="M16.707 5.293a1 1 0 010 1.414l-8 8a1 1 0 01-1.414 0l-4-4a1 1 0 011.414-1.414L8 12.586l7.293-7.293a1 1 0 011.414 0z" clip-rule="evenodd" /></svg>Pandas, NumPy, Matplotlib</li>
+                        <li class="flex items-center"><svg class="h-5 w-5 mr-2 primary-accent" viewBox="0 0 20 20" fill="currentColor"><path fill-rule="evenodd" d="M16.707 5.293a1 1 0 010 1.414l-8 8a1 1 0 01-1.414 0l-4-4a1 1 0 011.414-1.414L8 12.586l7.293-7.293a1 1 0 011.414 0z" clip-rule="evenodd" /></svg>TensorFlow, PyTorch, Scikit-learn</li>
+                        <li class="flex items-center"><svg class="h-5 w-5 mr-2 primary-accent" viewBox="0 0 20 20" fill="currentColor"><path fill-rule="evenodd" d="M16.707 5.293a1 1 0 010 1.414l-8 8a1 1 0 01-1.414 0l-4-4a1 1 0 011.414-1.414L8 12.586l7.293-7.293a1 1 0 011.414 0z" clip-rule="evenodd" /></svg>OpenCV</li>
+                        <li class="flex items-center"><svg class="h-5 w-5 mr-2 primary-accent" viewBox="0 0 20 20" fill="currentColor"><path fill-rule="evenodd" d="M16.707 5.293a1 1 0 010 1.414l-8 8a1 1 0 01-1.414 0l-4-4a1 1 0 011.414-1.414L8 12.586l7.293-7.293a1 1 0 011.414 0z" clip-rule="evenodd" /></svg>Hugging Face Transformers, Librosa</li>
+                        <li class="flex items-center"><svg class="h-5 w-5 mr-2 primary-accent" viewBox="0 0 20 20" fill="currentColor"><path fill-rule="evenodd" d="M16.707 5.293a1 1 0 010 1.414l-8 8a1 1 0 01-1.414 0l-4-4a1 1 0 011.414-1.414L8 12.586l7.293-7.293a1 1 0 011.414 0z" clip-rule="evenodd" /></svg>Lightning, MLFlow</li>
+                    </ul>
                 </div>
+                <div class="bg-[var(--card-bg-color)] p-6 rounded-lg shadow-lg card-hover-effect animate-on-scroll" data-delay="200">
+                    <h3 class="text-2xl font-semibold primary-accent mb-4">IDEs/Tools</h3>
+                    <ul class="space-y-2 text-[var(--secondary-text-color)]">
+                        <li class="flex items-center"><svg class="h-5 w-5 mr-2 primary-accent" viewBox="0 0 20 20" fill="currentColor"><path fill-rule="evenodd" d="M16.707 5.293a1 1 0 010 1.414l-8 8a1 1 0 01-1.414 0l-4-4a1 1 0 011.414-1.414L8 12.586l7.293-7.293a1 1 0 011.414 0z" clip-rule="evenodd" /></svg>VSCode, PyCharm, Spyder</li>
+                        <li class="flex items-center"><svg class="h-5 w-5 mr-2 primary-accent" viewBox="0 0 20 20" fill="currentColor"><path fill-rule="evenodd" d="M16.707 5.293a1 1 0 010 1.414l-8 8a1 1 0 01-1.414 0l-4-4a1 1 0 011.414-1.414L8 12.586l7.293-7.293a1 1 0 011.414 0z" clip-rule="evenodd" /></svg>Linux Environment</li>
+                        <li class="flex items-center"><svg class="h-5 w-5 mr-2 primary-accent" viewBox="0 0 20 20" fill="currentColor"><path fill-rule="evenodd" d="M16.707 5.293a1 1 0 010 1.414l-8 8a1 1 0 01-1.414 0l-4-4a1 1 0 011.414-1.414L8 12.586l7.293-7.293a1 1 0 011.414 0z" clip-rule="evenodd" /></svg>Docker, Git & GitHub</li>
+                        <li class="flex items-center"><svg class="h-5 w-5 mr-2 primary-accent" viewBox="0 0 20 20" fill="currentColor"><path fill-rule="evenodd" d="M16.707 5.293a1 1 0 010 1.414l-8 8a1 1 0 01-1.414 0l-4-4a1 1 0 011.414-1.414L8 12.586l7.293-7.293a1 1 0 011.414 0z" clip-rule="evenodd" /></svg>Conda</li>
+                        <li class="flex items-center"><svg class="h-5 w-5 mr-2 primary-accent" viewBox="0 0 20 20" fill="currentColor"><path fill-rule="evenodd" d="M16.707 5.293a1 1 0 010 1.414l-8 8a1 1 0 01-1.414 0l-4-4a1 1 0 011.414-1.414L8 12.586l7.293-7.293a1 1 0 011.414 0z" clip-rule="evenodd" /></svg>IBM SPSS Statistics 26</li>
+                    </ul>
+                </div>
+            </div>
         </div>
     </section>
 
@@ -450,14 +423,21 @@
                 <div class="animate-on-scroll">
                     <h3 class="text-3xl font-semibold primary-accent mb-8 text-center md:text-left">Education</h3>
                     <div class="space-y-8">
-                        <div class="bg-[var(--bg-color)] p-6 rounded-lg shadow-lg card-hover-effect"><h4 class="text-xl font-semibold text-[var(--text-color)]">Master of Science...</h4><p class="primary-accent mb-1">Sharif University...</p><p class="text-[var(--secondary-text-color)]">Current Score...</p></div>
-                        </div>
+                        <div class="bg-[var(--bg-color)] p-6 rounded-lg shadow-lg card-hover-effect"><h4 class="text-xl font-semibold text-[var(--text-color)]">Master of Science (M.Sc.) - Electrical Engineering (Bioelectric)</h4><p class="primary-accent mb-1">Sharif University of Technology | 2023 - Present</p><p class="text-[var(--secondary-text-color)]">Current Score: 19.02/20.0 (GPA: 4.0/4.0)</p><p class="text-[var(--secondary-text-color)]">Ranked 1st in class.</p></div>
+                        <div class="bg-[var(--bg-color)] p-6 rounded-lg shadow-lg card-hover-effect"><h4 class="text-xl font-semibold text-[var(--text-color)]">Bachelor of Science (B.Sc.) - Electrical Engineering (Telecommunication)</h4><p class="primary-accent mb-1">Amirkabir University of Technology | 2019 - 2023</p><p class="text-[var(--secondary-text-color)]">Final Score: 19.38/20.0 (GPA: 4.0/4.0)</p><p class="text-[var(--secondary-text-color)]">Ranked 1st in class.</p></div>
+                        <div class="bg-[var(--bg-color)] p-6 rounded-lg shadow-lg card-hover-effect"><h4 class="text-xl font-semibold text-[var(--text-color)]">Bachelor of Science (B.Sc.) - Biomedical Engineering (Bioelectric)</h4><p class="primary-accent mb-1">Amirkabir University of Technology | 2019 - 2023</p><p class="text-[var(--secondary-text-color)]">Final Score: 19.07/20.0 (GPA: 4.0/4.0)</p><p class="text-[var(--secondary-text-color)]">Ranked 1st in class.</p></div>
+                    </div>
                 </div>
                 <div class="animate-on-scroll" data-delay="100">
                     <h3 class="text-3xl font-semibold primary-accent mb-8 text-center md:text-left">Licenses & Certifications</h3>
                     <div class="space-y-4 bg-[var(--bg-color)] p-6 rounded-lg shadow-lg card-hover-effect">
-                        <p class="text-[var(--secondary-text-color)] flex items-start"><svg class="h-5 w-5 mr-2 mt-1 primary-accent flex-shrink-0" viewBox="0 0 20 20" fill="currentColor"><path fill-rule="evenodd" d="M6.267...z" clip-rule="evenodd" /></svg>EEG Signal Processing...</p>
-                        </div>
+                        <p class="text-[var(--secondary-text-color)] flex items-start"><svg class="h-5 w-5 mr-2 mt-1 primary-accent flex-shrink-0" viewBox="0 0 20 20" fill="currentColor"><path fill-rule="evenodd" d="M6.267 3.455a3.066 3.066 0 001.745-.723 3.066 3.066 0 013.976 0 3.066 3.066 0 001.745.723 3.066 3.066 0 012.812 2.812c.051.643.304 1.254.723 1.745a3.066 3.066 0 010 3.976 3.066 3.066 0 00-.723 1.745 3.066 3.066 0 01-2.812 2.812 3.066 3.066 0 00-1.745.723 3.066 3.066 0 01-3.976 0 3.066 3.066 0 00-1.745-.723 3.066 3.066 0 01-2.812-2.812 3.066 3.066 0 00-.723-1.745 3.066 3.066 0 010-3.976 3.066 3.066 0 00.723-1.745 3.066 3.066 0 012.812-2.812zm7.469 6.469a1 1 0 01-1.414-1.414L10 10.586 8.707 9.293a1 1 0 00-1.414 1.414L8.586 12l-1.293 1.293a1 1 0 101.414 1.414L10 13.414l1.293 1.293a1 1 0 001.414-1.414L11.414 12l1.293-1.293z" clip-rule="evenodd" /></svg>EEG Signal Processing - Amirkabir University (Aug 2022)</p>
+                        <p class="text-[var(--secondary-text-color)] flex items-start"><svg class="h-5 w-5 mr-2 mt-1 primary-accent flex-shrink-0" viewBox="0 0 20 20" fill="currentColor"><path fill-rule="evenodd" d="M6.267 3.455a3.066 3.066 0 001.745-.723 3.066 3.066 0 013.976 0 3.066 3.066 0 001.745.723 3.066 3.066 0 012.812 2.812c.051.643.304 1.254.723 1.745a3.066 3.066 0 010 3.976 3.066 3.066 0 00-.723 1.745 3.066 3.066 0 01-2.812 2.812 3.066 3.066 0 00-1.745.723 3.066 3.066 0 01-3.976 0 3.066 3.066 0 00-1.745-.723 3.066 3.066 0 01-2.812-2.812 3.066 3.066 0 00-.723-1.745 3.066 3.066 0 010-3.976 3.066 3.066 0 00.723-1.745 3.066 3.066 0 012.812-2.812zm7.469 6.469a1 1 0 01-1.414-1.414L10 10.586 8.707 9.293a1 1 0 00-1.414 1.414L8.586 12l-1.293 1.293a1 1 0 101.414 1.414L10 13.414l1.293 1.293a1 1 0 001.414-1.414L11.414 12l1.293-1.293z" clip-rule="evenodd" /></svg>Supervised Machine Learning: Regression and Classification - Coursera (Jan 2023)</p>
+                        <p class="text-[var(--secondary-text-color)] flex items-start"><svg class="h-5 w-5 mr-2 mt-1 primary-accent flex-shrink-0" viewBox="0 0 20 20" fill="currentColor"><path fill-rule="evenodd" d="M6.267 3.455a3.066 3.066 0 001.745-.723 3.066 3.066 0 013.976 0 3.066 3.066 0 001.745.723 3.066 3.066 0 012.812 2.812c.051.643.304 1.254.723 1.745a3.066 3.066 0 010 3.976 3.066 3.066 0 00-.723 1.745 3.066 3.066 0 01-2.812 2.812 3.066 3.066 0 00-1.745.723 3.066 3.066 0 01-3.976 0 3.066 3.066 0 00-1.745-.723 3.066 3.066 0 01-2.812-2.812 3.066 3.066 0 00-.723-1.745 3.066 3.066 0 010-3.976 3.066 3.066 0 00.723-1.745 3.066 3.066 0 012.812-2.812zm7.469 6.469a1 1 0 01-1.414-1.414L10 10.586 8.707 9.293a1 1 0 00-1.414 1.414L8.586 12l-1.293 1.293a1 1 0 101.414 1.414L10 13.414l1.293 1.293a1 1 0 001.414-1.414L11.414 12l1.293-1.293z" clip-rule="evenodd" /></svg>Advanced Learning Algorithms - Coursera (Mar 2023)</p>
+                        <p class="text-[var(--secondary-text-color)] flex items-start"><svg class="h-5 w-5 mr-2 mt-1 primary-accent flex-shrink-0" viewBox="0 0 20 20" fill="currentColor"><path fill-rule="evenodd" d="M6.267 3.455a3.066 3.066 0 001.745-.723 3.066 3.066 0 013.976 0 3.066 3.066 0 001.745.723 3.066 3.066 0 012.812 2.812c.051.643.304 1.254.723 1.745a3.066 3.066 0 010 3.976 3.066 3.066 0 00-.723 1.745 3.066 3.066 0 01-2.812 2.812 3.066 3.066 0 00-1.745.723 3.066 3.066 0 01-3.976 0 3.066 3.066 0 00-1.745-.723 3.066 3.066 0 01-2.812-2.812 3.066 3.066 0 00-.723-1.745 3.066 3.066 0 010-3.976 3.066 3.066 0 00.723-1.745 3.066 3.066 0 012.812-2.812zm7.469 6.469a1 1 0 01-1.414-1.414L10 10.586 8.707 9.293a1 1 0 00-1.414 1.414L8.586 12l-1.293 1.293a1 1 0 101.414 1.414L10 13.414l1.293 1.293a1 1 0 001.414-1.414L11.414 12l1.293-1.293z" clip-rule="evenodd" /></svg>Linear Algebra for Machine Learning and Data Science - Coursera (Jan 2023)</p>
+                        <p class="text-[var(--secondary-text-color)] flex items-start"><svg class="h-5 w-5 mr-2 mt-1 primary-accent flex-shrink-0" viewBox="0 0 20 20" fill="currentColor"><path fill-rule="evenodd" d="M6.267 3.455a3.066 3.066 0 001.745-.723 3.066 3.066 0 013.976 0 3.066 3.066 0 001.745.723 3.066 3.066 0 012.812 2.812c.051.643.304 1.254.723 1.745a3.066 3.066 0 010 3.976 3.066 3.066 0 00-.723 1.745 3.066 3.066 0 01-2.812 2.812 3.066 3.066 0 00-1.745.723 3.066 3.066 0 01-3.976 0 3.066 3.066 0 00-1.745-.723 3.066 3.066 0 01-2.812-2.812 3.066 3.066 0 00-.723-1.745 3.066 3.066 0 010-3.976 3.066 3.066 0 00.723-1.745 3.066 3.066 0 012.812-2.812zm7.469 6.469a1 1 0 01-1.414-1.414L10 10.586 8.707 9.293a1 1 0 00-1.414 1.414L8.586 12l-1.293 1.293a1 1 0 101.414 1.414L10 13.414l1.293 1.293a1 1 0 001.414-1.414L11.414 12l1.293-1.293z" clip-rule="evenodd" /></svg>Neuromatch Academy Deep Learning Course - Neuromatch (July 2023)</p>
+                        <p class="text-[var(--secondary-text-color)] flex items-start"><svg class="h-5 w-5 mr-2 mt-1 primary-accent flex-shrink-0" viewBox="0 0 20 20" fill="currentColor"><path fill-rule="evenodd" d="M6.267 3.455a3.066 3.066 0 001.745-.723 3.066 3.066 0 013.976 0 3.066 3.066 0 001.745.723 3.066 3.066 0 012.812 2.812c.051.643.304 1.254.723 1.745a3.066 3.066 0 010 3.976 3.066 3.066 0 00-.723 1.745 3.066 3.066 0 01-2.812 2.812 3.066 3.066 0 00-1.745.723 3.066 3.066 0 01-3.976 0 3.066 3.066 0 00-1.745-.723 3.066 3.066 0 01-2.812-2.812 3.066 3.066 0 00-.723-1.745 3.066 3.066 0 010-3.976 3.066 3.066 0 00.723-1.745 3.066 3.066 0 012.812-2.812zm7.469 6.469a1 1 0 01-1.414-1.414L10 10.586 8.707 9.293a1 1 0 00-1.414 1.414L8.586 12l-1.293 1.293a1 1 0 101.414 1.414L10 13.414l1.293 1.293a1 1 0 001.414-1.414L11.414 12l1.293-1.293z" clip-rule="evenodd" /></svg>Complete Neural Signal Processing and Analysis: Zero to Hero - Udemy (Oct 2023 - Present)</p>
+                    </div>
                 </div>
             </div>
         </div>
@@ -476,12 +456,8 @@
                 </a>
                 <p class="text-[var(--secondary-text-color)] mb-2">Connect with me on:</p>
                 <div class="flex justify-center space-x-6">
-                     <a href="https://github.com/SAMortazavi" target="_blank" class="text-[var(--secondary-text-color)] hover-text-primary-accent-lighter transform hover:scale-110" aria-label="GitHub">
-                        <svg xmlns="http://www.w3.org/2000/svg" width="32" height="32" viewBox="0 0 24 24" fill="currentColor"><path d="M12 0c-6.626 0-12 5.373-12 12 0 5.302 3.438 9.8 8.207 11.387.599.111.793-.261.793-.577v-2.234c-3.338.726-4.033-1.416-4.033-1.416-.546-1.387-1.333-1.756-1.333-1.756-1.089-.745.083-.729.083-.729 1.205.084 1.839 1.237 1.839 1.237 1.07 1.834 2.807 1.304 3.492.997.107-.775.418-1.305.762-1.604-2.665-.305-5.467-1.334-5.467-5.931 0-1.311.469-2.381 1.236-3.221-.124-.303-.535-1.524.117-3.176 0 0 1.008-.322 3.301 1.23.957-.266 1.983-.399 3.003-.404 1.02.005 2.047.138 3.006.404 2.291-1.552 3.297-1.23 3.297-1.23.653 1.653.242 2.874.118 3.176.77.84 1.235 1.911 1.235 3.221 0 4.609-2.807 5.624-5.479 5.921.43.372.823 1.102.823 2.222v3.293c0 .319.192.694.801.576 4.765-1.589 8.199-6.086 8.199-11.386 0-6.627-5.373-12-12-12z"/></svg>
-                    </a>
-                    <a href="https://www.linkedin.com/in/SAMortazavi" target="_blank" class="text-[var(--secondary-text-color)] hover-text-primary-accent-lighter transform hover:scale-110" aria-label="LinkedIn">
-                        <svg xmlns="http://www.w3.org/2000/svg" width="32" height="32" viewBox="0 0 24 24" fill="currentColor"><path d="M19 0h-14c-2.761 0-5 2.239-5 5v14c0 2.761 2.239 5 5 5h14c2.762 0 5-2.239 5-5v-14c0-2.761-2.238-5-5-5zm-11 19h-3v-11h3v11zm-1.5-12.268c-.966 0-1.75-.79-1.75-1.764s.784-1.764 1.75-1.764 1.75.79 1.75 1.764-.783 1.764-1.75 1.764zm13.5 12.268h-3v-5.604c0-3.368-4-3.113-4 0v5.604h-3v-11h3v1.765c1.396-2.586 7-2.777 7 2.476v6.759z"/></svg>
-                    </a>
+                     <a href="https://github.com/SAMortazavi" target="_blank" class="text-[var(--secondary-text-color)] hover-text-primary-accent-lighter transform hover:scale-110" aria-label="GitHub"><svg xmlns="http://www.w3.org/2000/svg" width="32" height="32" viewBox="0 0 24 24" fill="currentColor"><path d="M12 0c-6.626 0-12 5.373-12 12 0 5.302 3.438 9.8 8.207 11.387.599.111.793-.261.793-.577v-2.234c-3.338.726-4.033-1.416-4.033-1.416-.546-1.387-1.333-1.756-1.333-1.756-1.089-.745.083-.729.083-.729 1.205.084 1.839 1.237 1.839 1.237 1.07 1.834 2.807 1.304 3.492.997.107-.775.418-1.305.762-1.604-2.665-.305-5.467-1.334-5.467-5.931 0-1.311.469-2.381 1.236-3.221-.124-.303-.535-1.524.117-3.176 0 0 1.008-.322 3.301 1.23.957-.266 1.983-.399 3.003-.404 1.02.005 2.047.138 3.006.404 2.291-1.552 3.297-1.23 3.297-1.23.653 1.653.242 2.874.118 3.176.77.84 1.235 1.911 1.235 3.221 0 4.609-2.807 5.624-5.479 5.921.43.372.823 1.102.823 2.222v3.293c0 .319.192.694.801.576 4.765-1.589 8.199-6.086 8.199-11.386 0-6.627-5.373-12-12-12z"/></svg></a>
+                    <a href="https://www.linkedin.com/in/SAMortazavi" target="_blank" class="text-[var(--secondary-text-color)] hover-text-primary-accent-lighter transform hover:scale-110" aria-label="LinkedIn"><svg xmlns="http://www.w3.org/2000/svg" width="32" height="32" viewBox="0 0 24 24" fill="currentColor"><path d="M19 0h-14c-2.761 0-5 2.239-5 5v14c0 2.761 2.239 5 5 5h14c2.762 0 5-2.239 5-5v-14c0-2.761-2.238-5-5-5zm-11 19h-3v-11h3v11zm-1.5-12.268c-.966 0-1.75-.79-1.75-1.764s.784-1.764 1.75-1.764 1.75.79 1.75 1.764-.783 1.764-1.75 1.764zm13.5 12.268h-3v-5.604c0-3.368-4-3.113-4 0v5.604h-3v-11h3v1.765c1.396-2.586 7-2.777 7 2.476v6.759z"/></svg></a>
                 </div>
             </div>
         </div>
@@ -512,7 +488,6 @@
         const moonIconDesktop = document.getElementById('theme-toggle-moon-icon');
         const docElement = document.documentElement;
 
-        // Clone icons for mobile button
         if (sunIconDesktop && moonIconDesktop && themeToggleMobileBtn) {
             const sunIconMobile = sunIconDesktop.cloneNode(true);
             const moonIconMobile = moonIconDesktop.cloneNode(true);
@@ -524,7 +499,6 @@
         
         const sunIcons = [sunIconDesktop, document.getElementById('theme-toggle-sun-icon-mobile')];
         const moonIcons = [moonIconDesktop, document.getElementById('theme-toggle-moon-icon-mobile')];
-
 
         const applyTheme = (theme) => {
             if (theme === 'light') {
@@ -543,7 +517,7 @@
         if (!currentTheme) {
             currentTheme = window.matchMedia('(prefers-color-scheme: dark)').matches ? 'dark' : 'light';
         }
-        applyTheme(currentTheme); // Apply theme on initial load
+        applyTheme(currentTheme);
 
         const toggleAction = () => {
             const newTheme = docElement.classList.contains('light-theme') ? 'dark' : 'light';
@@ -553,8 +527,6 @@
         if(themeToggleBtn) themeToggleBtn.addEventListener('click', toggleAction);
         if(themeToggleMobileBtn) themeToggleMobileBtn.addEventListener('click', toggleAction);
 
-
-        // Mobile menu toggle
         const mobileMenuButton = document.getElementById('mobile-menu-button');
         const mobileMenu = document.getElementById('mobile-menu');
         if(mobileMenuButton && mobileMenu) {
@@ -563,9 +535,7 @@
                 const expanded = mobileMenuButton.getAttribute('aria-expanded') === 'true' || false;
                 mobileMenuButton.setAttribute('aria-expanded', String(!expanded));
             });
-
-            const mobileMenuLinks = mobileMenu.querySelectorAll('a');
-            mobileMenuLinks.forEach(link => {
+            mobileMenu.querySelectorAll('a').forEach(link => {
                 link.addEventListener('click', () => {
                     mobileMenu.classList.add('hidden');
                     mobileMenuButton.setAttribute('aria-expanded', 'false');
@@ -615,4 +585,3 @@
 
 </body>
 </html>
-```
