@@ -1,8 +1,14 @@
 <!DOCTYPE html>
-<html lang="en" class="scroll-smooth"> <head>
+<html lang="en" class="scroll-smooth">
+<head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Seyed Abolfazl Mortazavi - Portfolio</title>
+    
+    <meta name="theme-color" content="#f97316">
+    <link rel="icon" type="image/png" sizes="32x32" href="./Images/favicon-32x32.png">
+    <link rel="icon" type="image/png" sizes="16x16" href="./Images/favicon-16x16.png">
+    <link rel="shortcut icon" href="./Images/favicon.ico">
     <script src="https://cdn.tailwindcss.com"></script>
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
@@ -76,6 +82,12 @@
         .hover-bg-primary-accent-darker:hover { background-color: var(--primary-accent-hover-color); }
         .hover-text-primary-accent-lighter:hover { color: var(--primary-accent-lighter-text-hover); }
 
+        /* === ADDED: Active nav link styling === */
+        /* We will add/remove 'primary-accent' and 'font-semibold' with JS */
+        .nav-link.primary-accent {
+            color: var(--primary-accent-color);
+        }
+        
         ::-webkit-scrollbar { width: 8px; }
         ::-webkit-scrollbar-track { background: var(--card-bg-color); }
         ::-webkit-scrollbar-thumb { background: var(--primary-accent-color); border-radius: 4px; }
@@ -142,12 +154,12 @@
             <div class="flex items-center justify-between">
                 <a href="#" class="text-2xl font-bold text-[var(--text-color)] hover:opacity-80 transition-opacity">S.A. <span class="primary-accent">Mortazavi</span></a>
                 <nav class="hidden md:flex items-center space-x-6">
-                    <a href="#about" class="text-[var(--secondary-text-color)] hover-text-primary-accent-lighter px-2 py-1">About</a>
-                    <a href="#experience" class="text-[var(--secondary-text-color)] hover-text-primary-accent-lighter px-2 py-1">Experience</a>
-                    <a href="#projects" class="text-[var(--secondary-text-color)] hover-text-primary-accent-lighter px-2 py-1">Projects</a>
-                    <a href="#skills" class="text-[var(--secondary-text-color)] hover-text-primary-accent-lighter px-2 py-1">Skills</a>
-                    <a href="#education" class="text-[var(--secondary-text-color)] hover-text-primary-accent-lighter px-2 py-1">Education</a>
-                    <a href="#contact" class="text-[var(--secondary-text-color)] hover-text-primary-accent-lighter px-2 py-1">Contact</a>
+                    <a href="#about" class="nav-link text-[var(--secondary-text-color)] hover-text-primary-accent-lighter px-2 py-1" data-target="#about">About</a>
+                    <a href="#experience" class="nav-link text-[var(--secondary-text-color)] hover-text-primary-accent-lighter px-2 py-1" data-target="#experience">Experience</a>
+                    <a href="#projects" class="nav-link text-[var(--secondary-text-color)] hover-text-primary-accent-lighter px-2 py-1" data-target="#projects">Projects</a>
+                    <a href="#skills" class="nav-link text-[var(--secondary-text-color)] hover-text-primary-accent-lighter px-2 py-1" data-target="#skills">Skills</a>
+                    <a href="#education" class="nav-link text-[var(--secondary-text-color)] hover-text-primary-accent-lighter px-2 py-1" data-target="#education">Education</a>
+                    <a href="#contact" class="nav-link text-[var(--secondary-text-color)] hover-text-primary-accent-lighter px-2 py-1" data-target="#contact">Contact</a>
                     <button id="theme-toggle" type="button" class="p-2 rounded-lg text-[var(--secondary-text-color)] hover-text-primary-accent-lighter focus:outline-none text-sm">
                         <svg id="theme-toggle-sun-icon" class="w-5 h-5 hidden" fill="currentColor" viewBox="0 0 20 20" xmlns="http://www.w3.org/2000/svg"><path d="M10 2a1 1 0 011 1v1a1 1 0 11-2 0V3a1 1 0 011-1zm4 8a4 4 0 11-8 0 4 4 0 018 0zm-.464 4.95l.707.707a1 1 0 001.414-1.414l-.707-.707a1 1 0 00-1.414 1.414zm2.12-10.607a1 1 0 010 1.414l-.706.707a1 1 0 11-1.414-1.414l.707-.707a1 1 0 011.414 0zM17 11a1 1 0 100-2h-1a1 1 0 100 2h1zm-7 4a1 1 0 011 1v1a1 1 0 11-2 0v-1a1 1 0 011-1zM5.05 6.464A1 1 0 106.465 5.05l-.708-.707a1 1 0 00-1.414 1.414l.707.707zm-.82 4.242a1 1 0 011.414 0l.707.707a1 1 0 11-1.414 1.414l-.707-.707a1 1 0 010-1.414zM12 17a1 1 0 100-2h-1a1 1 0 100 2h1z" fill-rule="evenodd" clip-rule="evenodd"></path></svg>
                         <svg id="theme-toggle-moon-icon" class="w-5 h-5 hidden" fill="currentColor" viewBox="0 0 20 20" xmlns="http://www.w3.org/2000/svg"><path d="M17.293 13.293A8 8 0 016.707 2.707a8.001 8.001 0 1010.586 10.586z"></path></svg>
@@ -162,13 +174,13 @@
             </div>
         </div>
         <div id="mobile-menu" class="hidden md:hidden bg-[var(--card-bg-color)]/95 backdrop-blur-sm">
-            <a href="#about" class="block px-6 py-3 text-[var(--secondary-text-color)] hover:bg-[var(--card-bg-hover-color)] hover-text-primary-accent-lighter">About</a>
-            <a href="#experience" class="block px-6 py-3 text-[var(--secondary-text-color)] hover:bg-[var(--card-bg-hover-color)] hover-text-primary-accent-lighter">Experience</a>
-            <a href="#projects" class="block px-6 py-3 text-[var(--secondary-text-color)] hover:bg-[var(--card-bg-hover-color)] hover-text-primary-accent-lighter">Projects</a>
-            <a href="#skills" class="block px-6 py-3 text-[var(--secondary-text-color)] hover:bg-[var(--card-bg-hover-color)] hover-text-primary-accent-lighter">Skills</a>
-            <a href="#education" class="block px-6 py-3 text-[var(--secondary-text-color)] hover:bg-[var(--card-bg-hover-color)] hover-text-primary-accent-lighter">Education</a>
-            <a href="#contact" class="block px-6 py-3 text-[var(--secondary-text-color)] hover:bg-[var(--card-bg-hover-color)] hover-text-primary-accent-lighter">Contact</a>
-        </div>
+            <a href="#about" class="nav-link block px-6 py-3 text-[var(--secondary-text-color)] hover:bg-[var(--card-bg-hover-color)] hover-text-primary-accent-lighter" data-target="#about">About</a>
+            <a href="#experience" class="nav-link block px-6 py-3 text-[var(--secondary-text-color)] hover:bg-[var(--card-bg-hover-color)] hover-text-primary-accent-lighter" data-target="#experience">Experience</a>
+            <a href="#projects" class="nav-link block px-6 py-3 text-[var(--secondary-text-color)] hover:bg-[var(--card-bg-hover-color)] hover-text-primary-accent-lighter" data-target="#projects">Projects</a>
+            <a href="#skills" class="nav-link block px-6 py-3 text-[var(--secondary-text-color)] hover:bg-[var(--card-bg-hover-color)] hover-text-primary-accent-lighter" data-target="#skills">Skills</a>
+            <a href="#education" class="nav-link block px-6 py-3 text-[var(--secondary-text-color)] hover:bg-[var(--card-bg-hover-color)] hover-text-primary-accent-lighter" data-target="#education">Education</a>
+            <a href="#contact" class="nav-link block px-6 py-3 text-[var(--secondary-text-color)] hover:bg-[var(--card-bg-hover-color)] hover-text-primary-accent-lighter" data-target="#contact">Contact</a>
+            </div>
     </header>
 
     <section id="hero" class="min-h-screen flex items-center bg-gradient-to-br from-[var(--bg-gradient-start)] to-[var(--bg-gradient-end)]">
@@ -205,7 +217,7 @@
             <h2 class="text-4xl font-bold mb-12 text-center section-title animate-on-scroll text-[var(--text-color)]">About Me</h2>
             <div class="grid md:grid-cols-5 gap-12 items-center">
                 <div class="md:col-span-3 animate-on-scroll"> 
-                     <img src="./Images/IMG_20240102_095520_458.jpg" alt="About Seyed Abolfazl Mortazavi" class="rounded-lg shadow-xl object-contain aspect-video transform hover:scale-105">
+                    <img src="./Images/IMG_20240102_095520_458.jpg" alt="About Seyed Abolfazl Mortazavi" class="rounded-lg shadow-xl object-contain aspect-video transform hover:scale-105">
                 </div>
                 <div class="md:col-span-2"> 
                     <p class="text-lg text-[var(--secondary-text-color)] mb-6 leading-relaxed animate-on-scroll" data-delay="100">
@@ -286,7 +298,7 @@
                     </div>
                     <p class="text-[var(--secondary-text-color)] mb-4 leading-relaxed">Worked on signal processing tasks, focusing on ECG and PPG signal analysis and feature extraction for machine learning applications. Major contributions included developing algorithms for calibrating blood pressure devices and creating methods to remove EMG noise from signals.</p>
                     <p class="font-medium text-[var(--text-color)] mb-1">Technologies Used:</p>
-                     <div class="flex flex-wrap gap-2">
+                       <div class="flex flex-wrap gap-2">
                         <span class="bg-[var(--tag-bg-color)] text-[var(--tag-text-color)] px-3 py-1 rounded-full text-sm">MATLAB</span>
                         <span class="bg-[var(--tag-bg-color)] text-[var(--tag-text-color)] px-3 py-1 rounded-full text-sm">Python</span>
                     </div>
@@ -297,7 +309,7 @@
                         <p class="text-[var(--secondary-text-color)] text-sm md:text-base">Nov 2023 - Present</p>
                     </div>
                     <p class="text-[var(--secondary-text-color)] mb-4 leading-relaxed">Working on diverse programming projects, specializing in Signal Processing, Artificial Intelligence, and Image Processing.</p>
-                     <p class="font-medium text-[var(--text-color)] mb-1">Technologies Used:</p>
+                       <p class="font-medium text-[var(--text-color)] mb-1">Technologies Used:</p>
                     <div class="flex flex-wrap gap-2">
                         <span class="bg-[var(--tag-bg-color)] text-[var(--tag-text-color)] px-3 py-1 rounded-full text-sm">MATLAB</span>
                         <span class="bg-[var(--tag-bg-color)] text-[var(--tag-text-color)] px-3 py-1 rounded-full text-sm">Python</span>
@@ -320,8 +332,9 @@
         <div class="container mx-auto px-6">
             <h2 class="text-4xl font-bold mb-16 text-center section-title animate-on-scroll text-[var(--text-color)]">Projects</h2>
             <div class="grid md:grid-cols-2 lg:grid-cols-3 gap-8">
+                
                 <div class="bg-[var(--bg-color)] rounded-lg shadow-xl overflow-hidden card-hover-effect flex flex-col animate-on-scroll">
-                    <img src="https://placehold.co/400x250/1F252E/F9532D?text=Project+1" alt="Project 1" class="w-full h-48 object-cover">
+                    <img src="./Images/project-image-classification.jpg" alt="Screenshot of Image Classification Project" class="w-full h-48 object-cover">
                     <div class="p-6 flex flex-col flex-grow">
                         <h3 class="text-xl font-semibold primary-accent mb-2">Image Classification Project</h3>
                         <p class="text-[var(--secondary-text-color)] text-sm mb-4 flex-grow">Developed an image classification system using Python and relevant ML libraries.</p>
@@ -329,45 +342,49 @@
                         <a href="https://github.com/SAMortazavi/Computational-Intelligence" target="_blank" class="mt-auto inline-block text-center bg-primary-accent text-white font-semibold py-2 px-4 rounded-md hover-bg-primary-accent-darker transform hover:scale-105">View on GitHub</a>
                     </div>
                 </div>
+                
                 <div class="bg-[var(--bg-color)] rounded-lg shadow-xl overflow-hidden card-hover-effect flex flex-col animate-on-scroll" data-delay="100">
-                    <img src="https://placehold.co/400x250/1F252E/F9532D?text=Project+2" alt="Project 2" class="w-full h-48 object-cover">
+                    <img src="./Images/project-nlp-fake-news.jpg" alt="Screenshot of NLP Fake News Detection Project" class="w-full h-48 object-cover">
                     <div class="p-6 flex flex-col flex-grow">
                         <h3 class="text-xl font-semibold primary-accent mb-2">NLP for Fake News Detection</h3>
                         <p class="text-[var(--secondary-text-color)] text-sm mb-4 flex-grow">Implemented NLP algorithms to detect fake news articles.</p>
                          <div class="mb-4">
-                             <span class="inline-block bg-[var(--tag-bg-color)] text-[var(--tag-text-color)] text-xs px-2 py-1 rounded-full mr-1 mb-1">Python</span>
-                             <span class="inline-block bg-[var(--tag-bg-color)] text-[var(--tag-text-color)] text-xs px-2 py-1 rounded-full mr-1 mb-1">NLP</span>
-                        </div>
+                            <span class="inline-block bg-[var(--tag-bg-color)] text-[var(--tag-text-color)] text-xs px-2 py-1 rounded-full mr-1 mb-1">Python</span>
+                            <span class="inline-block bg-[var(--tag-bg-color)] text-[var(--tag-text-color)] text-xs px-2 py-1 rounded-full mr-1 mb-1">NLP</span>
+                         </div>
                         <a href="https://github.com/SAMortazavi/Neuromatch-NLP" target="_blank" class="mt-auto inline-block text-center bg-primary-accent text-white font-semibold py-2 px-4 rounded-md hover-bg-primary-accent-darker transform hover:scale-105">View on GitHub</a>
                     </div>
                 </div>
+                
                 <div class="bg-[var(--bg-color)] rounded-lg shadow-xl overflow-hidden card-hover-effect flex flex-col animate-on-scroll" data-delay="200">
-                    <img src="https://placehold.co/400x250/1F252E/F9532D?text=Project+3" alt="Project 3" class="w-full h-48 object-cover">
+                    <img src="./Images/project-speech-enhancement.jpg" alt="Screenshot of Speech Enhancement Algorithm" class="w-full h-48 object-cover">
                     <div class="p-6 flex flex-col flex-grow">
                         <h3 class="text-xl font-semibold primary-accent mb-2">Speech Enhancement Algorithm</h3>
                         <p class="text-[var(--secondary-text-color)] text-sm mb-4 flex-grow">Designed and implemented a speech enhancement algorithm using MATLAB.</p>
                         <div class="mb-4">
-                             <span class="inline-block bg-[var(--tag-bg-color)] text-[var(--tag-text-color)] text-xs px-2 py-1 rounded-full mr-1 mb-1">MATLAB</span>
-                             <span class="inline-block bg-[var(--tag-bg-color)] text-[var(--tag-text-color)] text-xs px-2 py-1 rounded-full mr-1 mb-1">Signal Processing</span>
+                            <span class="inline-block bg-[var(--tag-bg-color)] text-[var(--tag-text-color)] text-xs px-2 py-1 rounded-full mr-1 mb-1">MATLAB</span>
+                            <span class="inline-block bg-[var(--tag-bg-color)] text-[var(--tag-text-color)] text-xs px-2 py-1 rounded-full mr-1 mb-1">Signal Processing</span>
                         </div>
                         <a href="https://github.com/SAMortazavi/Speech-Enhancement-Algorithm" target="_blank" class="mt-auto inline-block text-center bg-primary-accent text-white font-semibold py-2 px-4 rounded-md hover-bg-primary-accent-darker transform hover:scale-105">View on GitHub</a>
                     </div>
                 </div>
+                
                 <div class="bg-[var(--bg-color)] rounded-lg shadow-xl overflow-hidden card-hover-effect flex flex-col animate-on-scroll" data-delay="300">
-                    <img src="https://placehold.co/400x250/1F252E/F9532D?text=Project+4" alt="Project 4" class="w-full h-48 object-cover">
+                    <img src="./Images/project-emg-classification.jpg" alt="Screenshot of EMG Signal Classification (SVM) Project" class="w-full h-48 object-cover">
                     <div class="p-6 flex flex-col flex-grow">
                         <h3 class="text-xl font-semibold primary-accent mb-2">EMG Signal Classification (SVM)</h3>
                         <p class="text-[var(--secondary-text-color)] text-sm mb-4 flex-grow">Classified EMG signals using Support Vector Machine (SVM) classifier in MATLAB.</p>
                         <div class="mb-4">
-                             <span class="inline-block bg-[var(--tag-bg-color)] text-[var(--tag-text-color)] text-xs px-2 py-1 rounded-full mr-1 mb-1">MATLAB</span>
-                             <span class="inline-block bg-[var(--tag-bg-color)] text-[var(--tag-text-color)] text-xs px-2 py-1 rounded-full mr-1 mb-1">Machine Learning</span>
-                             <span class="inline-block bg-[var(--tag-bg-color)] text-[var(--tag-text-color)] text-xs px-2 py-1 rounded-full mr-1 mb-1">SVM</span>
+                            <span class="inline-block bg-[var(--tag-bg-color)] text-[var(--tag-text-color)] text-xs px-2 py-1 rounded-full mr-1 mb-1">MATLAB</span>
+                            <span class="inline-block bg-[var(--tag-bg-color)] text-[var(--tag-text-color)] text-xs px-2 py-1 rounded-full mr-1 mb-1">Machine Learning</span>
+                            <span class="inline-block bg-[var(--tag-bg-color)] text-[var(--tag-text-color)] text-xs px-2 py-1 rounded-full mr-1 mb-1">SVM</span>
                         </div>
                         <a href="https://github.com/SAMortazavi/EMG_Classification_Project" target="_blank" class="mt-auto inline-block text-center bg-primary-accent text-white font-semibold py-2 px-4 rounded-md hover-bg-primary-accent-darker transform hover:scale-105">View on GitHub</a>
                     </div>
                 </div>
+                
                 <div class="bg-[var(--bg-color)] rounded-lg shadow-xl overflow-hidden card-hover-effect flex flex-col animate-on-scroll" data-delay="400">
-                    <img src="https://placehold.co/400x250/1F252E/F9532D?text=More+Projects" alt="More Projects" class="w-full h-48 object-cover">
+                    <img src="./Images/project-github-profile.jpg" alt="Seyed Abolfazl Mortazavi's GitHub Profile" class="w-full h-48 object-cover">
                     <div class="p-6 flex flex-col flex-grow">
                         <h3 class="text-xl font-semibold primary-accent mb-2">Other Notable Projects</h3>
                         <p class="text-[var(--secondary-text-color)] text-sm mb-4 flex-grow">Includes EEG signal algorithms (DFA, RQA), statistical tests for EEG, algorithms for artificial ribosome, EEG signal quality assessment, object tracking, emotion detection, and more. Many projects, including freelance work, are in private repositories.</p>
@@ -446,21 +463,40 @@
     <section id="contact" class="bg-[var(--bg-color)]">
         <div class="container mx-auto px-6">
             <h2 class="text-4xl font-bold mb-12 text-center section-title animate-on-scroll text-[var(--text-color)]">Get In Touch</h2>
-            <div class="max-w-lg mx-auto bg-[var(--card-bg-color)] p-8 rounded-xl shadow-xl text-center card-hover-effect animate-on-scroll">
-                <p class="text-lg text-[var(--secondary-text-color)] mb-6">
-                    I'm always open to discussing new projects, research collaborations, or opportunities. Feel free to reach out!
+            
+            <div class="max-w-lg mx-auto bg-[var(--card-bg-color)] p-8 rounded-xl shadow-xl card-hover-effect animate-on-scroll">
+                <p class="text-lg text-[var(--secondary-text-color)] mb-8 text-center">
+                    I'm always open to discussing new projects, research collaborations, or opportunities. Feel free to send me a message!
                 </p>
-                <a href="mailto:Seyyed79abolfazl@gmail.com" 
-                   class="block w-full sm:w-auto sm:inline-block bg-primary-accent text-white font-semibold py-3 px-4 sm:px-8 rounded-lg shadow-md hover-bg-primary-accent-darker text-base sm:text-lg mb-6 transform hover:scale-105 text-center break-words">
-                    Email: Seyyed79abolfazl@gmail.com
-                </a>
-                <p class="text-[var(--secondary-text-color)] mb-2">Connect with me on:</p>
+
+                <form action="https://formsubmit.co/Seyyed79abolfazl@gmail.com" method="POST" class="space-y-6">
+                    <input type="text" name="_honey" style="display:none">
+                    <input type="hidden" name="_captcha" value="false">
+
+                    <div>
+                        <label for="name" class="block mb-2 text-sm font-medium text-[var(--secondary-text-color)] text-left">Your Name</label>
+                        <input type="text" id="name" name="name" class="block w-full p-3 text-sm text-[var(--text-color)] bg-[var(--bg-color)] rounded-lg border border-[var(--border-color)] focus:ring-1 focus:ring-[var(--primary-accent-color)] focus:border-[var(--primary-accent-color)]" placeholder="John Doe" required>
+                    </div>
+                    <div>
+                        <label for="email" class="block mb-2 text-sm font-medium text-[var(--secondary-text-color)] text-left">Your Email</label>
+                        <input type="email" id="email" name="email" class="block w-full p-3 text-sm text-[var(--text-color)] bg-[var(--bg-color)] rounded-lg border border-[var(--border-color)] focus:ring-1 focus:ring-[var(--primary-accent-color)] focus:border-[var(--primary-accent-color)]" placeholder="you@example.com" required>
+                    </div>
+                    <div>
+                        <label for="message" class="block mb-2 text-sm font-medium text-[var(--secondary-text-color)] text-left">Your Message</label>
+                        <textarea id="message" name="message" rows="5" class="block w-full p-3 text-sm text-[var(--text-color)] bg-[var(--bg-color)] rounded-lg border border-[var(--border-color)] focus:ring-1 focus:ring-[var(--primary-accent-color)] focus:border-[var(--primary-accent-color)]" placeholder="Your message..." required></textarea>
+                    </div>
+                    <button type="submit" class="w-full bg-primary-accent text-white font-semibold py-3 px-8 rounded-lg shadow-md hover-bg-primary-accent-darker text-lg transform hover:scale-105 transition-all">
+                        Send Message
+                    </button>
+                </form>
+
+                <p class="text-[var(--secondary-text-color)] mb-2 mt-10 text-center">Or connect with me directly:</p>
                 <div class="flex justify-center space-x-6">
-                     <a href="https://github.com/SAMortazavi" target="_blank" class="text-[var(--secondary-text-color)] hover-text-primary-accent-lighter transform hover:scale-110" aria-label="GitHub"><svg xmlns="http://www.w3.org/2000/svg" width="32" height="32" viewBox="0 0 24 24" fill="currentColor"><path d="M12 0c-6.626 0-12 5.373-12 12 0 5.302 3.438 9.8 8.207 11.387.599.111.793-.261.793-.577v-2.234c-3.338.726-4.033-1.416-4.033-1.416-.546-1.387-1.333-1.756-1.333-1.756-1.089-.745.083-.729.083-.729 1.205.084 1.839 1.237 1.839 1.237 1.07 1.834 2.807 1.304 3.492.997.107-.775.418-1.305.762-1.604-2.665-.305-5.467-1.334-5.467-5.931 0-1.311.469-2.381 1.236-3.221-.124-.303-.535-1.524.117-3.176 0 0 1.008-.322 3.301 1.23.957-.266 1.983-.399 3.003-.404 1.02.005 2.047.138 3.006.404 2.291-1.552 3.297-1.23 3.297-1.23.653 1.653.242 2.874.118 3.176.77.84 1.235 1.911 1.235 3.221 0 4.609-2.807 5.624-5.479 5.921.43.372.823 1.102.823 2.222v3.293c0 .319.192.694.801.576 4.765-1.589 8.199-6.086 8.199-11.386 0-6.627-5.373-12-12-12z"/></svg></a>
+                    <a href="https://github.com/SAMortazavi" target="_blank" class="text-[var(--secondary-text-color)] hover-text-primary-accent-lighter transform hover:scale-110" aria-label="GitHub"><svg xmlns="http://www.w3.org/2000/svg" width="32" height="32" viewBox="0 0 24 24" fill="currentColor"><path d="M12 0c-6.626 0-12 5.373-12 12 0 5.302 3.438 9.8 8.207 11.387.599.111.793-.261.793-.577v-2.234c-3.338.726-4.033-1.416-4.033-1.416-.546-1.387-1.333-1.756-1.333-1.756-1.089-.745.083-.729.083-.729 1.205.084 1.839 1.237 1.839 1.237 1.07 1.834 2.807 1.304 3.492.997.107-.775.418-1.305.762-1.604-2.665-.305-5.467-1.334-5.467-5.931 0-1.311.469-2.381 1.236-3.221-.124-.303-.535-1.524.117-3.176 0 0 1.008-.322 3.301 1.23.957-.266 1.983-.399 3.003-.404 1.02.005 2.047.138 3.006.404 2.291-1.552 3.297-1.23 3.297-1.23.653 1.653.242 2.874.118 3.176.77.84 1.235 1.911 1.235 3.221 0 4.609-2.807 5.624-5.479 5.921.43.372.823 1.102.823 2.222v3.293c0 .319.192.694.801.576 4.765-1.589 8.199-6.086 8.199-11.386 0-6.627-5.373-12-12-12z"/></svg></a>
                     <a href="https://www.linkedin.com/in/SAMortazavi" target="_blank" class="text-[var(--secondary-text-color)] hover-text-primary-accent-lighter transform hover:scale-110" aria-label="LinkedIn"><svg xmlns="http://www.w3.org/2000/svg" width="32" height="32" viewBox="0 0 24 24" fill="currentColor"><path d="M19 0h-14c-2.761 0-5 2.239-5 5v14c0 2.761 2.239 5 5 5h14c2.762 0 5-2.239 5-5v-14c0-2.761-2.238-5-5-5zm-11 19h-3v-11h3v11zm-1.5-12.268c-.966 0-1.75-.79-1.75-1.764s.784-1.764 1.75-1.764 1.75.79 1.75 1.764-.783 1.764-1.75 1.764zm13.5 12.268h-3v-5.604c0-3.368-4-3.113-4 0v5.604h-3v-11h3v1.765c1.396-2.586 7-2.777 7 2.476v6.759z"/></svg></a>
                 </div>
             </div>
-        </div>
+            </div>
     </section>
 
     <footer class="bg-[var(--bg-color)] border-t border-[var(--border-color)]">
@@ -470,6 +506,11 @@
         </div>
     </footer>
 
+    <button id="back-to-top" class="fixed bottom-6 right-6 bg-primary-accent text-white p-3 rounded-full shadow-lg hover-bg-primary-accent-darker opacity-0 invisible transition-all duration-300 z-50 transform hover:scale-110">
+        <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="2.5" stroke="currentColor" class="w-6 h-6">
+            <path stroke-linecap="round" stroke-linejoin="round" d="M4.5 15.75l7.5-7.5 7.5 7.5" />
+        </svg>
+    </button>
     <script>
         // Preloader logic
         window.addEventListener('load', () => {
@@ -527,6 +568,7 @@
         if(themeToggleBtn) themeToggleBtn.addEventListener('click', toggleAction);
         if(themeToggleMobileBtn) themeToggleMobileBtn.addEventListener('click', toggleAction);
 
+        // Mobile menu toggle
         const mobileMenuButton = document.getElementById('mobile-menu-button');
         const mobileMenu = document.getElementById('mobile-menu');
         if(mobileMenuButton && mobileMenu) {
@@ -543,8 +585,10 @@
             });
         }
         
+        // Set current year
         document.getElementById('currentYear').textContent = new Date().getFullYear();
 
+        // Smooth scroll for anchor links
         document.querySelectorAll('a[href^="#"]').forEach(anchor => {
             anchor.addEventListener('click', function (e) {
                 if (this.getAttribute('href').startsWith('#') && this.getAttribute('href').length > 1) {
@@ -561,6 +605,7 @@
             });
         });
 
+        // Animate on scroll (your existing logic)
         const observerOptions = { root: null, rootMargin: '0px', threshold: 0.1 };
         const observerCallback = (entries, observer) => {
             entries.forEach(entry => {
@@ -581,6 +626,57 @@
         };
         const observer = new IntersectionObserver(observerCallback, observerOptions);
         document.querySelectorAll('.animate-on-scroll').forEach(el => observer.observe(el));
+
+        // === ADDED: Back to Top Button Logic ===
+        const backToTopButton = document.getElementById('back-to-top');
+        if (backToTopButton) {
+            window.addEventListener('scroll', () => {
+                if (window.pageYOffset > 300) { // Show after 300px of scroll
+                    backToTopButton.classList.remove('opacity-0', 'invisible');
+                    backToTopButton.classList.add('opacity-100', 'visible');
+                } else {
+                    backToTopButton.classList.remove('opacity-100', 'visible');
+                    backToTopButton.classList.add('opacity-0', 'invisible');
+                }
+            });
+            backToTopButton.addEventListener('click', () => {
+                window.scrollTo({ top: 0, behavior: 'smooth' });
+            });
+        }
+
+        // === ADDED: Active Navigation Highlighting Logic ===
+        const allNavLinks = document.querySelectorAll('.nav-link');
+        const sections = document.querySelectorAll('section[id]'); // Get all sections that have an ID
+        const headerOffsetForNav = document.querySelector('header')?.offsetHeight || 70;
+
+        const activeNavObserver = new IntersectionObserver((entries) => {
+            entries.forEach(entry => {
+                if (entry.isIntersecting) {
+                    const id = entry.target.getAttribute('id');
+                    const matchingLinks = document.querySelectorAll(`.nav-link[data-target="#${id}"]`);
+                    
+                    // Reset all links
+                    allNavLinks.forEach(link => {
+                        link.classList.remove('primary-accent', 'font-semibold');
+                        link.classList.add('text-[var(--secondary-text-color)]');
+                    });
+                    
+                    // Apply active style to the matching link
+                    matchingLinks.forEach(link => {
+                        link.classList.add('primary-accent', 'font-semibold');
+                        link.classList.remove('text-[var(--secondary-text-color)]');
+                    });
+                }
+            });
+        }, {
+            // Trigger when the top of the section is just below the sticky header
+            rootMargin: `-${headerOffsetForNav}px 0px -55% 0px`,
+            threshold: 0
+        });
+
+        sections.forEach(section => activeNavObserver.observe(section));
+        // ===============================================
+
     </script>
 
 </body>
