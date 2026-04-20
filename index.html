@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Seyed Abolfazl Mortazavi - Portfolio</title>
+    <title>Seyed Abolfazl Mortazavi - AI Developer & Researcher</title>
     
     <meta name="theme-color" content="#f97316">
     <link rel="icon" type="image/png" sizes="32x32" href="./Images/favicon-32x32.png">
@@ -16,52 +16,52 @@
     <style>
         :root {
             /* Dark Theme (Default) */
-            --bg-color: #111827; /* gray-900 */
-            --bg-gradient-start: #111827; /* gray-900 */
-            --bg-gradient-end: #1f2937; /* gray-800 */
-            --card-bg-color: #1f2937; /* gray-800 */
-            --card-bg-hover-color: #374151; /* gray-700 */
-            --text-color: #f3f4f6; /* gray-100 */
-            --secondary-text-color: #9ca3af; /* gray-400 */
-            --primary-accent-color: #f97316; /* orange-500 */
-            --primary-accent-hover-color: #ea580c; /* orange-600 */
-            --primary-accent-lighter-text-hover: #fb923c; /* orange-400 */
-            --border-color: #374151; /* gray-700 */
-            --header-bg-color: rgba(17, 24, 39, 0.7); /* gray-900 with opacity */
+            --bg-color: #111827; 
+            --bg-gradient-start: #111827; 
+            --bg-gradient-end: #1f2937; 
+            --card-bg-color: #1f2937; 
+            --card-bg-hover-color: #374151; 
+            --text-color: #f3f4f6; 
+            --secondary-text-color: #9ca3af; 
+            --primary-accent-color: #f97316; 
+            --primary-accent-hover-color: #ea580c; 
+            --primary-accent-lighter-text-hover: #fb923c; 
+            --border-color: #374151; 
+            --header-bg-color: rgba(17, 24, 39, 0.7); 
             --shadow-color-strong: rgba(249, 115, 22, 0.2);
             --shadow-color-medium: rgba(249, 115, 22, 0.1);
             --spinner-track-color: #374151;
-            --button-secondary-bg: #374151; /* gray-700 */
-            --button-secondary-hover-bg: #4b5563; /* gray-600 */
-            --tag-bg-color: #374151; /* gray-700 for dark theme tags */
-            --tag-text-color: #fb923c; /* orange-400 for dark theme tags */
+            --button-secondary-bg: #374151; 
+            --button-secondary-hover-bg: #4b5563; 
+            --tag-bg-color: #374151; 
+            --tag-text-color: #fb923c; 
         }
 
         html.light-theme {
             /* Light Theme */
-            --bg-color: #f3f4f6; /* gray-100 */
-            --bg-gradient-start: #e5e7eb; /* gray-200 */
-            --bg-gradient-end: #d1d5db; /* gray-300 */
-            --card-bg-color: #ffffff; /* white */
-            --card-bg-hover-color: #f9fafb; /* gray-50 */
-            --text-color: #1f2937; /* gray-800 */
-            --secondary-text-color: #4b5563; /* gray-600 */
-            --border-color: #d1d5db; /* gray-300 */
-            --header-bg-color: rgba(243, 244, 246, 0.7); /* gray-100 with opacity */
+            --bg-color: #f3f4f6; 
+            --bg-gradient-start: #e5e7eb; 
+            --bg-gradient-end: #d1d5db; 
+            --card-bg-color: #ffffff; 
+            --card-bg-hover-color: #f9fafb; 
+            --text-color: #1f2937; 
+            --secondary-text-color: #4b5563; 
+            --border-color: #d1d5db; 
+            --header-bg-color: rgba(243, 244, 246, 0.7); 
             --shadow-color-strong: rgba(0, 0, 0, 0.1);
             --shadow-color-medium: rgba(0, 0, 0, 0.06);
-            --spinner-track-color: #e5e7eb; /* gray-200 */
-            --button-secondary-bg: #e5e7eb; /* gray-200 */
-            --button-secondary-hover-bg: #d1d5db; /* gray-300 */
-            --tag-bg-color: #e5e7eb; /* gray-200 for light theme tags */
-            --tag-text-color: #c2410c; /* orange-700 for light theme tags */
+            --spinner-track-color: #e5e7eb; 
+            --button-secondary-bg: #e5e7eb; 
+            --button-secondary-hover-bg: #d1d5db; 
+            --tag-bg-color: #e5e7eb; 
+            --tag-text-color: #c2410c; 
         }
 
         body {
             font-family: 'Inter', sans-serif;
             background-color: var(--bg-color);
             color: var(--text-color);
-            opacity: 0; /* Initially hidden for preloader */
+            opacity: 0; 
             transition: opacity 0.5s ease-in-out, background-color 0.3s ease-in-out, color 0.3s ease-in-out;
         }
 
@@ -82,8 +82,6 @@
         .hover-bg-primary-accent-darker:hover { background-color: var(--primary-accent-hover-color); }
         .hover-text-primary-accent-lighter:hover { color: var(--primary-accent-lighter-text-hover); }
 
-        /* === ADDED: Active nav link styling === */
-        /* We will add/remove 'primary-accent' and 'font-semibold' with JS */
         .nav-link.primary-accent {
             color: var(--primary-accent-color);
         }
@@ -192,7 +190,7 @@
                     <span class="primary-accent">Seyed Abolfazl</span> Mortazavi
                 </h1>
                 <p class="text-xl md:text-2xl text-[var(--secondary-text-color)] mb-8 leading-relaxed hero-text-animate delay-3">
-                    M.Sc. in Electrical Engineering with a passion for AI, Neuroscience, and Digital Signal Processing.
+                    AI Developer & Researcher | Specialized in Audio, Signal Processing & Deep Learning
                 </p>
                 <div class="flex flex-col sm:flex-row justify-center space-y-4 sm:space-y-0 sm:space-x-4 mb-10 hero-text-animate delay-4">
                     <a href="https://drive.google.com/file/d/13i0KQOog9C_FCGn80NL3HX8J-w3bjWQC/view?usp=sharing" target="_blank" download class="bg-primary-accent text-white font-semibold py-3 px-8 rounded-lg shadow-md hover-bg-primary-accent-darker text-lg transform hover:scale-105">
@@ -216,31 +214,23 @@
         <div class="container mx-auto px-6">
             <h2 class="text-4xl font-bold mb-12 text-center section-title animate-on-scroll text-[var(--text-color)]">About Me</h2>
             <div class="grid md:grid-cols-5 gap-12 items-center">
-                <div class="md:col-span-3 animate-on-scroll"> 
-                    <img src="./Images/IMG_20240102_095520_458.jpg" alt="About Seyed Abolfazl Mortazavi" class="rounded-lg shadow-xl object-contain aspect-video transform hover:scale-105">
+                <div class="md:col-span-2 animate-on-scroll"> 
+                    <img src="./Images/IMG_20240102_095520_458.jpg" alt="About Seyed Abolfazl Mortazavi" class="rounded-lg shadow-xl object-contain transform hover:scale-105">
                 </div>
-                <div class="md:col-span-2"> 
+                <div class="md:col-span-3"> 
                     <p class="text-lg text-[var(--secondary-text-color)] mb-6 leading-relaxed animate-on-scroll" data-delay="100">
-                        I am Seyed Abolfazl Mortazavi, currently pursuing a Master's degree in Electrical Engineering at Sharif University of Technology. My academic and professional journey is driven by a profound enthusiasm for the captivating realms of artificial intelligence, computational neuroscience, and digital signal/image processing. I am committed to exploring and contributing to cutting-edge developments in these fields, reflecting a deep passion for innovation and technology.
+                        I am a results-driven AI Developer and researcher specializing in advanced signal processing, speech technologies (ASR/TTS), and machine learning. Leveraging a unique dual-degree foundation in Electrical and Biomedical Engineering, I possess deep expertise in translating complex time-series data—from neurological EEG signals to noisy call center audio—into highly accurate predictive models.
                     </p>
                     <p class="text-lg text-[var(--secondary-text-color)] mb-6 leading-relaxed animate-on-scroll" data-delay="200">
-                        With a strong foundation from my Bachelor's degrees in Biomedical Engineering and Electrical Engineering from Amirkabir University of Technology, where I consistently ranked first in my class, I am eager to apply my knowledge and skills to solve complex challenges.
+                        With a proven track record of deploying state-of-the-art AI pipelines, fine-tuning LLMs, and delivering impactful enterprise solutions, I am deeply committed to driving innovation. Having ranked 1st in all my academic cohorts at Sharif and Amirkabir Universities, I bring a rigorous, mathematical approach to solving modern technical challenges.
                     </p>
                     <div class="mb-8 animate-on-scroll" data-delay="300">
                         <h3 class="text-2xl font-semibold primary-accent mb-3">Research Interests</h3>
-                        <ul class="list-disc list-inside text-[var(--secondary-text-color)] space-y-1">
-                            <li>Artificial Intelligence</li>
-                            <li>Digital Signal Processing</li>
-                            <li>Digital Image Processing</li>
-                            <li>Computational Neuroscience</li>
-                        </ul>
-                    </div>
-                    <div class="animate-on-scroll" data-delay="400">
-                        <h3 class="text-2xl font-semibold primary-accent mb-3">Language Skills</h3>
-                        <ul class="list-disc list-inside text-[var(--secondary-text-color)] space-y-1">
-                            <li>Persian: Native</li>
-                            <li>Turkish: Native</li>
-                            <li>English: Upper Intermediate</li>
+                        <ul class="list-disc list-inside text-[var(--secondary-text-color)] space-y-2">
+                            <li><strong>Speech & Audio AI:</strong> End-to-End ASR, Neural TTS, and Audio Representation Learning</li>
+                            <li><strong>Neural Signal Processing:</strong> Brain-Computer Interfaces (BCI) and real-time physiological data analysis</li>
+                            <li><strong>Multimodal Machine Learning:</strong> Integrating LLMs with audio, speech, and vision pipelines</li>
+                            <li><strong>Advanced Computer Vision:</strong> Image segmentation, registration, and high-precision OCR</li>
                         </ul>
                     </div>
                 </div>
@@ -253,176 +243,183 @@
             <h2 class="text-4xl font-bold mb-16 text-center section-title animate-on-scroll text-[var(--text-color)]">Work Experience</h2>
             <div class="space-y-12">
                 <div class="bg-[var(--card-bg-color)] p-8 rounded-xl shadow-xl card-hover-effect animate-on-scroll">
-                    <div class="flex flex-col md:flex-row justify-between items-start md:items-center mb-3">
-                        <h3 class="text-2xl font-semibold primary-accent">AI Developer - Speech Team</h3>
-                        <p class="text-[var(--secondary-text-color)] text-sm md:text-base">Jan 2025 - Present | Shatel, Tehran, Iran</p>
+                    <div class="flex flex-col md:flex-row justify-between items-start md:items-center mb-5">
+                        <div>
+                            <h3 class="text-2xl font-bold primary-accent">AI Developer - Speech Team</h3>
+                            <p class="text-[var(--text-color)] font-medium text-lg mt-1">Shatel</p>
+                        </div>
+                        <p class="text-[var(--secondary-text-color)] text-sm md:text-base mt-2 md:mt-0 font-medium">Jan 2025 - Present | Tehran, Iran</p>
                     </div>
-                    <p class="text-[var(--secondary-text-color)] mb-4 leading-relaxed">
-                        As a member of the Speech Team, I contribute to the development and enhancement of cutting-edge speech technologies. My responsibilities include:
-                        <ul class="list-disc list-inside text-[var(--secondary-text-color)] space-y-1 mt-2 mb-3">
-                            <li><strong>Text-to-Speech (TTS):</strong> Developing and fine-tuning neural network models for natural-sounding Persian speech synthesis, focusing on improving prosody, intonation, and overall voice quality. This involves data preprocessing, model training, and evaluation.</li>
-                            <li><strong>Automatic Speech Recognition (ASR):</strong> Working on training and evaluating ASR models to enhance accuracy and robustness for the Persian language, particularly in noisy call center environments and across diverse accents. This includes acoustic and language model development.</li>
-                            <li><strong>Call Center Quality Control:</strong> Designing and implementing AI-driven solutions to analyze call recordings for quality assurance. This involves leveraging ASR and NLP techniques for sentiment analysis, keyword spotting, topic modeling, and automated compliance checking to provide actionable insights for performance improvement.</li>
-                        </ul>
-                         Collaborating with cross-functional teams to integrate these speech technologies into various Shatel products and services, and utilizing Linux environments for development, testing, and deployment of AI models.
-                    </p>
-                    <p class="font-medium text-[var(--text-color)] mb-1">Technologies Used:</p>
+                    <ul class="list-disc list-outside ml-5 text-[var(--secondary-text-color)] space-y-3 mb-6 leading-relaxed">
+                        <li>Spearheaded the training of robust Automatic Speech Recognition (ASR) models, achieving an exceptional <span class="primary-accent font-bold">2.97% Word Error Rate (WER)</span> on standard Persian data and <span class="primary-accent font-bold">8.02% WER</span> in highly noisy call center environments.</li>
+                        <li>Architected and deployed a fully automated Quality Control (QC) pipeline for call centers, integrating multiple AI modules to comprehensively analyze call transcripts, compliance, and customer sentiment.</li>
+                        <li>Developed and evaluated a highly accurate bilingual ASR model, yielding state-of-the-art transcriptions with a <span class="primary-accent font-bold">4.02% WER for Persian</span> and <span class="primary-accent font-bold">2.06% WER for English</span>.</li>
+                        <li>Engineered a robust speech watermarking model for synthesized Text-to-Speech (TTS) audio, ensuring intellectual property protection with a <span class="primary-accent font-bold"><1% error rate</span> against adversarial attacks.</li>
+                        <li>Trained an emotion detection model optimized for noisy call center audio, achieving an <span class="primary-accent font-bold">87% F1 score</span> to enhance downstream customer sentiment analysis.</li>
+                        <li>Designed a high-precision bounding box detection model for OCR systems, achieving a <span class="primary-accent font-bold">>97% F1 score</span> for accurate document text extraction.</li>
+                        <li>Collaborated with the LLM team to develop an end-of-utterance detection system and contributed to the fine-tuning of Persian TTS neural networks.</li>
+                    </ul>
+                    <p class="font-semibold text-[var(--text-color)] mb-2">Technologies Used:</p>
                     <div class="flex flex-wrap gap-2">
-                        <span class="bg-[var(--tag-bg-color)] text-[var(--tag-text-color)] px-3 py-1 rounded-full text-sm">Python</span>
-                        <span class="bg-[var(--tag-bg-color)] text-[var(--tag-text-color)] px-3 py-1 rounded-full text-sm">Linux</span>
-                        <span class="bg-[var(--tag-bg-color)] text-[var(--tag-text-color)] px-3 py-1 rounded-full text-sm">PyTorch</span>
-                        <span class="bg-[var(--tag-bg-color)] text-[var(--tag-text-color)] px-3 py-1 rounded-full text-sm">TensorFlow</span>
-                        <span class="bg-[var(--tag-bg-color)] text-[var(--tag-text-color)] px-3 py-1 rounded-full text-sm">Hugging Face Transformers</span>
-                        <span class="bg-[var(--tag-bg-color)] text-[var(--tag-text-color)] px-3 py-1 rounded-full text-sm">Librosa</span>
-                        <span class="bg-[var(--tag-bg-color)] text-[var(--tag-text-color)] px-3 py-1 rounded-full text-sm">Git</span>
-                    </div>
-                </div>
-                <div class="bg-[var(--card-bg-color)] p-8 rounded-xl shadow-xl card-hover-effect animate-on-scroll" data-delay="300">
-                    <div class="flex flex-col md:flex-row justify-between items-start md:items-center mb-3">
-                        <h3 class="text-2xl font-semibold primary-accent">Freelance Programmer</h3>
-                        <p class="text-[var(--secondary-text-color)] text-sm md:text-base">Nov 2023 - Present</p>
-                    </div>
-                    <p class="text-[var(--secondary-text-color)] mb-4 leading-relaxed">Working on diverse programming projects, specializing in Signal Processing, Artificial Intelligence, and Image Processing.</p>
-                       <p class="font-medium text-[var(--text-color)] mb-1">Technologies Used:</p>
-                    <div class="flex flex-wrap gap-2">
-                        <span class="bg-[var(--tag-bg-color)] text-[var(--tag-text-color)] px-3 py-1 rounded-full text-sm">MATLAB</span>
-                        <span class="bg-[var(--tag-bg-color)] text-[var(--tag-text-color)] px-3 py-1 rounded-full text-sm">Python</span>
-                    </div>
-                </div>
-                <div class="bg-[var(--card-bg-color)] p-8 rounded-xl shadow-xl card-hover-effect animate-on-scroll" data-delay="100">
-                <div class="flex flex-col md:flex-row justify-between items-start md:items-center mb-3">
-                    <h3 class="text-2xl font-semibold primary-accent">Research Assistant at Computational Neuroscience Lab</h3>
-                    <p class="text-[var(--secondary-text-color)] text-sm md:text-base">June 2025 - Present | Tehran, Iran</p>
-                </div>
-                
-                <p class="text-[var(--secondary-text-color)] mb-4 leading-relaxed">
-                    As a Research Assistant under the supervision of Dr. Farnaz Ghasemi, I played a key role in the lab's research on BCI systems and complex brain signal analysis. My responsibilities expanded to include:
-                </p>
-                <ul class="list-disc list-inside text-[var(--secondary-text-color)] space-y-2 mb-4">
-                    <li>
-                        <strong>Student Supervision:</strong> Mentored and supervised several BSc and MSc students, providing technical guidance and support for their research, experimental design, and thesis projects related to EEG and BCI.
-                    </li>
-                    <li>
-                        <strong>Advanced Signal Processing:</strong> Implemented and applied Visibility Graph (VG) techniques to analyze non-linear dynamics and connectivity patterns in EEG time-series data.
-                    </li>
-                    
-                    <li>
-                        <strong>BCI & EEG Research:</strong> Conducted in-depth research on Brain-Computer Interface (BCI) systems, focusing on robust feature extraction and developing novel metrics to evaluate EEG signal quality.
-                    </li>
-                    <li>
-                        <strong>Statistical Analysis:</strong> Performed comprehensive statistical analysis and hypothesis testing on large-scale EEG signal datasets to validate research findings.
-                    </li>
-                </ul>
-                
-                <p class="font-medium text-[var(--text-color)] mb-1">Technologies Used:</p>
-                <div class="flex flex-wrap gap-2">
-                    <span class="bg-[var(--tag-bg-color)] text-[var(--tag-text-color)] px-3 py-1 rounded-full text-sm">MATLAB</span>
-                    <span class="bg-[var(--tag-bg-color)] text-[var(--tag-text-color)] px-3 py-1 rounded-full text-sm">Python</span>
-                    <span class="bg-[var(--tag-bg-color)] text-[var(--tag-text-color)] px-3 py-1 rounded-full text-sm">IBM SPSS Statistics</span>
-                </div>
-            </div>
-                <div class="bg-[var(--card-bg-color)] p-8 rounded-xl shadow-xl card-hover-effect animate-on-scroll" data-delay="100">
-                    <div class="flex flex-col md:flex-row justify-between items-start md:items-center mb-3">
-                        <h3 class="text-2xl font-semibold primary-accent">Researcher at Computational Neuroscience Lab</h3>
-                        <p class="text-[var(--secondary-text-color)] text-sm md:text-base">Aug 2022 - Oct 2023 | Tehran, Iran</p>
-                    </div>
-                    <p class="text-[var(--secondary-text-color)] mb-4 leading-relaxed">Conducted research on BCI systems and EEG signals under the supervision of Dr. Farnaz Ghasemi. Key responsibilities included developing metrics to evaluate EEG signal quality, analyzing statistical parameters of EEG signals, and conducting statistical tests for EEG signal datasets.</p>
-                    <p class="font-medium text-[var(--text-color)] mb-1">Technologies Used:</p>
-                    <div class="flex flex-wrap gap-2">
-                        <span class="bg-[var(--tag-bg-color)] text-[var(--tag-text-color)] px-3 py-1 rounded-full text-sm">MATLAB</span>
-                        <span class="bg-[var(--tag-bg-color)] text-[var(--tag-text-color)] px-3 py-1 rounded-full text-sm">Python</span>
-                        <span class="bg-[var(--tag-bg-color)] text-[var(--tag-text-color)] px-3 py-1 rounded-full text-sm">IBM SPSS Statistics</span>
-                    </div>
-                </div>
-                 <div class="bg-[var(--card-bg-color)] p-8 rounded-xl shadow-xl card-hover-effect animate-on-scroll" data-delay="200">
-                    <div class="flex flex-col md:flex-row justify-between items-start md:items-center mb-3">
-                        <h3 class="text-2xl font-semibold primary-accent">Signal Processing Intern at Radialmed Company</h3>
-                        <p class="text-[var(--secondary-text-color)] text-sm md:text-base">Aug 2022 - Nov 2023</p>
-                    </div>
-                    <p class="text-[var(--secondary-text-color)] mb-4 leading-relaxed">Worked on signal processing tasks, focusing on ECG and PPG signal analysis and feature extraction for machine learning applications. Major contributions included developing algorithms for calibrating blood pressure devices and creating methods to remove EMG noise from signals.</p>
-                    <p class="font-medium text-[var(--text-color)] mb-1">Technologies Used:</p>
-                       <div class="flex flex-wrap gap-2">
-                        <span class="bg-[var(--tag-bg-color)] text-[var(--tag-text-color)] px-3 py-1 rounded-full text-sm">MATLAB</span>
-                        <span class="bg-[var(--tag-bg-color)] text-[var(--tag-text-color)] px-3 py-1 rounded-full text-sm">Python</span>
+                        <span class="bg-[var(--tag-bg-color)] text-[var(--tag-text-color)] px-3 py-1 rounded-full text-sm font-medium">Python</span>
+                        <span class="bg-[var(--tag-bg-color)] text-[var(--tag-text-color)] px-3 py-1 rounded-full text-sm font-medium">PyTorch</span>
+                        <span class="bg-[var(--tag-bg-color)] text-[var(--tag-text-color)] px-3 py-1 rounded-full text-sm font-medium">TensorFlow</span>
+                        <span class="bg-[var(--tag-bg-color)] text-[var(--tag-text-color)] px-3 py-1 rounded-full text-sm font-medium">Hugging Face</span>
+                        <span class="bg-[var(--tag-bg-color)] text-[var(--tag-text-color)] px-3 py-1 rounded-full text-sm font-medium">Librosa</span>
+                        <span class="bg-[var(--tag-bg-color)] text-[var(--tag-text-color)] px-3 py-1 rounded-full text-sm font-medium">OpenCV</span>
+                        <span class="bg-[var(--tag-bg-color)] text-[var(--tag-text-color)] px-3 py-1 rounded-full text-sm font-medium">Docker</span>
                     </div>
                 </div>
 
+                <div class="bg-[var(--card-bg-color)] p-8 rounded-xl shadow-xl card-hover-effect animate-on-scroll" data-delay="100">
+                    <div class="flex flex-col md:flex-row justify-between items-start md:items-center mb-5">
+                        <div>
+                            <h3 class="text-2xl font-bold primary-accent">Computational Neuroscience Lab</h3>
+                            <p class="text-[var(--text-color)] font-medium text-lg mt-1">Dir. Dr. Farnaz Ghassemi | Amirkabir University</p>
+                        </div>
+                    </div>
+                    
+                    <div class="mb-5 border-l-2 border-[var(--primary-accent-color)] pl-4">
+                        <div class="flex justify-between items-center mb-2">
+                            <h4 class="text-xl font-semibold text-[var(--text-color)]">Research Assistant & Thesis Mentor</h4>
+                            <span class="text-[var(--secondary-text-color)] text-sm font-medium">Apr 2025 - Present</span>
+                        </div>
+                        <ul class="list-disc list-outside ml-5 text-[var(--secondary-text-color)] space-y-2">
+                            <li>Mentored B.Sc. and M.Sc. students through their final thesis projects, providing technical guidance on computational neuroscience and signal processing.</li>
+                            <li>Provided hands-on support with advanced data analysis, troubleshooting code, and validating statistical models for neurological datasets.</li>
+                        </ul>
+                    </div>
+
+                    <div class="border-l-2 border-[var(--border-color)] pl-4">
+                        <div class="flex justify-between items-center mb-2">
+                            <h4 class="text-xl font-semibold text-[var(--text-color)]">BCI Researcher</h4>
+                            <span class="text-[var(--secondary-text-color)] text-sm font-medium">Aug 2022 - Oct 2023</span>
+                        </div>
+                        <ul class="list-disc list-outside ml-5 text-[var(--secondary-text-color)] space-y-2 mb-4">
+                            <li>Developed novel mathematical metrics to evaluate EEG signal quality, performing in-depth statistical analysis (Chi-squared, Kolmogorov-Smirnov) to validate hypotheses.</li>
+                        </ul>
+                    </div>
+                    <p class="font-semibold text-[var(--text-color)] mb-2 mt-4">Technologies Used:</p>
+                    <div class="flex flex-wrap gap-2">
+                        <span class="bg-[var(--tag-bg-color)] text-[var(--tag-text-color)] px-3 py-1 rounded-full text-sm font-medium">MATLAB</span>
+                        <span class="bg-[var(--tag-bg-color)] text-[var(--tag-text-color)] px-3 py-1 rounded-full text-sm font-medium">Python</span>
+                        <span class="bg-[var(--tag-bg-color)] text-[var(--tag-text-color)] px-3 py-1 rounded-full text-sm font-medium">IBM SPSS</span>
+                    </div>
+                </div>
+
+                <div class="bg-[var(--card-bg-color)] p-8 rounded-xl shadow-xl card-hover-effect animate-on-scroll" data-delay="200">
+                    <div class="flex flex-col md:flex-row justify-between items-start md:items-center mb-5">
+                        <div>
+                            <h3 class="text-2xl font-bold primary-accent">Freelance AI & Signal Processing Engineer</h3>
+                            <p class="text-[var(--text-color)] font-medium text-lg mt-1">Independent Contractor</p>
+                        </div>
+                        <p class="text-[var(--secondary-text-color)] text-sm md:text-base mt-2 md:mt-0 font-medium">Nov 2023 - Present</p>
+                    </div>
+                    <ul class="list-disc list-outside ml-5 text-[var(--secondary-text-color)] space-y-3 mb-6 leading-relaxed">
+                        <li>Designed and deployed custom Machine Learning, Digital Signal Processing (DSP), and Image Processing solutions for diverse enterprise clients.</li>
+                        <li>Developed high-accuracy predictive models and data analysis pipelines while strictly adhering to client NDAs and data privacy standards.</li>
+                        <li>Translated complex client requirements into scalable technical architectures, delivering end-to-end projects from data preprocessing to final deployment.</li>
+                    </ul>
+                    <p class="font-semibold text-[var(--text-color)] mb-2">Technologies Used:</p>
+                    <div class="flex flex-wrap gap-2">
+                        <span class="bg-[var(--tag-bg-color)] text-[var(--tag-text-color)] px-3 py-1 rounded-full text-sm font-medium">Python</span>
+                        <span class="bg-[var(--tag-bg-color)] text-[var(--tag-text-color)] px-3 py-1 rounded-full text-sm font-medium">MATLAB</span>
+                        <span class="bg-[var(--tag-bg-color)] text-[var(--tag-text-color)] px-3 py-1 rounded-full text-sm font-medium">PyTorch</span>
+                        <span class="bg-[var(--tag-bg-color)] text-[var(--tag-text-color)] px-3 py-1 rounded-full text-sm font-medium">TensorFlow</span>
+                    </div>
+                </div>
             </div>
-             <h2 class="text-3xl font-bold mt-16 mb-12 text-center section-title animate-on-scroll text-[var(--text-color)]">Teaching Experience</h2>
-             <div class="bg-[var(--card-bg-color)] p-8 rounded-xl shadow-xl card-hover-effect animate-on-scroll">
-                <h3 class="text-2xl font-semibold primary-accent mb-2">Teaching Assistant</h3>
-                <ul class="list-disc list-inside text-[var(--secondary-text-color)] space-y-2">
-                    <li>Blind Source Separation - Amirkabir University of Technology (Fall 2025)</li>
-                    <li>Machine Learning - Sharif University of Technology (Fall 2024)</li>
-                    <li>Neural Modeling - Sharif University of Technology (Fall 2024)</li>
-                    <li>Mathematical Engineering - Amirkabir University of Technology (Fall 2022)</li>
-                </ul>
+
+            <h2 class="text-3xl font-bold mt-20 mb-12 text-center section-title animate-on-scroll text-[var(--text-color)]">Teaching Experience</h2>
+            <div class="bg-[var(--card-bg-color)] p-8 rounded-xl shadow-xl card-hover-effect animate-on-scroll">
+                <div class="grid md:grid-cols-2 gap-6">
+                    <div class="border-l-4 border-[var(--primary-accent-color)] pl-4">
+                        <h4 class="text-xl font-bold text-[var(--text-color)]">Machine Learning</h4>
+                        <p class="text-[var(--secondary-text-color)]">Sharif University of Technology &bull; Fall 2024</p>
+                    </div>
+                    <div class="border-l-4 border-[var(--primary-accent-color)] pl-4">
+                        <h4 class="text-xl font-bold text-[var(--text-color)]">Neural Modeling</h4>
+                        <p class="text-[var(--secondary-text-color)]">Sharif University of Technology &bull; Fall 2024</p>
+                    </div>
+                    <div class="border-l-4 border-[var(--primary-accent-color)] pl-4">
+                        <h4 class="text-xl font-bold text-[var(--text-color)]">Blind Source Separation</h4>
+                        <p class="text-[var(--secondary-text-color)]">Amirkabir University of Technology &bull; Fall 2025</p>
+                    </div>
+                    <div class="border-l-4 border-[var(--primary-accent-color)] pl-4">
+                        <h4 class="text-xl font-bold text-[var(--text-color)]">Engineering Mathematics</h4>
+                        <p class="text-[var(--secondary-text-color)]">Amirkabir University of Technology &bull; Fall 2022</p>
+                    </div>
+                </div>
             </div>
         </div>
     </section>
 
     <section id="projects" class="bg-[var(--card-bg-color)]">
         <div class="container mx-auto px-6">
-            <h2 class="text-4xl font-bold mb-16 text-center section-title animate-on-scroll text-[var(--text-color)]">Projects</h2>
+            <h2 class="text-4xl font-bold mb-16 text-center section-title animate-on-scroll text-[var(--text-color)]">Selected Projects</h2>
             <div class="grid md:grid-cols-2 lg:grid-cols-3 gap-8">
                 
                 <div class="bg-[var(--bg-color)] rounded-lg shadow-xl overflow-hidden card-hover-effect flex flex-col animate-on-scroll">
-                    <img src="./Images/project-image-classification.jpg" alt="Screenshot of Image Classification Project" class="w-full h-48 object-cover">
+                    <img src="./Images/project-speech-enhancement.jpg" alt="Screenshot of Speech Enhancement Algorithm" class="w-full h-48 object-cover">
                     <div class="p-6 flex flex-col flex-grow">
-                        <h3 class="text-xl font-semibold primary-accent mb-2">Image Classification Project</h3>
-                        <p class="text-[var(--secondary-text-color)] text-sm mb-4 flex-grow">Developed an image classification system using Python and relevant ML libraries.</p>
-                        <div class="mb-4"><span class="inline-block bg-[var(--tag-bg-color)] text-[var(--tag-text-color)] text-xs px-2 py-1 rounded-full mr-1 mb-1">Python</span></div>
-                        <a href="https://github.com/SAMortazavi/Computational-Intelligence" target="_blank" class="mt-auto inline-block text-center bg-primary-accent text-white font-semibold py-2 px-4 rounded-md hover-bg-primary-accent-darker transform hover:scale-105">View on GitHub</a>
+                        <h3 class="text-xl font-bold primary-accent mb-2">Speech Enhancement</h3>
+                        <p class="text-[var(--secondary-text-color)] text-sm mb-4 flex-grow">Developed and optimized a DSP algorithm in MATLAB to isolate speech frequencies, significantly enhancing clarity and reducing background noise.</p>
+                        <div class="mb-5">
+                            <span class="inline-block bg-[var(--tag-bg-color)] text-[var(--tag-text-color)] text-xs px-2 py-1 rounded-full font-medium mr-1 mb-1">MATLAB</span>
+                            <span class="inline-block bg-[var(--tag-bg-color)] text-[var(--tag-text-color)] text-xs px-2 py-1 rounded-full font-medium mr-1 mb-1">DSP</span>
+                        </div>
+                        <a href="https://github.com/SAMortazavi/Speech-Enhancement-Algorithm" target="_blank" class="mt-auto inline-block text-center bg-primary-accent text-white font-semibold py-2 px-4 rounded-md hover-bg-primary-accent-darker transform hover:scale-105">View Repository</a>
                     </div>
                 </div>
-                
+
                 <div class="bg-[var(--bg-color)] rounded-lg shadow-xl overflow-hidden card-hover-effect flex flex-col animate-on-scroll" data-delay="100">
                     <img src="./Images/project-nlp-fake-news.jpg" alt="Screenshot of NLP Fake News Detection Project" class="w-full h-48 object-cover">
                     <div class="p-6 flex flex-col flex-grow">
-                        <h3 class="text-xl font-semibold primary-accent mb-2">NLP for Fake News Detection</h3>
-                        <p class="text-[var(--secondary-text-color)] text-sm mb-4 flex-grow">Implemented NLP algorithms to detect fake news articles.</p>
-                         <div class="mb-4">
-                            <span class="inline-block bg-[var(--tag-bg-color)] text-[var(--tag-text-color)] text-xs px-2 py-1 rounded-full mr-1 mb-1">Python</span>
-                            <span class="inline-block bg-[var(--tag-bg-color)] text-[var(--tag-text-color)] text-xs px-2 py-1 rounded-full mr-1 mb-1">NLP</span>
+                        <h3 class="text-xl font-bold primary-accent mb-2">NLP Fake News Detection</h3>
+                        <p class="text-[var(--secondary-text-color)] text-sm mb-4 flex-grow">Designed and trained Natural Language Processing classification models using Python to identify misinformation, optimizing for high precision and recall.</p>
+                         <div class="mb-5">
+                            <span class="inline-block bg-[var(--tag-bg-color)] text-[var(--tag-text-color)] text-xs px-2 py-1 rounded-full font-medium mr-1 mb-1">Python</span>
+                            <span class="inline-block bg-[var(--tag-bg-color)] text-[var(--tag-text-color)] text-xs px-2 py-1 rounded-full font-medium mr-1 mb-1">NLP</span>
                          </div>
-                        <a href="https://github.com/SAMortazavi/Neuromatch-NLP" target="_blank" class="mt-auto inline-block text-center bg-primary-accent text-white font-semibold py-2 px-4 rounded-md hover-bg-primary-accent-darker transform hover:scale-105">View on GitHub</a>
+                        <a href="https://github.com/SAMortazavi/Neuromatch-NLP" target="_blank" class="mt-auto inline-block text-center bg-primary-accent text-white font-semibold py-2 px-4 rounded-md hover-bg-primary-accent-darker transform hover:scale-105">View Repository</a>
                     </div>
                 </div>
                 
                 <div class="bg-[var(--bg-color)] rounded-lg shadow-xl overflow-hidden card-hover-effect flex flex-col animate-on-scroll" data-delay="200">
-                    <img src="./Images/project-speech-enhancement.jpg" alt="Screenshot of Speech Enhancement Algorithm" class="w-full h-48 object-cover">
+                    <img src="./Images/project-image-classification.jpg" alt="Screenshot of Image Classification Project" class="w-full h-48 object-cover">
                     <div class="p-6 flex flex-col flex-grow">
-                        <h3 class="text-xl font-semibold primary-accent mb-2">Speech Enhancement Algorithm</h3>
-                        <p class="text-[var(--secondary-text-color)] text-sm mb-4 flex-grow">Designed and implemented a speech enhancement algorithm using MATLAB.</p>
-                        <div class="mb-4">
-                            <span class="inline-block bg-[var(--tag-bg-color)] text-[var(--tag-text-color)] text-xs px-2 py-1 rounded-full mr-1 mb-1">MATLAB</span>
-                            <span class="inline-block bg-[var(--tag-bg-color)] text-[var(--tag-text-color)] text-xs px-2 py-1 rounded-full mr-1 mb-1">Signal Processing</span>
+                        <h3 class="text-xl font-bold primary-accent mb-2">Image Classification Pipeline</h3>
+                        <p class="text-[var(--secondary-text-color)] text-sm mb-4 flex-grow">Built a robust computer vision pipeline using Python and PyTorch, achieving an impressive 98.37% accuracy on custom image datasets.</p>
+                        <div class="mb-5">
+                            <span class="inline-block bg-[var(--tag-bg-color)] text-[var(--tag-text-color)] text-xs px-2 py-1 rounded-full font-medium mr-1 mb-1">Python</span>
+                            <span class="inline-block bg-[var(--tag-bg-color)] text-[var(--tag-text-color)] text-xs px-2 py-1 rounded-full font-medium mr-1 mb-1">PyTorch</span>
                         </div>
-                        <a href="https://github.com/SAMortazavi/Speech-Enhancement-Algorithm" target="_blank" class="mt-auto inline-block text-center bg-primary-accent text-white font-semibold py-2 px-4 rounded-md hover-bg-primary-accent-darker transform hover:scale-105">View on GitHub</a>
+                        <a href="https://github.com/SAMortazavi/Computational-Intelligence" target="_blank" class="mt-auto inline-block text-center bg-primary-accent text-white font-semibold py-2 px-4 rounded-md hover-bg-primary-accent-darker transform hover:scale-105">View Repository</a>
                     </div>
                 </div>
-                
+
                 <div class="bg-[var(--bg-color)] rounded-lg shadow-xl overflow-hidden card-hover-effect flex flex-col animate-on-scroll" data-delay="300">
-                    <img src="./Images/project-emg-classification.jpg" alt="Screenshot of EMG Signal Classification (SVM) Project" class="w-full h-48 object-cover">
+                    <div class="bg-[var(--border-color)] w-full h-48 flex items-center justify-center">
+                        <svg class="w-16 h-16 text-[var(--secondary-text-color)]" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 3v2m6-2v2M9 19v2m6-2v2M5 9H3m2 6H3m18-6h-2m2 6h-2M7 19h10a2 2 0 002-2V7a2 2 0 00-2-2H7a2 2 0 00-2 2v10a2 2 0 002 2zM9 9h6v6H9V9z"></path></svg>
+                    </div>
                     <div class="p-6 flex flex-col flex-grow">
-                        <h3 class="text-xl font-semibold primary-accent mb-2">EMG Signal Classification (SVM)</h3>
-                        <p class="text-[var(--secondary-text-color)] text-sm mb-4 flex-grow">Classified EMG signals using Support Vector Machine (SVM) classifier in MATLAB.</p>
-                        <div class="mb-4">
-                            <span class="inline-block bg-[var(--tag-bg-color)] text-[var(--tag-text-color)] text-xs px-2 py-1 rounded-full mr-1 mb-1">MATLAB</span>
-                            <span class="inline-block bg-[var(--tag-bg-color)] text-[var(--tag-text-color)] text-xs px-2 py-1 rounded-full mr-1 mb-1">Machine Learning</span>
-                            <span class="inline-block bg-[var(--tag-bg-color)] text-[var(--tag-text-color)] text-xs px-2 py-1 rounded-full mr-1 mb-1">SVM</span>
+                        <h3 class="text-xl font-bold primary-accent mb-2">EEG Signal Quality Assessment</h3>
+                        <p class="text-[var(--secondary-text-color)] text-sm mb-4 flex-grow">Engineered and validated automated algorithms to objectively evaluate and quantify EEG signal integrity for neurological research.</p>
+                        <div class="mb-5">
+                            <span class="inline-block bg-[var(--tag-bg-color)] text-[var(--tag-text-color)] text-xs px-2 py-1 rounded-full font-medium mr-1 mb-1">MATLAB</span>
+                            <span class="inline-block bg-[var(--tag-bg-color)] text-[var(--tag-text-color)] text-xs px-2 py-1 rounded-full font-medium mr-1 mb-1">Python</span>
                         </div>
-                        <a href="https://github.com/SAMortazavi/EMG_Classification_Project" target="_blank" class="mt-auto inline-block text-center bg-primary-accent text-white font-semibold py-2 px-4 rounded-md hover-bg-primary-accent-darker transform hover:scale-105">View on GitHub</a>
                     </div>
                 </div>
                 
-                <div class="bg-[var(--bg-color)] rounded-lg shadow-xl overflow-hidden card-hover-effect flex flex-col animate-on-scroll" data-delay="400">
-                    <img src="./Images/Project-Management.jpg" alt="Seyed Abolfazl Mortazavi's GitHub Profile" class="w-full h-48 object-cover">
-                    <div class="p-6 flex flex-col flex-grow">
-                        <h3 class="text-xl font-semibold primary-accent mb-2">Other Notable Projects</h3>
-                        <p class="text-[var(--secondary-text-color)] text-sm mb-4 flex-grow">Includes EEG signal algorithms (DFA, RQA), statistical tests for EEG, algorithms for artificial ribosome, EEG signal quality assessment, object tracking, emotion detection, and more. Many projects, including freelance work, are in private repositories.</p>
-                        <p class="text-[var(--secondary-text-color)] text-sm mb-4 flex-grow">Access to private repositories can be provided upon request for review.</p>
-                        <a href="https://github.com/SAMortazavi" target="_blank" class="mt-auto inline-block text-center bg-primary-accent text-white font-semibold py-2 px-4 rounded-md hover-bg-primary-accent-darker transform hover:scale-105">View GitHub Profile</a>
+                <div class="bg-[var(--bg-color)] rounded-lg shadow-xl overflow-hidden card-hover-effect flex flex-col animate-on-scroll md:col-span-2" data-delay="400">
+                    <div class="p-8 flex flex-col flex-grow justify-center items-center text-center">
+                        <h3 class="text-2xl font-bold primary-accent mb-4">Other Notable Projects</h3>
+                        <p class="text-[var(--secondary-text-color)] text-md mb-6 max-w-2xl">Several advanced AI and DSP projects (including enterprise freelance client work) are housed in private repositories for confidentiality. Code walkthroughs and architectural details are available upon request.</p>
+                        <a href="https://github.com/SAMortazavi" target="_blank" class="inline-flex items-center text-center bg-primary-accent text-white font-semibold py-3 px-6 rounded-md hover-bg-primary-accent-darker transform hover:scale-105">
+                            <svg class="w-5 h-5 mr-2" fill="currentColor" viewBox="0 0 24 24"><path d="M12 0c-6.626 0-12 5.373-12 12 0 5.302 3.438 9.8 8.207 11.387.599.111.793-.261.793-.577v-2.234c-3.338.726-4.033-1.416-4.033-1.416-.546-1.387-1.333-1.756-1.333-1.756-1.089-.745.083-.729.083-.729 1.205.084 1.839 1.237 1.839 1.237 1.07 1.834 2.807 1.304 3.492.997.107-.775.418-1.305.762-1.604-2.665-.305-5.467-1.334-5.467-5.931 0-1.311.469-2.381 1.236-3.221-.124-.303-.535-1.524.117-3.176 0 0 1.008-.322 3.301 1.23.957-.266 1.983-.399 3.003-.404 1.02.005 2.047.138 3.006.404 2.291-1.552 3.297-1.23 3.297-1.23.653 1.653.242 2.874.118 3.176.77.84 1.235 1.911 1.235 3.221 0 4.609-2.807 5.624-5.479 5.921.43.372.823 1.102.823 2.222v3.293c0 .319.192.694.801.576 4.765-1.589 8.199-6.086 8.199-11.386 0-6.627-5.373-12-12-12z"/></svg>
+                            Explore Full GitHub Profile
+                        </a>
                     </div>
                 </div>
             </div>
@@ -432,35 +429,56 @@
     <section id="skills" class="bg-[var(--bg-color)]">
         <div class="container mx-auto px-6">
             <h2 class="text-4xl font-bold mb-16 text-center section-title animate-on-scroll text-[var(--text-color)]">Technical Skills</h2>
-            <div class="grid md:grid-cols-2 lg:grid-cols-3 gap-8">
-                <div class="bg-[var(--card-bg-color)] p-6 rounded-lg shadow-lg card-hover-effect animate-on-scroll">
-                    <h3 class="text-2xl font-semibold primary-accent mb-4">Programming/Scripting</h3>
-                    <ul class="space-y-2 text-[var(--secondary-text-color)]">
-                        <li class="flex items-center"><svg class="h-5 w-5 mr-2 primary-accent" viewBox="0 0 20 20" fill="currentColor"><path fill-rule="evenodd" d="M16.707 5.293a1 1 0 010 1.414l-8 8a1 1 0 01-1.414 0l-4-4a1 1 0 011.414-1.414L8 12.586l7.293-7.293a1 1 0 011.414 0z" clip-rule="evenodd" /></svg>Python</li>
-                        <li class="flex items-center"><svg class="h-5 w-5 mr-2 primary-accent" viewBox="0 0 20 20" fill="currentColor"><path fill-rule="evenodd" d="M16.707 5.293a1 1 0 010 1.414l-8 8a1 1 0 01-1.414 0l-4-4a1 1 0 011.414-1.414L8 12.586l7.293-7.293a1 1 0 011.414 0z" clip-rule="evenodd" /></svg>MATLAB</li>
-                        <li class="flex items-center"><svg class="h-5 w-5 mr-2 primary-accent" viewBox="0 0 20 20" fill="currentColor"><path fill-rule="evenodd" d="M16.707 5.293a1 1 0 010 1.414l-8 8a1 1 0 01-1.414 0l-4-4a1 1 0 011.414-1.414L8 12.586l7.293-7.293a1 1 0 011.414 0z" clip-rule="evenodd" /></svg>HTML5/CSS3</li>
-                        <li class="flex items-center"><svg class="h-5 w-5 mr-2 primary-accent" viewBox="0 0 20 20" fill="currentColor"><path fill-rule="evenodd" d="M16.707 5.293a1 1 0 010 1.414l-8 8a1 1 0 01-1.414 0l-4-4a1 1 0 011.414-1.414L8 12.586l7.293-7.293a1 1 0 011.414 0z" clip-rule="evenodd" /></svg>LaTeX</li>
-                    </ul>
+            <div class="grid md:grid-cols-2 gap-8 max-w-5xl mx-auto">
+                <div class="bg-[var(--card-bg-color)] p-8 rounded-lg shadow-lg card-hover-effect animate-on-scroll">
+                    <h3 class="text-2xl font-bold primary-accent mb-6 border-b border-[var(--border-color)] pb-3">Programming & Frameworks</h3>
+                    <div class="space-y-4">
+                        <div>
+                            <p class="font-semibold text-[var(--text-color)] mb-2">Languages</p>
+                            <div class="flex flex-wrap gap-2">
+                                <span class="bg-[var(--bg-color)] text-[var(--secondary-text-color)] px-4 py-2 rounded border border-[var(--border-color)]">Python</span>
+                                <span class="bg-[var(--bg-color)] text-[var(--secondary-text-color)] px-4 py-2 rounded border border-[var(--border-color)]">MATLAB</span>
+                                <span class="bg-[var(--bg-color)] text-[var(--secondary-text-color)] px-4 py-2 rounded border border-[var(--border-color)]">LaTeX</span>
+                                <span class="bg-[var(--bg-color)] text-[var(--secondary-text-color)] px-4 py-2 rounded border border-[var(--border-color)]">HTML5/CSS3</span>
+                            </div>
+                        </div>
+                        <div>
+                            <p class="font-semibold text-[var(--text-color)] mb-2 mt-4">AI & Machine Learning</p>
+                            <div class="flex flex-wrap gap-2">
+                                <span class="bg-[var(--bg-color)] text-[var(--secondary-text-color)] px-4 py-2 rounded border border-[var(--border-color)]">PyTorch</span>
+                                <span class="bg-[var(--bg-color)] text-[var(--secondary-text-color)] px-4 py-2 rounded border border-[var(--border-color)]">TensorFlow</span>
+                                <span class="bg-[var(--bg-color)] text-[var(--secondary-text-color)] px-4 py-2 rounded border border-[var(--border-color)]">Hugging Face</span>
+                                <span class="bg-[var(--bg-color)] text-[var(--secondary-text-color)] px-4 py-2 rounded border border-[var(--border-color)]">Scikit-learn</span>
+                                <span class="bg-[var(--bg-color)] text-[var(--secondary-text-color)] px-4 py-2 rounded border border-[var(--border-color)]">MLFlow</span>
+                            </div>
+                        </div>
+                    </div>
                 </div>
-                <div class="bg-[var(--card-bg-color)] p-6 rounded-lg shadow-lg card-hover-effect animate-on-scroll" data-delay="100">
-                    <h3 class="text-2xl font-semibold primary-accent mb-4">Libraries/Frameworks</h3>
-                    <ul class="space-y-2 text-[var(--secondary-text-color)]">
-                        <li class="flex items-center"><svg class="h-5 w-5 mr-2 primary-accent" viewBox="0 0 20 20" fill="currentColor"><path fill-rule="evenodd" d="M16.707 5.293a1 1 0 010 1.414l-8 8a1 1 0 01-1.414 0l-4-4a1 1 0 011.414-1.414L8 12.586l7.293-7.293a1 1 0 011.414 0z" clip-rule="evenodd" /></svg>Pandas, NumPy, Matplotlib</li>
-                        <li class="flex items-center"><svg class="h-5 w-5 mr-2 primary-accent" viewBox="0 0 20 20" fill="currentColor"><path fill-rule="evenodd" d="M16.707 5.293a1 1 0 010 1.414l-8 8a1 1 0 01-1.414 0l-4-4a1 1 0 011.414-1.414L8 12.586l7.293-7.293a1 1 0 011.414 0z" clip-rule="evenodd" /></svg>TensorFlow, PyTorch, Scikit-learn</li>
-                        <li class="flex items-center"><svg class="h-5 w-5 mr-2 primary-accent" viewBox="0 0 20 20" fill="currentColor"><path fill-rule="evenodd" d="M16.707 5.293a1 1 0 010 1.414l-8 8a1 1 0 01-1.414 0l-4-4a1 1 0 011.414-1.414L8 12.586l7.293-7.293a1 1 0 011.414 0z" clip-rule="evenodd" /></svg>OpenCV</li>
-                        <li class="flex items-center"><svg class="h-5 w-5 mr-2 primary-accent" viewBox="0 0 20 20" fill="currentColor"><path fill-rule="evenodd" d="M16.707 5.293a1 1 0 010 1.414l-8 8a1 1 0 01-1.414 0l-4-4a1 1 0 011.414-1.414L8 12.586l7.293-7.293a1 1 0 011.414 0z" clip-rule="evenodd" /></svg>Hugging Face Transformers, Librosa</li>
-                        <li class="flex items-center"><svg class="h-5 w-5 mr-2 primary-accent" viewBox="0 0 20 20" fill="currentColor"><path fill-rule="evenodd" d="M16.707 5.293a1 1 0 010 1.414l-8 8a1 1 0 01-1.414 0l-4-4a1 1 0 011.414-1.414L8 12.586l7.293-7.293a1 1 0 011.414 0z" clip-rule="evenodd" /></svg>Lightning, MLFlow</li>
-                    </ul>
-                </div>
-                <div class="bg-[var(--card-bg-color)] p-6 rounded-lg shadow-lg card-hover-effect animate-on-scroll" data-delay="200">
-                    <h3 class="text-2xl font-semibold primary-accent mb-4">IDEs/Tools</h3>
-                    <ul class="space-y-2 text-[var(--secondary-text-color)]">
-                        <li class="flex items-center"><svg class="h-5 w-5 mr-2 primary-accent" viewBox="0 0 20 20" fill="currentColor"><path fill-rule="evenodd" d="M16.707 5.293a1 1 0 010 1.414l-8 8a1 1 0 01-1.414 0l-4-4a1 1 0 011.414-1.414L8 12.586l7.293-7.293a1 1 0 011.414 0z" clip-rule="evenodd" /></svg>VSCode, PyCharm, Spyder</li>
-                        <li class="flex items-center"><svg class="h-5 w-5 mr-2 primary-accent" viewBox="0 0 20 20" fill="currentColor"><path fill-rule="evenodd" d="M16.707 5.293a1 1 0 010 1.414l-8 8a1 1 0 01-1.414 0l-4-4a1 1 0 011.414-1.414L8 12.586l7.293-7.293a1 1 0 011.414 0z" clip-rule="evenodd" /></svg>Linux Environment</li>
-                        <li class="flex items-center"><svg class="h-5 w-5 mr-2 primary-accent" viewBox="0 0 20 20" fill="currentColor"><path fill-rule="evenodd" d="M16.707 5.293a1 1 0 010 1.414l-8 8a1 1 0 01-1.414 0l-4-4a1 1 0 011.414-1.414L8 12.586l7.293-7.293a1 1 0 011.414 0z" clip-rule="evenodd" /></svg>Docker, Git & GitHub</li>
-                        <li class="flex items-center"><svg class="h-5 w-5 mr-2 primary-accent" viewBox="0 0 20 20" fill="currentColor"><path fill-rule="evenodd" d="M16.707 5.293a1 1 0 010 1.414l-8 8a1 1 0 01-1.414 0l-4-4a1 1 0 011.414-1.414L8 12.586l7.293-7.293a1 1 0 011.414 0z" clip-rule="evenodd" /></svg>Conda</li>
-                        <li class="flex items-center"><svg class="h-5 w-5 mr-2 primary-accent" viewBox="0 0 20 20" fill="currentColor"><path fill-rule="evenodd" d="M16.707 5.293a1 1 0 010 1.414l-8 8a1 1 0 01-1.414 0l-4-4a1 1 0 011.414-1.414L8 12.586l7.293-7.293a1 1 0 011.414 0z" clip-rule="evenodd" /></svg>IBM SPSS Statistics 26</li>
-                    </ul>
+
+                <div class="bg-[var(--card-bg-color)] p-8 rounded-lg shadow-lg card-hover-effect animate-on-scroll" data-delay="100">
+                    <h3 class="text-2xl font-bold primary-accent mb-6 border-b border-[var(--border-color)] pb-3">Data Science & Tools</h3>
+                    <div class="space-y-4">
+                        <div>
+                            <p class="font-semibold text-[var(--text-color)] mb-2">Data Science & Signal Processing</p>
+                            <div class="flex flex-wrap gap-2">
+                                <span class="bg-[var(--bg-color)] text-[var(--secondary-text-color)] px-4 py-2 rounded border border-[var(--border-color)]">Librosa</span>
+                                <span class="bg-[var(--bg-color)] text-[var(--secondary-text-color)] px-4 py-2 rounded border border-[var(--border-color)]">OpenCV</span>
+                                <span class="bg-[var(--bg-color)] text-[var(--secondary-text-color)] px-4 py-2 rounded border border-[var(--border-color)]">Pandas</span>
+                                <span class="bg-[var(--bg-color)] text-[var(--secondary-text-color)] px-4 py-2 rounded border border-[var(--border-color)]">NumPy</span>
+                                <span class="bg-[var(--bg-color)] text-[var(--secondary-text-color)] px-4 py-2 rounded border border-[var(--border-color)]">Matplotlib</span>
+                            </div>
+                        </div>
+                        <div>
+                            <p class="font-semibold text-[var(--text-color)] mb-2 mt-4">Platforms & Version Control</p>
+                            <div class="flex flex-wrap gap-2">
+                                <span class="bg-[var(--bg-color)] text-[var(--secondary-text-color)] px-4 py-2 rounded border border-[var(--border-color)]">Linux</span>
+                                <span class="bg-[var(--bg-color)] text-[var(--secondary-text-color)] px-4 py-2 rounded border border-[var(--border-color)]">Docker</span>
+                                <span class="bg-[var(--bg-color)] text-[var(--secondary-text-color)] px-4 py-2 rounded border border-[var(--border-color)]">Git / GitHub</span>
+                                <span class="bg-[var(--bg-color)] text-[var(--secondary-text-color)] px-4 py-2 rounded border border-[var(--border-color)]">Conda</span>
+                                <span class="bg-[var(--bg-color)] text-[var(--secondary-text-color)] px-4 py-2 rounded border border-[var(--border-color)]">IBM SPSS</span>
+                            </div>
+                        </div>
+                    </div>
                 </div>
             </div>
         </div>
@@ -471,29 +489,61 @@
             <h2 class="text-4xl font-bold mb-16 text-center section-title animate-on-scroll text-[var(--text-color)]">Education & Certifications</h2>
             <div class="grid md:grid-cols-2 gap-12">
                 <div class="animate-on-scroll">
-                    <h3 class="text-3xl font-semibold primary-accent mb-8 text-center md:text-left">Education</h3>
-                    <div class="space-y-8">
-                        <div class="bg-[var(--bg-color)] p-6 rounded-lg shadow-lg card-hover-effect"><h4 class="text-xl font-semibold text-[var(--text-color)]">Master of Science (M.Sc.) - Electrical Engineering (Bioelectric)</h4><p class="primary-accent mb-1">Sharif University of Technology | 2023 - 2025</p><p class="text-[var(--secondary-text-color)]">Current Score: 19.02/20.0 (GPA: 4.0/4.0)</p><p class="text-[var(--secondary-text-color)]">Ranked 1st in class.</p></div>
-                        <div class="bg-[var(--bg-color)] p-6 rounded-lg shadow-lg card-hover-effect"><h4 class="text-xl font-semibold text-[var(--text-color)]">Bachelor of Science (B.Sc.) - Electrical Engineering (Telecommunication)</h4><p class="primary-accent mb-1">Amirkabir University of Technology | 2019 - 2023</p><p class="text-[var(--secondary-text-color)]">Final Score: 19.38/20.0 (GPA: 4.0/4.0)</p><p class="text-[var(--secondary-text-color)]">Ranked 1st in class.</p></div>
-                        <div class="bg-[var(--bg-color)] p-6 rounded-lg shadow-lg card-hover-effect"><h4 class="text-xl font-semibold text-[var(--text-color)]">Bachelor of Science (B.Sc.) - Biomedical Engineering (Bioelectric)</h4><p class="primary-accent mb-1">Amirkabir University of Technology | 2019 - 2023</p><p class="text-[var(--secondary-text-color)]">Final Score: 19.07/20.0 (GPA: 4.0/4.0)</p><p class="text-[var(--secondary-text-color)]">Ranked 1st in class.</p></div>
+                    <h3 class="text-3xl font-bold primary-accent mb-8 text-center md:text-left">Education</h3>
+                    <div class="space-y-6">
+                        <div class="bg-[var(--bg-color)] p-6 rounded-lg shadow-lg border-l-4 border-[var(--primary-accent-color)] card-hover-effect">
+                            <h4 class="text-xl font-bold text-[var(--text-color)]">M.Sc. Electrical Engineering (Bioelectric)</h4>
+                            <p class="primary-accent mb-2 font-medium">Sharif University of Technology | 2023 - 2025</p>
+                            <p class="text-[var(--text-color)] font-semibold">Ranked 1st in class <span class="text-[var(--secondary-text-color)] font-normal">(out of 17 students)</span></p>
+                            <p class="text-[var(--secondary-text-color)]">GPA: 19.02/20.0 (4.0 U.S. Scale)</p>
+                        </div>
+                        <div class="bg-[var(--bg-color)] p-6 rounded-lg shadow-lg border-l-4 border-[var(--primary-accent-color)] card-hover-effect">
+                            <h4 class="text-xl font-bold text-[var(--text-color)]">B.Sc. Biomedical Engineering (Bioelectric)</h4>
+                            <p class="primary-accent mb-2 font-medium">Amirkabir University of Technology | 2019 - 2023</p>
+                            <p class="text-[var(--text-color)] font-semibold">Ranked 1st in class <span class="text-[var(--secondary-text-color)] font-normal">(out of 121 students)</span></p>
+                            <p class="text-[var(--secondary-text-color)]">GPA: 19.07/20.0 (4.0 U.S. Scale)</p>
+                        </div>
+                        <div class="bg-[var(--bg-color)] p-6 rounded-lg shadow-lg border-l-4 border-[var(--primary-accent-color)] card-hover-effect">
+                            <h4 class="text-xl font-bold text-[var(--text-color)]">B.Sc. Electrical Engineering (Telecom)</h4>
+                            <p class="primary-accent mb-2 font-medium">Amirkabir University of Technology | 2019 - 2023</p>
+                            <p class="text-[var(--text-color)] font-semibold">Ranked 1st in class <span class="text-[var(--secondary-text-color)] font-normal">(out of 132 students)</span></p>
+                            <p class="text-[var(--secondary-text-color)]">GPA: 19.38/20.0 (4.0 U.S. Scale)</p>
+                        </div>
                     </div>
                 </div>
                 <div class="animate-on-scroll" data-delay="100">
-                    <h3 class="text-3xl font-semibold primary-accent mb-8 text-center md:text-left">Licenses & Certifications</h3>
-                    <div class="space-y-4 bg-[var(--bg-color)] p-6 rounded-lg shadow-lg card-hover-effect">
-                        <p class="text-[var(--secondary-text-color)] flex items-start"><svg class="h-5 w-5 mr-2 mt-1 primary-accent flex-shrink-0" viewBox="0 0 20 20" fill="currentColor"><path fill-rule="evenodd" d="M6.267 3.455a3.066 3.066 0 001.745-.723 3.066 3.066 0 013.976 0 3.066 3.066 0 001.745.723 3.066 3.066 0 012.812 2.812c.051.643.304 1.254.723 1.745a3.066 3.066 0 010 3.976 3.066 3.066 0 00-.723 1.745 3.066 3.066 0 01-2.812 2.812 3.066 3.066 0 00-1.745.723 3.066 3.066 0 01-3.976 0 3.066 3.066 0 00-1.745-.723 3.066 3.066 0 01-2.812-2.812 3.066 3.066 0 00-.723-1.745 3.066 3.066 0 010-3.976 3.066 3.066 0 00.723-1.745 3.066 3.066 0 012.812-2.812zm7.469 6.469a1 1 0 01-1.414-1.414L10 10.586 8.707 9.293a1 1 0 00-1.414 1.414L8.586 12l-1.293 1.293a1 1 0 101.414 1.414L10 13.414l1.293 1.293a1 1 0 001.414-1.414L11.414 12l1.293-1.293z" clip-rule="evenodd" /></svg>EEG Signal Processing - Amirkabir University (Aug 2022)</p>
-                        <p class="text-[var(--secondary-text-color)] flex items-start"><svg class="h-5 w-5 mr-2 mt-1 primary-accent flex-shrink-0" viewBox="0 0 20 20" fill="currentColor"><path fill-rule="evenodd" d="M6.267 3.455a3.066 3.066 0 001.745-.723 3.066 3.066 0 013.976 0 3.066 3.066 0 001.745.723 3.066 3.066 0 012.812 2.812c.051.643.304 1.254.723 1.745a3.066 3.066 0 010 3.976 3.066 3.066 0 00-.723 1.745 3.066 3.066 0 01-2.812 2.812 3.066 3.066 0 00-1.745.723 3.066 3.066 0 01-3.976 0 3.066 3.066 0 00-1.745-.723 3.066 3.066 0 01-2.812-2.812 3.066 3.066 0 00-.723-1.745 3.066 3.066 0 010-3.976 3.066 3.066 0 00.723-1.745 3.066 3.066 0 012.812-2.812zm7.469 6.469a1 1 0 01-1.414-1.414L10 10.586 8.707 9.293a1 1 0 00-1.414 1.414L8.586 12l-1.293 1.293a1 1 0 101.414 1.414L10 13.414l1.293 1.293a1 1 0 001.414-1.414L11.414 12l1.293-1.293z" clip-rule="evenodd" /></svg>Supervised Machine Learning: Regression and Classification - Coursera (Jan 2023)</p>
-                        <p class="text-[var(--secondary-text-color)] flex items-start"><svg class="h-5 w-5 mr-2 mt-1 primary-accent flex-shrink-0" viewBox="0 0 20 20" fill="currentColor"><path fill-rule="evenodd" d="M6.267 3.455a3.066 3.066 0 001.745-.723 3.066 3.066 0 013.976 0 3.066 3.066 0 001.745.723 3.066 3.066 0 012.812 2.812c.051.643.304 1.254.723 1.745a3.066 3.066 0 010 3.976 3.066 3.066 0 00-.723 1.745 3.066 3.066 0 01-2.812 2.812 3.066 3.066 0 00-1.745.723 3.066 3.066 0 01-3.976 0 3.066 3.066 0 00-1.745-.723 3.066 3.066 0 01-2.812-2.812 3.066 3.066 0 00-.723-1.745 3.066 3.066 0 010-3.976 3.066 3.066 0 00.723-1.745 3.066 3.066 0 012.812-2.812zm7.469 6.469a1 1 0 01-1.414-1.414L10 10.586 8.707 9.293a1 1 0 00-1.414 1.414L8.586 12l-1.293 1.293a1 1 0 101.414 1.414L10 13.414l1.293 1.293a1 1 0 001.414-1.414L11.414 12l1.293-1.293z" clip-rule="evenodd" /></svg>Advanced Learning Algorithms - Coursera (Mar 2023)</p>
-                        <p class="text-[var(--secondary-text-color)] flex items-start"><svg class="h-5 w-5 mr-2 mt-1 primary-accent flex-shrink-0" viewBox="0 0 20 20" fill="currentColor"><path fill-rule="evenodd" d="M6.267 3.455a3.066 3.066 0 001.745-.723 3.066 3.066 0 013.976 0 3.066 3.066 0 001.745.723 3.066 3.066 0 012.812 2.812c.051.643.304 1.254.723 1.745a3.066 3.066 0 010 3.976 3.066 3.066 0 00-.723 1.745 3.066 3.066 0 01-2.812 2.812 3.066 3.066 0 00-1.745.723 3.066 3.066 0 01-3.976 0 3.066 3.066 0 00-1.745-.723 3.066 3.066 0 01-2.812-2.812 3.066 3.066 0 00-.723-1.745 3.066 3.066 0 010-3.976 3.066 3.066 0 00.723-1.745 3.066 3.066 0 012.812-2.812zm7.469 6.469a1 1 0 01-1.414-1.414L10 10.586 8.707 9.293a1 1 0 00-1.414 1.414L8.586 12l-1.293 1.293a1 1 0 101.414 1.414L10 13.414l1.293 1.293a1 1 0 001.414-1.414L11.414 12l1.293-1.293z" clip-rule="evenodd" /></svg>Linear Algebra for Machine Learning and Data Science - Coursera (Jan 2023)</p>
-                        <p class="text-[var(--secondary-text-color)] flex items-start"><svg class="h-5 w-5 mr-2 mt-1 primary-accent flex-shrink-0" viewBox="0 0 20 20" fill="currentColor"><path fill-rule="evenodd" d="M6.267 3.455a3.066 3.066 0 001.745-.723 3.066 3.066 0 013.976 0 3.066 3.066 0 001.745.723 3.066 3.066 0 012.812 2.812c.051.643.304 1.254.723 1.745a3.066 3.066 0 010 3.976 3.066 3.066 0 00-.723 1.745 3.066 3.066 0 01-2.812 2.812 3.066 3.066 0 00-1.745.723 3.066 3.066 0 01-3.976 0 3.066 3.066 0 00-1.745-.723 3.066 3.066 0 01-2.812-2.812 3.066 3.066 0 00-.723-1.745 3.066 3.066 0 010-3.976 3.066 3.066 0 00.723-1.745 3.066 3.066 0 012.812-2.812zm7.469 6.469a1 1 0 01-1.414-1.414L10 10.586 8.707 9.293a1 1 0 00-1.414 1.414L8.586 12l-1.293 1.293a1 1 0 101.414 1.414L10 13.414l1.293 1.293a1 1 0 001.414-1.414L11.414 12l1.293-1.293z" clip-rule="evenodd" /></svg>Neuromatch Academy Deep Learning Course - Neuromatch (July 2023)</p>
-                        <p class="text-[var(--secondary-text-color)] flex items-start"><svg class="h-5 w-5 mr-2 mt-1 primary-accent flex-shrink-0" viewBox="0 0 20 20" fill="currentColor"><path fill-rule="evenodd" d="M6.267 3.455a3.066 3.066 0 001.745-.723 3.066 3.066 0 013.976 0 3.066 3.066 0 001.745.723 3.066 3.066 0 012.812 2.812c.051.643.304 1.254.723 1.745a3.066 3.066 0 010 3.976 3.066 3.066 0 00-.723 1.745 3.066 3.066 0 01-2.812 2.812 3.066 3.066 0 00-1.745.723 3.066 3.066 0 01-3.976 0 3.066 3.066 0 00-1.745-.723 3.066 3.066 0 01-2.812-2.812 3.066 3.066 0 00-.723-1.745 3.066 3.066 0 010-3.976 3.066 3.066 0 00.723-1.745 3.066 3.066 0 012.812-2.812zm7.469 6.469a1 1 0 01-1.414-1.414L10 10.586 8.707 9.293a1 1 0 00-1.414 1.414L8.586 12l-1.293 1.293a1 1 0 101.414 1.414L10 13.414l1.293 1.293a1 1 0 001.414-1.414L11.414 12l1.293-1.293z" clip-rule="evenodd" /></svg>Complete Neural Signal Processing and Analysis: Zero to Hero - Udemy (Oct 2023)</p>
+                    <h3 class="text-3xl font-bold primary-accent mb-8 text-center md:text-left">Advanced Coursework</h3>
+                    <div class="space-y-4 bg-[var(--bg-color)] p-8 rounded-lg shadow-lg h-full card-hover-effect">
+                        <p class="text-[var(--secondary-text-color)] flex items-start text-lg"><svg class="h-6 w-6 mr-3 mt-1 primary-accent flex-shrink-0" viewBox="0 0 20 20" fill="currentColor"><path fill-rule="evenodd" d="M10 18a8 8 0 100-16 8 8 0 000 16zm3.707-9.293a1 1 0 00-1.414-1.414L9 10.586 7.707 9.293a1 1 0 00-1.414 1.414l2 2a1 1 0 001.414 0l4-4z" clip-rule="evenodd" /></svg><span class="font-medium text-[var(--text-color)] mr-2">Deep Learning Course</span> (Neuromatch Academy)</p>
+                        <p class="text-[var(--secondary-text-color)] flex items-start text-lg"><svg class="h-6 w-6 mr-3 mt-1 primary-accent flex-shrink-0" viewBox="0 0 20 20" fill="currentColor"><path fill-rule="evenodd" d="M10 18a8 8 0 100-16 8 8 0 000 16zm3.707-9.293a1 1 0 00-1.414-1.414L9 10.586 7.707 9.293a1 1 0 00-1.414 1.414l2 2a1 1 0 001.414 0l4-4z" clip-rule="evenodd" /></svg><span class="font-medium text-[var(--text-color)] mr-2">Neural Signal Processing & Analysis</span> (Udemy)</p>
+                        <p class="text-[var(--secondary-text-color)] flex items-start text-lg"><svg class="h-6 w-6 mr-3 mt-1 primary-accent flex-shrink-0" viewBox="0 0 20 20" fill="currentColor"><path fill-rule="evenodd" d="M10 18a8 8 0 100-16 8 8 0 000 16zm3.707-9.293a1 1 0 00-1.414-1.414L9 10.586 7.707 9.293a1 1 0 00-1.414 1.414l2 2a1 1 0 001.414 0l4-4z" clip-rule="evenodd" /></svg><span class="font-medium text-[var(--text-color)] mr-2">Deep Learning & LLMs</span> (Sharif University OCW)</p>
+                        <p class="text-[var(--secondary-text-color)] flex items-start text-lg"><svg class="h-6 w-6 mr-3 mt-1 primary-accent flex-shrink-0" viewBox="0 0 20 20" fill="currentColor"><path fill-rule="evenodd" d="M10 18a8 8 0 100-16 8 8 0 000 16zm3.707-9.293a1 1 0 00-1.414-1.414L9 10.586 7.707 9.293a1 1 0 00-1.414 1.414l2 2a1 1 0 001.414 0l4-4z" clip-rule="evenodd" /></svg><span class="font-medium text-[var(--text-color)] mr-2">Advanced Learning Algorithms</span> (Coursera)</p>
+                        <p class="text-[var(--secondary-text-color)] flex items-start text-lg"><svg class="h-6 w-6 mr-3 mt-1 primary-accent flex-shrink-0" viewBox="0 0 20 20" fill="currentColor"><path fill-rule="evenodd" d="M10 18a8 8 0 100-16 8 8 0 000 16zm3.707-9.293a1 1 0 00-1.414-1.414L9 10.586 7.707 9.293a1 1 0 00-1.414 1.414l2 2a1 1 0 001.414 0l4-4z" clip-rule="evenodd" /></svg><span class="font-medium text-[var(--text-color)] mr-2">EEG Signal Processing</span> (Amirkabir University)</p>
                     </div>
                 </div>
             </div>
         </div>
     </section>
 
-    <footer class="bg-[var(--bg-color)] border-t border-[var(--border-color)]">
+    <section id="contact" class="bg-[var(--bg-color)] pb-20">
+        <div class="container mx-auto px-6 text-center">
+            <h2 class="text-4xl font-bold mb-8 section-title animate-on-scroll text-[var(--text-color)]">Get In Touch</h2>
+            <p class="text-lg text-[var(--secondary-text-color)] mb-10 max-w-2xl mx-auto animate-on-scroll" data-delay="100">
+                Whether you have an interesting project, a research opportunity, or just want to connect, feel free to reach out. I'm always open to discussing new challenges in AI, signal processing, and beyond.
+            </p>
+            <div class="flex flex-col sm:flex-row justify-center items-center space-y-4 sm:space-y-0 sm:space-x-6 animate-on-scroll" data-delay="200">
+                <a href="mailto:your.email@example.com" class="bg-primary-accent text-white font-bold py-4 px-10 rounded-lg shadow-lg hover-bg-primary-accent-darker text-lg transform hover:scale-105 transition-all">
+                    Say Hello
+                </a>
+                <a href="https://www.linkedin.com/in/SAMortazavi" target="_blank" class="bg-[var(--card-bg-color)] text-[var(--text-color)] border border-[var(--border-color)] font-bold py-4 px-10 rounded-lg shadow-lg hover:bg-[var(--card-bg-hover-color)] text-lg transform hover:scale-105 transition-all flex items-center">
+                    <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="currentColor" class="mr-3 text-[#0077b5]"><path d="M19 0h-14c-2.761 0-5 2.239-5 5v14c0 2.761 2.239 5 5 5h14c2.762 0 5-2.239 5-5v-14c0-2.761-2.238-5-5-5zm-11 19h-3v-11h3v11zm-1.5-12.268c-.966 0-1.75-.79-1.75-1.764s.784-1.764 1.75-1.764 1.75.79 1.75 1.764-.783 1.764-1.75 1.764zm13.5 12.268h-3v-5.604c0-3.368-4-3.113-4 0v5.604h-3v-11h3v1.765c1.396-2.586 7-2.777 7 2.476v6.759z"/></svg>
+                    LinkedIn
+                </a>
+            </div>
+        </div>
+    </section>
+
+    <footer class="bg-[var(--card-bg-color)] border-t border-[var(--border-color)]">
         <div class="container mx-auto px-6 py-8 text-center text-[var(--secondary-text-color)]">
             <p>&copy; <span id="currentYear"></span> Seyed Abolfazl Mortazavi. All Rights Reserved.</p>
             <p class="text-sm mt-1">Designed with <span class="primary-accent">&hearts;</span> using Tailwind CSS.</p>
@@ -599,7 +649,7 @@
             });
         });
 
-        // Animate on scroll (your existing logic)
+        // Animate on scroll
         const observerOptions = { root: null, rootMargin: '0px', threshold: 0.1 };
         const observerCallback = (entries, observer) => {
             entries.forEach(entry => {
@@ -621,11 +671,11 @@
         const observer = new IntersectionObserver(observerCallback, observerOptions);
         document.querySelectorAll('.animate-on-scroll').forEach(el => observer.observe(el));
 
-        // === ADDED: Back to Top Button Logic ===
+        // Back to Top Button Logic
         const backToTopButton = document.getElementById('back-to-top');
         if (backToTopButton) {
             window.addEventListener('scroll', () => {
-                if (window.pageYOffset > 300) { // Show after 300px of scroll
+                if (window.pageYOffset > 300) {
                     backToTopButton.classList.remove('opacity-0', 'invisible');
                     backToTopButton.classList.add('opacity-100', 'visible');
                 } else {
@@ -638,9 +688,9 @@
             });
         }
 
-        // === ADDED: Active Navigation Highlighting Logic ===
+        // Active Navigation Highlighting Logic
         const allNavLinks = document.querySelectorAll('.nav-link');
-        const sections = document.querySelectorAll('section[id]'); // Get all sections that have an ID
+        const sections = document.querySelectorAll('section[id]');
         const headerOffsetForNav = document.querySelector('header')?.offsetHeight || 70;
 
         const activeNavObserver = new IntersectionObserver((entries) => {
@@ -663,15 +713,12 @@
                 }
             });
         }, {
-            // Trigger when the top of the section is just below the sticky header
             rootMargin: `-${headerOffsetForNav}px 0px -55% 0px`,
             threshold: 0
         });
 
         sections.forEach(section => activeNavObserver.observe(section));
-        // ===============================================
 
     </script>
-
 </body>
 </html>
