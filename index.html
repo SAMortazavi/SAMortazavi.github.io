@@ -1,724 +1,563 @@
-<!DOCTYPE html>
-<html lang="en" class="scroll-smooth">
+<!doctype html>
+<html lang="en" data-theme="dark">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Seyed Abolfazl Mortazavi - AI Developer & Researcher</title>
-    
-    <meta name="theme-color" content="#f97316">
-    <link rel="icon" type="image/png" sizes="32x32" href="./Images/favicon-32x32.png">
-    <link rel="icon" type="image/png" sizes="16x16" href="./Images/favicon-16x16.png">
-    <link rel="shortcut icon" href="./Images/favicon.ico">
-    <script src="https://cdn.tailwindcss.com"></script>
-    <link rel="preconnect" href="https://fonts.googleapis.com">
-    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
-    <style>
-        :root {
-            /* Dark Theme (Default) */
-            --bg-color: #111827; 
-            --bg-gradient-start: #111827; 
-            --bg-gradient-end: #1f2937; 
-            --card-bg-color: #1f2937; 
-            --card-bg-hover-color: #374151; 
-            --text-color: #f3f4f6; 
-            --secondary-text-color: #9ca3af; 
-            --primary-accent-color: #f97316; 
-            --primary-accent-hover-color: #ea580c; 
-            --primary-accent-lighter-text-hover: #fb923c; 
-            --border-color: #374151; 
-            --header-bg-color: rgba(17, 24, 39, 0.7); 
-            --shadow-color-strong: rgba(249, 115, 22, 0.2);
-            --shadow-color-medium: rgba(249, 115, 22, 0.1);
-            --spinner-track-color: #374151;
-            --button-secondary-bg: #374151; 
-            --button-secondary-hover-bg: #4b5563; 
-            --tag-bg-color: #374151; 
-            --tag-text-color: #fb923c; 
-        }
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <meta name="color-scheme" content="dark light" />
+  <meta name="theme-color" content="#0b1020" />
 
-        html.light-theme {
-            /* Light Theme */
-            --bg-color: #f3f4f6; 
-            --bg-gradient-start: #e5e7eb; 
-            --bg-gradient-end: #d1d5db; 
-            --card-bg-color: #ffffff; 
-            --card-bg-hover-color: #f9fafb; 
-            --text-color: #1f2937; 
-            --secondary-text-color: #4b5563; 
-            --border-color: #d1d5db; 
-            --header-bg-color: rgba(243, 244, 246, 0.7); 
-            --shadow-color-strong: rgba(0, 0, 0, 0.1);
-            --shadow-color-medium: rgba(0, 0, 0, 0.06);
-            --spinner-track-color: #e5e7eb; 
-            --button-secondary-bg: #e5e7eb; 
-            --button-secondary-hover-bg: #d1d5db; 
-            --tag-bg-color: #e5e7eb; 
-            --tag-text-color: #c2410c; 
-        }
+  <title>Seyed Abolfazl Mortazavi — Data Scientist & Machine Learning Engineer</title>
+  <meta name="description" content="Portfolio of Seyed Abolfazl Mortazavi, a Data Scientist and Machine Learning Engineer building production AI systems across speech, NLP/LLMs, computer vision, and multimodal data." />
+  <meta name="keywords" content="Data Scientist, Machine Learning Engineer, AI Engineer, Speech AI, ASR, NLP, LLM, Computer Vision, PyTorch, Python, FastAPI, MLflow" />
+  <meta name="author" content="Seyed Abolfazl Mortazavi" />
 
-        body {
-            font-family: 'Inter', sans-serif;
-            background-color: var(--bg-color);
-            color: var(--text-color);
-            opacity: 0; 
-            transition: opacity 0.5s ease-in-out, background-color 0.3s ease-in-out, color 0.3s ease-in-out;
-        }
+  <meta property="og:type" content="website" />
+  <meta property="og:title" content="Seyed Abolfazl Mortazavi — Data Scientist & Machine Learning Engineer" />
+  <meta property="og:description" content="Production AI, large-scale data, speech intelligence, NLP/LLMs, computer vision, and research." />
+  <meta property="og:url" content="https://samortazavi.github.io/" />
+  <meta name="twitter:card" content="summary" />
 
-        body.loaded {
-            opacity: 1;
-        }
+  <link rel="canonical" href="https://samortazavi.github.io/" />
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&family=JetBrains+Mono:wght@500;600&display=swap" rel="stylesheet" />
+  <link rel="stylesheet" href="./styles.css" />
 
-        header, section, footer, div, p, h1, h2, h3, h4, li, a, span, svg, button {
-            transition: background-color 0.3s ease-in-out, color 0.3s ease-in-out, border-color 0.3s ease-in-out, fill 0.3s ease-in-out;
-        }
-        img, .card-hover-effect {
-             transition: transform 0.3s ease-out, box-shadow 0.3s ease-out;
-        }
+  <link rel="icon" href="data:image/svg+xml,<svg xmlns=%22http://www.w3.org/2000/svg%22 viewBox=%220 0 64 64%22><rect width=%2264%22 height=%2264%22 rx=%2216%22 fill=%22%236d7cff%22/><text x=%2232%22 y=%2240%22 text-anchor=%22middle%22 font-size=%2225%22 font-family=%22Arial%22 font-weight=%22700%22 fill=%22white%22>SAM</text></svg>" />
 
-        .primary-accent { color: var(--primary-accent-color); }
-        .bg-primary-accent { background-color: var(--primary-accent-color); }
-        .border-primary-accent { border-color: var(--primary-accent-color); }
-        .hover-bg-primary-accent-darker:hover { background-color: var(--primary-accent-hover-color); }
-        .hover-text-primary-accent-lighter:hover { color: var(--primary-accent-lighter-text-hover); }
-
-        .nav-link.primary-accent {
-            color: var(--primary-accent-color);
-        }
-        
-        ::-webkit-scrollbar { width: 8px; }
-        ::-webkit-scrollbar-track { background: var(--card-bg-color); }
-        ::-webkit-scrollbar-thumb { background: var(--primary-accent-color); border-radius: 4px; }
-        ::-webkit-scrollbar-thumb:hover { background: var(--primary-accent-hover-color); }
-
-        section { padding-top: 5rem; padding-bottom: 5rem; }
-
-        .section-title::after {
-            content: ''; display: block; width: 0px; height: 3px;
-            background-color: var(--primary-accent-color);
-            margin-top: 0.75rem; margin-left: auto; margin-right: auto;
-            transition: width 0.5s ease-in-out;
-        }
-        .section-title.animate-underline::after { width: 70px; }
-
-        .animate-on-scroll { opacity: 0; transform: translateY(30px); transition: opacity 0.6s ease-out, transform 0.6s ease-out; }
-        .animate-on-scroll.animated { opacity: 1; transform: translateY(0); }
-        
-        .card-hover-effect:hover {
-            transform: translateY(-8px) scale(1.03);
-            box-shadow: 0 20px 25px -5px var(--shadow-color-strong), 0 10px 10px -5px var(--shadow-color-medium);
-        }
-
-        @keyframes pulse {
-            0%, 100% { transform: scale(1); box-shadow: 0 0 0 0 rgba(249, 115, 22, 0.7); }
-            50% { transform: scale(1.05); box-shadow: 0 0 0 10px rgba(249, 115, 22, 0); }
-        }
-        html.light-theme @keyframes pulse {
-             0%, 100% { transform: scale(1); box-shadow: 0 0 0 0 rgba(249, 115, 22, 0.5); }
-            50% { transform: scale(1.05); box-shadow: 0 0 0 10px rgba(249, 115, 22, 0); }
-        }
-        .profile-image-pulse { animation: pulse 2.5s infinite; }
-
-        .hero-text-animate { opacity: 0; transform: translateY(20px); animation: fadeInSlideUp 1s ease-out forwards; }
-        .hero-text-animate.delay-1 { animation-delay: 0.3s; }
-        .hero-text-animate.delay-2 { animation-delay: 0.6s; }
-        .hero-text-animate.delay-3 { animation-delay: 0.9s; }
-        .hero-text-animate.delay-4 { animation-delay: 1.2s; }
-
-        @keyframes fadeInSlideUp { to { opacity: 1; transform: translateY(0); } }
-
-        #preloader {
-            position: fixed; top: 0; left: 0; width: 100%; height: 100%;
-            background-color: var(--bg-color); display: flex;
-            justify-content: center; align-items: center; z-index: 9999;
-            transition: opacity 0.5s ease-out, visibility 0.5s ease-out;
-        }
-        #preloader.hidden { opacity: 0; visibility: hidden; }
-        .spinner {
-            width: 50px; height: 50px; border: 5px solid var(--spinner-track-color);
-            border-top-color: var(--primary-accent-color); border-radius: 50%;
-            animation: spin 1s linear infinite;
-        }
-        @keyframes spin { to { transform: rotate(360deg); } }
-    </style>
+  <script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    "@type": "Person",
+    "name": "Seyed Abolfazl Mortazavi",
+    "url": "https://samortazavi.github.io/",
+    "email": "mailto:seyyed79abolfazl@gmail.com",
+    "jobTitle": "Data Scientist and Machine Learning Engineer",
+    "sameAs": [
+      "https://github.com/SAMortazavi",
+      "https://www.linkedin.com/in/SAMortazavi"
+    ],
+    "alumniOf": [
+      {"@type": "CollegeOrUniversity", "name": "Sharif University of Technology"},
+      {"@type": "CollegeOrUniversity", "name": "Amirkabir University of Technology"}
+    ]
+  }
+  </script>
 </head>
 
-<body class="antialiased">
+<body>
+  <a class="skip-link" href="#main">Skip to content</a>
 
-    <div id="preloader"><div class="spinner"></div></div>
+  <header class="site-header" id="top">
+    <div class="container nav-shell">
+      <a class="brand" href="#top" aria-label="Go to top">
+        <span class="brand-mark" aria-hidden="true">SAM</span>
+        <span class="brand-text">Mortazavi</span>
+      </a>
 
-    <header class="bg-[var(--header-bg-color)] backdrop-blur-lg shadow-xl sticky top-0 z-50">
-        <div class="container mx-auto px-6 py-4">
-            <div class="flex items-center justify-between">
-                <a href="#" class="text-2xl font-bold text-[var(--text-color)] hover:opacity-80 transition-opacity">S.A. <span class="primary-accent">Mortazavi</span></a>
-                <nav class="hidden md:flex items-center space-x-6">
-                    <a href="#about" class="nav-link text-[var(--secondary-text-color)] hover-text-primary-accent-lighter px-2 py-1" data-target="#about">About</a>
-                    <a href="#experience" class="nav-link text-[var(--secondary-text-color)] hover-text-primary-accent-lighter px-2 py-1" data-target="#experience">Experience</a>
-                    <a href="#projects" class="nav-link text-[var(--secondary-text-color)] hover-text-primary-accent-lighter px-2 py-1" data-target="#projects">Projects</a>
-                    <a href="#skills" class="nav-link text-[var(--secondary-text-color)] hover-text-primary-accent-lighter px-2 py-1" data-target="#skills">Skills</a>
-                    <a href="#education" class="nav-link text-[var(--secondary-text-color)] hover-text-primary-accent-lighter px-2 py-1" data-target="#education">Education</a>
-                    <a href="#contact" class="nav-link text-[var(--secondary-text-color)] hover-text-primary-accent-lighter px-2 py-1" data-target="#contact">Contact</a>
-                    <button id="theme-toggle" type="button" class="p-2 rounded-lg text-[var(--secondary-text-color)] hover-text-primary-accent-lighter focus:outline-none text-sm">
-                        <svg id="theme-toggle-sun-icon" class="w-5 h-5 hidden" fill="currentColor" viewBox="0 0 20 20" xmlns="http://www.w3.org/2000/svg"><path d="M10 2a1 1 0 011 1v1a1 1 0 11-2 0V3a1 1 0 011-1zm4 8a4 4 0 11-8 0 4 4 0 018 0zm-.464 4.95l.707.707a1 1 0 001.414-1.414l-.707-.707a1 1 0 00-1.414 1.414zm2.12-10.607a1 1 0 010 1.414l-.706.707a1 1 0 11-1.414-1.414l.707-.707a1 1 0 011.414 0zM17 11a1 1 0 100-2h-1a1 1 0 100 2h1zm-7 4a1 1 0 011 1v1a1 1 0 11-2 0v-1a1 1 0 011-1zM5.05 6.464A1 1 0 106.465 5.05l-.708-.707a1 1 0 00-1.414 1.414l.707.707zm-.82 4.242a1 1 0 011.414 0l.707.707a1 1 0 11-1.414 1.414l-.707-.707a1 1 0 010-1.414zM12 17a1 1 0 100-2h-1a1 1 0 100 2h1z" fill-rule="evenodd" clip-rule="evenodd"></path></svg>
-                        <svg id="theme-toggle-moon-icon" class="w-5 h-5 hidden" fill="currentColor" viewBox="0 0 20 20" xmlns="http://www.w3.org/2000/svg"><path d="M17.293 13.293A8 8 0 016.707 2.707a8.001 8.001 0 1010.586 10.586z"></path></svg>
-                    </button>
-                </nav>
-                <div class="md:hidden flex items-center">
-                     <button id="theme-toggle-mobile" type="button" class="p-2 mr-2 rounded-lg text-[var(--secondary-text-color)] hover-text-primary-accent-lighter focus:outline-none text-sm"></button>
-                    <button id="mobile-menu-button" class="text-[var(--secondary-text-color)] focus:outline-none p-2 rounded-md hover:bg-[var(--card-bg-hover-color)] transition-colors">
-                        <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" class="w-7 h-7"><path stroke-linecap="round" stroke-linejoin="round" d="M3.75 6.75h16.5M3.75 12h16.5m-16.5 5.25h16.5" /></svg>
-                    </button>
-                </div>
-            </div>
+      <nav class="desktop-nav" aria-label="Primary navigation">
+        <a href="#impact">Impact</a>
+        <a href="#experience">Experience</a>
+        <a href="#skills">Skills</a>
+        <a href="#work">Public Work</a>
+        <a href="#education">Education</a>
+      </nav>
+
+      <div class="nav-actions">
+        <button class="icon-button" id="themeToggle" type="button" aria-label="Toggle color theme" title="Toggle theme">
+          <svg class="theme-icon theme-icon-sun" viewBox="0 0 24 24" aria-hidden="true"><path d="M12 4V2m0 20v-2m8-8h2M2 12h2m14.14-5.66 1.42-1.42M4.44 19.56l1.42-1.42m12.28 0 1.42 1.42M4.44 4.44l1.42 1.42M16 12a4 4 0 1 1-8 0 4 4 0 0 1 8 0Z"/></svg>
+          <svg class="theme-icon theme-icon-moon" viewBox="0 0 24 24" aria-hidden="true"><path d="M20.5 14.2A8.5 8.5 0 0 1 9.8 3.5 8.5 8.5 0 1 0 20.5 14.2Z"/></svg>
+        </button>
+        <a class="button button-small button-ghost" href="#contact">Contact</a>
+        <button class="menu-button" id="menuButton" type="button" aria-controls="mobileNav" aria-expanded="false" aria-label="Open navigation">
+          <span></span><span></span><span></span>
+        </button>
+      </div>
+    </div>
+
+    <nav class="mobile-nav" id="mobileNav" aria-label="Mobile navigation">
+      <a href="#impact">Impact</a>
+      <a href="#experience">Experience</a>
+      <a href="#skills">Skills</a>
+      <a href="#work">Public Work</a>
+      <a href="#education">Education</a>
+      <a href="#contact">Contact</a>
+    </nav>
+  </header>
+
+  <main id="main">
+    <section class="hero section-grid" aria-labelledby="hero-title">
+      <div class="hero-noise" aria-hidden="true"></div>
+      <div class="container hero-grid">
+        <div class="hero-copy reveal">
+          <div class="eyebrow">
+            <span class="status-dot" aria-hidden="true"></span>
+            Open to Iran · Europe · Remote · Relocation · Contract
+          </div>
+
+          <p class="hero-kicker">Data Scientist · Machine Learning Engineer</p>
+          <h1 id="hero-title">Seyed Abolfazl<br><span>Mortazavi</span></h1>
+          <p class="hero-lead">
+            I turn messy, large-scale multimodal data into measurable AI systems — from speech and call-center intelligence to NLP/LLMs and computer vision — with end-to-end ownership from data to deployment.
+          </p>
+
+          <div class="hero-actions">
+            <a class="button button-primary" href="#impact">
+              See production impact
+              <svg viewBox="0 0 24 24" aria-hidden="true"><path d="m9 18 6-6-6-6"/></svg>
+            </a>
+            <a class="button button-ghost" href="https://github.com/SAMortazavi" target="_blank" rel="noreferrer">GitHub</a>
+            <a class="button button-ghost" href="https://www.linkedin.com/in/SAMortazavi" target="_blank" rel="noreferrer">LinkedIn</a>
+          </div>
+
+          <div class="resume-links" id="resumeLinks" aria-label="Resume downloads" hidden>
+            <span>Resume:</span>
+            <a data-resume-link href="./resumes/Seyed_Abolfazl_Mortazavi_Europe.pdf" download>Europe</a>
+            <span aria-hidden="true">·</span>
+            <a data-resume-link href="./resumes/Seyed_Abolfazl_Mortazavi_Iran.pdf" download>Iran</a>
+          </div>
         </div>
-        <div id="mobile-menu" class="hidden md:hidden bg-[var(--card-bg-color)]/95 backdrop-blur-sm">
-            <a href="#about" class="nav-link block px-6 py-3 text-[var(--secondary-text-color)] hover:bg-[var(--card-bg-hover-color)] hover-text-primary-accent-lighter" data-target="#about">About</a>
-            <a href="#experience" class="nav-link block px-6 py-3 text-[var(--secondary-text-color)] hover:bg-[var(--card-bg-hover-color)] hover-text-primary-accent-lighter" data-target="#experience">Experience</a>
-            <a href="#projects" class="nav-link block px-6 py-3 text-[var(--secondary-text-color)] hover:bg-[var(--card-bg-hover-color)] hover-text-primary-accent-lighter" data-target="#projects">Projects</a>
-            <a href="#skills" class="nav-link block px-6 py-3 text-[var(--secondary-text-color)] hover:bg-[var(--card-bg-hover-color)] hover-text-primary-accent-lighter" data-target="#skills">Skills</a>
-            <a href="#education" class="nav-link block px-6 py-3 text-[var(--secondary-text-color)] hover:bg-[var(--card-bg-hover-color)] hover-text-primary-accent-lighter" data-target="#education">Education</a>
-            <a href="#contact" class="nav-link block px-6 py-3 text-[var(--secondary-text-color)] hover:bg-[var(--card-bg-hover-color)] hover-text-primary-accent-lighter" data-target="#contact">Contact</a>
-            </div>
-    </header>
 
-    <section id="hero" class="min-h-screen flex items-center bg-gradient-to-br from-[var(--bg-gradient-start)] to-[var(--bg-gradient-end)]">
-        <div class="container mx-auto px-6 py-16 text-center">
-            <div class="max-w-4xl mx-auto">
-                <img src="./Images/IMG_20240102_095520_458.jpg" alt="Seyed Abolfazl Mortazavi" class="w-48 h-48 md:w-56 md:h-56 mx-auto rounded-full shadow-2xl mb-8 border-4 border-[var(--primary-accent-color)] object-cover profile-image-pulse hero-text-animate">
-                <h3 class="text-2xl md:text-3xl text-[var(--text-color)] font-light mb-2 hero-text-animate delay-1">Hi, I'm</h3>
-                <h1 class="text-5xl md:text-7xl font-extrabold mb-4 text-[var(--text-color)] hero-text-animate delay-2">
-                    <span class="primary-accent">Seyed Abolfazl</span> Mortazavi
-                </h1>
-                <p class="text-xl md:text-2xl text-[var(--secondary-text-color)] mb-8 leading-relaxed hero-text-animate delay-3">
-                    AI Developer & Researcher | Specialized in Audio, Signal Processing & Deep Learning
-                </p>
-                <div class="flex flex-col sm:flex-row justify-center space-y-4 sm:space-y-0 sm:space-x-4 mb-10 hero-text-animate delay-4">
-                    <a href="https://drive.google.com/file/d/13i0KQOog9C_FCGn80NL3HX8J-w3bjWQC/view?usp=sharing" target="_blank" download class="bg-primary-accent text-white font-semibold py-3 px-8 rounded-lg shadow-md hover-bg-primary-accent-darker text-lg transform hover:scale-105">
-                        View Resume
-                    </a>
-                    <a href="#contact" class="bg-[var(--button-secondary-bg)] text-[var(--text-color)] font-semibold py-3 px-8 rounded-lg shadow-md hover:bg-[var(--button-secondary-hover-bg)] text-lg transform hover:scale-105">
-                        Contact Me
-                    </a>
-                </div>
-                <div class="flex justify-center space-x-6 hero-text-animate delay-4">
-                    <a href="https://github.com/SAMortazavi" target="_blank" class="text-[var(--secondary-text-color)] hover-text-primary-accent-lighter transform hover:scale-110" aria-label="GitHub"><svg xmlns="http://www.w3.org/2000/svg" width="32" height="32" viewBox="0 0 24 24" fill="currentColor"><path d="M12 0c-6.626 0-12 5.373-12 12 0 5.302 3.438 9.8 8.207 11.387.599.111.793-.261.793-.577v-2.234c-3.338.726-4.033-1.416-4.033-1.416-.546-1.387-1.333-1.756-1.333-1.756-1.089-.745.083-.729.083-.729 1.205.084 1.839 1.237 1.839 1.237 1.07 1.834 2.807 1.304 3.492.997.107-.775.418-1.305.762-1.604-2.665-.305-5.467-1.334-5.467-5.931 0-1.311.469-2.381 1.236-3.221-.124-.303-.535-1.524.117-3.176 0 0 1.008-.322 3.301 1.23.957-.266 1.983-.399 3.003-.404 1.02.005 2.047.138 3.006.404 2.291-1.552 3.297-1.23 3.297-1.23.653 1.653.242 2.874.118 3.176.77.84 1.235 1.911 1.235 3.221 0 4.609-2.807 5.624-5.479 5.921.43.372.823 1.102.823 2.222v3.293c0 .319.192.694.801.576 4.765-1.589 8.199-6.086 8.199-11.386 0-6.627-5.373-12-12-12z"/></svg></a>
-                    <a href="https://www.linkedin.com/in/SAMortazavi" target="_blank" class="text-[var(--secondary-text-color)] hover-text-primary-accent-lighter transform hover:scale-110" aria-label="LinkedIn"><svg xmlns="http://www.w3.org/2000/svg" width="32" height="32" viewBox="0 0 24 24" fill="currentColor"><path d="M19 0h-14c-2.761 0-5 2.239-5 5v14c0 2.761 2.239 5 5 5h14c2.762 0 5-2.239 5-5v-14c0-2.761-2.238-5-5-5zm-11 19h-3v-11h3v11zm-1.5-12.268c-.966 0-1.75-.79-1.75-1.764s.784-1.764 1.75-1.764 1.75.79 1.75 1.764-.783 1.764-1.75 1.764zm13.5 12.268h-3v-5.604c0-3.368-4-3.113-4 0v5.604h-3v-11h3v1.765c1.396-2.586 7-2.777 7 2.476v6.759z"/></svg></a>
-                    <a href="https://www.instagram.com/Mortazavi_Sabolfazl/" target="_blank" class="text-[var(--secondary-text-color)] hover-text-primary-accent-lighter transform hover:scale-110" aria-label="Instagram"><svg xmlns="http://www.w3.org/2000/svg" width="32" height="32" viewBox="0 0 24 24" fill="currentColor"><path d="M12 2.163c3.204 0 3.584.012 4.85.07 3.252.148 4.771 1.691 4.919 4.919.058 1.265.069 1.645.069 4.849 0 3.205-.012 3.584-.069 4.849-.149 3.225-1.664 4.771-4.919 4.919-1.266.058-1.644.07-4.85.07-3.204 0-3.584-.012-4.849-.07-3.26-.149-4.771-1.699-4.919-4.92-.058-1.265-.07-1.644-.07-4.849 0-3.204.013-3.583.07-4.849.149-3.227 1.664-4.771 4.919-4.919 1.266-.057 1.645-.069 4.849-.069zm0-2.163c-3.259 0-3.667.014-4.947.072-4.358.2-6.78 2.618-6.98 6.98-.059 1.281-.073 1.689-.073 4.948 0 3.259.014 3.668.072 4.948.2 4.358 2.618 6.78 6.98 6.98 1.281.059 1.689.073 4.948.073 3.259 0 3.668-.014 4.948-.072 4.354-.2 6.782-2.618 6.979-6.98.059-1.28.073-1.689.073-4.948 0-3.259-.014-3.667-.072-4.947-.196-4.354-2.617-6.78-6.979-6.98-1.281-.059-1.69-.073-4.948-.073zm0 5.838c-3.403 0-6.162 2.759-6.162 6.162s2.759 6.162 6.162 6.162 6.162-2.759 6.162-6.162-2.759-6.162-6.162-6.162zm0 10.162c-2.209 0-4-1.79-4-4s1.791-4 4-4 4 1.79 4 4-1.791 4-4 4zm6.406-11.845c-.796 0-1.441.645-1.441 1.44s.645 1.44 1.441 1.44c.795 0 1.439-.645 1.439-1.44s-.644-1.44-1.439-1.44z"/></svg></a>
-                    <a href="https://t.me/Abolfazl_Mortazavi79" target="_blank" class="text-[var(--secondary-text-color)] hover-text-primary-accent-lighter transform hover:scale-110" aria-label="Telegram"><svg xmlns="http://www.w3.org/2000/svg" width="32" height="32" viewBox="0 0 24 24" fill="currentColor"><path d="M1.946 9.315c-.522-.174-.527-.455.01-.634l19.087-6.362c.529-.176.832.12.684.638l-5.454 19.086c-.15.529-.455.547-.679.045L12 14l6-8-8 6-8.054-2.685z"/></svg></a>
-                </div>
-            </div>
-        </div>
+        <aside class="hero-console reveal" aria-label="Selected metrics" data-delay="120">
+          <div class="console-bar">
+            <span class="console-lights" aria-hidden="true"><i></i><i></i><i></i></span>
+            <span class="console-title">production_profile.json</span>
+            <span class="live-badge"><span></span> LIVE</span>
+          </div>
+
+          <div class="console-code" aria-hidden="true">
+            <span class="line-number">01</span><span><b>role</b>: <em>"Data Scientist / ML Engineer"</em></span>
+            <span class="line-number">02</span><span><b>focus</b>: [<em>"ML"</em>, <em>"Speech"</em>, <em>"NLP"</em>, <em>"CV"</em>]</span>
+            <span class="line-number">03</span><span><b>ownership</b>: <em>"data → model → API"</em></span>
+            <span class="line-number">04</span><span><b>mode</b>: <em>"production + research"</em></span>
+          </div>
+
+          <div class="metric-grid">
+            <article class="metric-card">
+              <strong data-counter="50000" data-suffix="+">50K+</strong>
+              <span>speech hours used for training</span>
+            </article>
+            <article class="metric-card">
+              <strong data-counter="1000" data-suffix="+">1K+</strong>
+              <span>calls/day in QC production</span>
+            </article>
+            <article class="metric-card">
+              <strong data-counter="2.97" data-decimals="2" data-suffix="%">2.97%</strong>
+              <span>Persian ASR WER</span>
+            </article>
+            <article class="metric-card">
+              <strong data-counter="97" data-prefix=">" data-suffix="%">&gt;97%</strong>
+              <span>OCR text-localization F1</span>
+            </article>
+          </div>
+
+          <div class="signal-strip" aria-hidden="true">
+            <svg viewBox="0 0 720 80" preserveAspectRatio="none">
+              <path class="signal-grid-line" d="M0 40H720"/>
+              <polyline class="signal-wave" points="0,40 28,40 40,38 48,14 56,62 64,40 92,40 112,40 124,24 136,54 148,40 178,40 202,40 214,8 226,70 238,40 268,40 294,40 306,26 318,54 330,40 360,40 390,40 402,12 414,66 426,40 458,40 488,40 500,22 512,58 524,40 556,40 586,40 598,10 610,68 622,40 650,40 676,40 688,26 700,52 712,40 720,40"/>
+            </svg>
+          </div>
+        </aside>
+      </div>
     </section>
 
-    <section id="about" class="bg-[var(--card-bg-color)]">
-        <div class="container mx-auto px-6">
-            <h2 class="text-4xl font-bold mb-12 text-center section-title animate-on-scroll text-[var(--text-color)]">About Me</h2>
-            <div class="grid md:grid-cols-5 gap-12 items-center">
-                <div class="md:col-span-2 animate-on-scroll"> 
-                    <img src="./Images/IMG_20240102_095520_458.jpg" alt="About Seyed Abolfazl Mortazavi" class="rounded-lg shadow-xl object-contain transform hover:scale-105">
-                </div>
-                <div class="md:col-span-3"> 
-                    <p class="text-lg text-[var(--secondary-text-color)] mb-6 leading-relaxed animate-on-scroll" data-delay="100">
-                        I am a results-driven AI Developer and researcher specializing in advanced signal processing, speech technologies (ASR/TTS), and machine learning. Leveraging a unique dual-degree foundation in Electrical and Biomedical Engineering, I possess deep expertise in translating complex time-series data—from neurological EEG signals to noisy call center audio—into highly accurate predictive models.
-                    </p>
-                    <p class="text-lg text-[var(--secondary-text-color)] mb-6 leading-relaxed animate-on-scroll" data-delay="200">
-                        With a proven track record of deploying state-of-the-art AI pipelines, fine-tuning LLMs, and delivering impactful enterprise solutions, I am deeply committed to driving innovation. Having ranked 1st in all my academic cohorts at Sharif and Amirkabir Universities, I bring a rigorous, mathematical approach to solving modern technical challenges.
-                    </p>
-                    <div class="mb-8 animate-on-scroll" data-delay="300">
-                        <h3 class="text-2xl font-semibold primary-accent mb-3">Research Interests</h3>
-                        <ul class="list-disc list-inside text-[var(--secondary-text-color)] space-y-2">
-                            <li><strong>Speech & Audio AI:</strong> End-to-End ASR, Neural TTS, and Audio Representation Learning</li>
-                            <li><strong>Neural Signal Processing:</strong> Brain-Computer Interfaces (BCI) and real-time physiological data analysis</li>
-                            <li><strong>Multimodal Machine Learning:</strong> Integrating LLMs with audio, speech, and vision pipelines</li>
-                            <li><strong>Advanced Computer Vision:</strong> Image segmentation, registration, and high-precision OCR</li>
-                        </ul>
-                    </div>
-                </div>
-            </div>
+    <section class="section section-muted" id="capabilities" aria-labelledby="capabilities-title">
+      <div class="container">
+        <div class="section-heading reveal">
+          <p class="section-label">What I bring</p>
+          <h2 id="capabilities-title">Built for applied data science — not just notebooks.</h2>
+          <p>I work across the full path from ambiguous problem and messy data to evaluation, API integration, production analytics, and stakeholder communication.</p>
         </div>
+
+        <div class="capability-grid">
+          <article class="capability-card reveal">
+            <span class="capability-index">01</span>
+            <h3>Data Science</h3>
+            <p>EDA, feature engineering, statistical analysis, supervised learning, rigorous evaluation, and decision-oriented reporting.</p>
+          </article>
+          <article class="capability-card reveal" data-delay="60">
+            <span class="capability-index">02</span>
+            <h3>ML Engineering</h3>
+            <p>Training pipelines, experiment tracking, service APIs, Dockerized workflows, model integration, and production ownership.</p>
+          </article>
+          <article class="capability-card reveal" data-delay="120">
+            <span class="capability-index">03</span>
+            <h3>Speech & NLP</h3>
+            <p>ASR, VAD, EOT, speech emotion, text classification, sentiment, summarization, and LLM prompt engineering.</p>
+          </article>
+          <article class="capability-card reveal" data-delay="180">
+            <span class="capability-index">04</span>
+            <h3>Computer Vision</h3>
+            <p>Classification, segmentation, object/text detection, OCR pipelines, image registration, preprocessing, and evaluation.</p>
+          </article>
+        </div>
+      </div>
     </section>
 
-    <section id="experience" class="bg-[var(--bg-color)]">
-        <div class="container mx-auto px-6">
-            <h2 class="text-4xl font-bold mb-16 text-center section-title animate-on-scroll text-[var(--text-color)]">Work Experience</h2>
-            <div class="space-y-12">
-                <div class="bg-[var(--card-bg-color)] p-8 rounded-xl shadow-xl card-hover-effect animate-on-scroll">
-                    <div class="flex flex-col md:flex-row justify-between items-start md:items-center mb-5">
-                        <div>
-                            <h3 class="text-2xl font-bold primary-accent">AI Developer - Speech Team</h3>
-                            <p class="text-[var(--text-color)] font-medium text-lg mt-1">Shatel</p>
-                        </div>
-                        <p class="text-[var(--secondary-text-color)] text-sm md:text-base mt-2 md:mt-0 font-medium">Jan 2025 - Present | Tehran, Iran</p>
-                    </div>
-                    <ul class="list-disc list-outside ml-5 text-[var(--secondary-text-color)] space-y-3 mb-6 leading-relaxed">
-                        <li>Spearheaded the training of robust Automatic Speech Recognition (ASR) models, achieving an exceptional <span class="primary-accent font-bold">2.97% Word Error Rate (WER)</span> on standard Persian data and <span class="primary-accent font-bold">8.02% WER</span> in highly noisy call center environments.</li>
-                        <li>Architected and deployed a fully automated Quality Control (QC) pipeline for call centers, integrating multiple AI modules to comprehensively analyze call transcripts, compliance, and customer sentiment.</li>
-                        <li>Developed and evaluated a highly accurate bilingual ASR model, yielding state-of-the-art transcriptions with a <span class="primary-accent font-bold">4.02% WER for Persian</span> and <span class="primary-accent font-bold">2.06% WER for English</span>.</li>
-                        <li>Engineered a robust speech watermarking model for synthesized Text-to-Speech (TTS) audio, ensuring intellectual property protection with a <span class="primary-accent font-bold"><1% error rate</span> against adversarial attacks.</li>
-                        <li>Trained an emotion detection model optimized for noisy call center audio, achieving an <span class="primary-accent font-bold">87% F1 score</span> to enhance downstream customer sentiment analysis.</li>
-                        <li>Designed a high-precision bounding box detection model for OCR systems, achieving a <span class="primary-accent font-bold">>97% F1 score</span> for accurate document text extraction.</li>
-                        <li>Collaborated with the LLM team to develop an end-of-utterance detection system and contributed to the fine-tuning of Persian TTS neural networks.</li>
-                    </ul>
-                    <p class="font-semibold text-[var(--text-color)] mb-2">Technologies Used:</p>
-                    <div class="flex flex-wrap gap-2">
-                        <span class="bg-[var(--tag-bg-color)] text-[var(--tag-text-color)] px-3 py-1 rounded-full text-sm font-medium">Python</span>
-                        <span class="bg-[var(--tag-bg-color)] text-[var(--tag-text-color)] px-3 py-1 rounded-full text-sm font-medium">PyTorch</span>
-                        <span class="bg-[var(--tag-bg-color)] text-[var(--tag-text-color)] px-3 py-1 rounded-full text-sm font-medium">TensorFlow</span>
-                        <span class="bg-[var(--tag-bg-color)] text-[var(--tag-text-color)] px-3 py-1 rounded-full text-sm font-medium">Hugging Face</span>
-                        <span class="bg-[var(--tag-bg-color)] text-[var(--tag-text-color)] px-3 py-1 rounded-full text-sm font-medium">Librosa</span>
-                        <span class="bg-[var(--tag-bg-color)] text-[var(--tag-text-color)] px-3 py-1 rounded-full text-sm font-medium">OpenCV</span>
-                        <span class="bg-[var(--tag-bg-color)] text-[var(--tag-text-color)] px-3 py-1 rounded-full text-sm font-medium">Docker</span>
-                    </div>
-                </div>
-
-                <div class="bg-[var(--card-bg-color)] p-8 rounded-xl shadow-xl card-hover-effect animate-on-scroll" data-delay="100">
-                    <div class="flex flex-col md:flex-row justify-between items-start md:items-center mb-5">
-                        <div>
-                            <h3 class="text-2xl font-bold primary-accent">Computational Neuroscience Lab</h3>
-                            <p class="text-[var(--text-color)] font-medium text-lg mt-1">Dir. Dr. Farnaz Ghassemi | Amirkabir University</p>
-                        </div>
-                    </div>
-                    
-                    <div class="mb-5 border-l-2 border-[var(--primary-accent-color)] pl-4">
-                        <div class="flex justify-between items-center mb-2">
-                            <h4 class="text-xl font-semibold text-[var(--text-color)]">Research Assistant & Thesis Mentor</h4>
-                            <span class="text-[var(--secondary-text-color)] text-sm font-medium">Apr 2025 - Present</span>
-                        </div>
-                        <ul class="list-disc list-outside ml-5 text-[var(--secondary-text-color)] space-y-2">
-                            <li>Mentored B.Sc. and M.Sc. students through their final thesis projects, providing technical guidance on computational neuroscience and signal processing.</li>
-                            <li>Provided hands-on support with advanced data analysis, troubleshooting code, and validating statistical models for neurological datasets.</li>
-                        </ul>
-                    </div>
-
-                    <div class="border-l-2 border-[var(--border-color)] pl-4">
-                        <div class="flex justify-between items-center mb-2">
-                            <h4 class="text-xl font-semibold text-[var(--text-color)]">BCI Researcher</h4>
-                            <span class="text-[var(--secondary-text-color)] text-sm font-medium">Aug 2022 - Oct 2023</span>
-                        </div>
-                        <ul class="list-disc list-outside ml-5 text-[var(--secondary-text-color)] space-y-2 mb-4">
-                            <li>Developed novel mathematical metrics to evaluate EEG signal quality, performing in-depth statistical analysis (Chi-squared, Kolmogorov-Smirnov) to validate hypotheses.</li>
-                        </ul>
-                    </div>
-                    <p class="font-semibold text-[var(--text-color)] mb-2 mt-4">Technologies Used:</p>
-                    <div class="flex flex-wrap gap-2">
-                        <span class="bg-[var(--tag-bg-color)] text-[var(--tag-text-color)] px-3 py-1 rounded-full text-sm font-medium">MATLAB</span>
-                        <span class="bg-[var(--tag-bg-color)] text-[var(--tag-text-color)] px-3 py-1 rounded-full text-sm font-medium">Python</span>
-                        <span class="bg-[var(--tag-bg-color)] text-[var(--tag-text-color)] px-3 py-1 rounded-full text-sm font-medium">IBM SPSS</span>
-                    </div>
-                </div>
-
-                <div class="bg-[var(--card-bg-color)] p-8 rounded-xl shadow-xl card-hover-effect animate-on-scroll" data-delay="200">
-                    <div class="flex flex-col md:flex-row justify-between items-start md:items-center mb-5">
-                        <div>
-                            <h3 class="text-2xl font-bold primary-accent">Freelance AI & Signal Processing Engineer</h3>
-                            <p class="text-[var(--text-color)] font-medium text-lg mt-1">Independent Contractor</p>
-                        </div>
-                        <p class="text-[var(--secondary-text-color)] text-sm md:text-base mt-2 md:mt-0 font-medium">Nov 2023 - Present</p>
-                    </div>
-                    <ul class="list-disc list-outside ml-5 text-[var(--secondary-text-color)] space-y-3 mb-6 leading-relaxed">
-                        <li>Designed and deployed custom Machine Learning, Digital Signal Processing (DSP), and Image Processing solutions for diverse enterprise clients.</li>
-                        <li>Developed high-accuracy predictive models and data analysis pipelines while strictly adhering to client NDAs and data privacy standards.</li>
-                        <li>Translated complex client requirements into scalable technical architectures, delivering end-to-end projects from data preprocessing to final deployment.</li>
-                    </ul>
-                    <p class="font-semibold text-[var(--text-color)] mb-2">Technologies Used:</p>
-                    <div class="flex flex-wrap gap-2">
-                        <span class="bg-[var(--tag-bg-color)] text-[var(--tag-text-color)] px-3 py-1 rounded-full text-sm font-medium">Python</span>
-                        <span class="bg-[var(--tag-bg-color)] text-[var(--tag-text-color)] px-3 py-1 rounded-full text-sm font-medium">MATLAB</span>
-                        <span class="bg-[var(--tag-bg-color)] text-[var(--tag-text-color)] px-3 py-1 rounded-full text-sm font-medium">PyTorch</span>
-                        <span class="bg-[var(--tag-bg-color)] text-[var(--tag-text-color)] px-3 py-1 rounded-full text-sm font-medium">TensorFlow</span>
-                    </div>
-                </div>
-            </div>
-
-            <h2 class="text-3xl font-bold mt-20 mb-12 text-center section-title animate-on-scroll text-[var(--text-color)]">Teaching Experience</h2>
-            <div class="bg-[var(--card-bg-color)] p-8 rounded-xl shadow-xl card-hover-effect animate-on-scroll">
-                <div class="grid md:grid-cols-2 gap-6">
-                    <div class="border-l-4 border-[var(--primary-accent-color)] pl-4">
-                        <h4 class="text-xl font-bold text-[var(--text-color)]">Machine Learning</h4>
-                        <p class="text-[var(--secondary-text-color)]">Sharif University of Technology &bull; Fall 2024</p>
-                    </div>
-                    <div class="border-l-4 border-[var(--primary-accent-color)] pl-4">
-                        <h4 class="text-xl font-bold text-[var(--text-color)]">Neural Modeling</h4>
-                        <p class="text-[var(--secondary-text-color)]">Sharif University of Technology &bull; Fall 2024</p>
-                    </div>
-                    <div class="border-l-4 border-[var(--primary-accent-color)] pl-4">
-                        <h4 class="text-xl font-bold text-[var(--text-color)]">Blind Source Separation</h4>
-                        <p class="text-[var(--secondary-text-color)]">Amirkabir University of Technology &bull; Fall 2025</p>
-                    </div>
-                    <div class="border-l-4 border-[var(--primary-accent-color)] pl-4">
-                        <h4 class="text-xl font-bold text-[var(--text-color)]">Engineering Mathematics</h4>
-                        <p class="text-[var(--secondary-text-color)]">Amirkabir University of Technology &bull; Fall 2022</p>
-                    </div>
-                </div>
-            </div>
+    <section class="section" id="impact" aria-labelledby="impact-title">
+      <div class="container">
+        <div class="section-heading section-heading-row reveal">
+          <div>
+            <p class="section-label">Selected production impact</p>
+            <h2 id="impact-title">Work that ships and gets measured.</h2>
+          </div>
+          <p class="section-side-note">Professional details are intentionally sanitized; no proprietary model names or customer data are disclosed.</p>
         </div>
+
+        <div class="impact-grid">
+          <article class="impact-card impact-card-wide reveal">
+            <div class="impact-card-head">
+              <div>
+                <span class="pill">Production · End-to-end ownership</span>
+                <h3>Call-Center Quality Intelligence</h3>
+              </div>
+              <div class="impact-number">1,000+<span>calls/day</span></div>
+            </div>
+            <p>Independently designed and built a production QC system from raw call audio to structured quality outputs, currently processing 1,000+ calls/day with planned capacity around 11,000/day.</p>
+            <ul class="impact-points">
+              <li>Combined VAD, ASR, audio emotion, LLM-powered text analytics, cross-talk and long-silence analysis.</li>
+              <li>Produced call tags, sentiment, prohibited-word checks, apology checks, summaries, and separate customer/agent analytics.</li>
+              <li>Used production analysis to surface recording-center quality and call-flow issues; findings were presented to operational teams and informed corrective actions.</li>
+            </ul>
+            <button class="text-button disclosure-button" type="button" aria-expanded="false">
+              Technical scope <span aria-hidden="true">+</span>
+            </button>
+            <div class="disclosure" hidden>
+              <p><strong>Ownership:</strong> architecture, data preparation, evaluation logic, model/LLM integration, API design and productization.</p>
+              <p><strong>Serving:</strong> FastAPI-based interfaces and production integration, with structured JSON outputs for downstream analytics.</p>
+            </div>
+          </article>
+
+          <article class="impact-card reveal" data-delay="60">
+            <span class="pill">Speech AI</span>
+            <h3>Large-Scale ASR</h3>
+            <div class="impact-stat-row">
+              <strong>~50K h</strong><span>training data used to date</span>
+            </div>
+            <p>Owned ASR data workflows across collection, cleaning, preprocessing, preparation, training and evaluation after processing hundreds of thousands of hours of speech.</p>
+            <div class="metric-list">
+              <span><b>2.97%</b> Persian WER</span>
+              <span><b>8.02%</b> noisy call-center WER</span>
+              <span><b>4.02 / 2.06%</b> bilingual Persian / English WER</span>
+            </div>
+          </article>
+
+          <article class="impact-card reveal" data-delay="120">
+            <span class="pill">Document AI</span>
+            <h3>Multilingual OCR</h3>
+            <div class="impact-stat-row">
+              <strong>&gt;97%</strong><span>F1 on text localization</span>
+            </div>
+            <p>Built Persian, Arabic and English document-processing components covering preprocessing, image enhancement, text detection/localization, evaluation and API integration.</p>
+            <div class="tag-row">
+              <span>Persian</span><span>Arabic</span><span>English</span><span>FastAPI</span><span>OpenCV</span>
+            </div>
+          </article>
+
+          <article class="impact-card reveal" data-delay="180">
+            <span class="pill">Audio Security</span>
+            <h3>Speech Watermarking</h3>
+            <div class="impact-stat-row">
+              <strong>&lt;1%</strong><span>mean BER under evaluated attacks</span>
+            </div>
+            <p>Developed and evaluated a 16-bit watermarking pipeline for synthesized speech. Clean-audio BER was 0 in evaluation; mean BER remained below 1% across tested perturbations.</p>
+            <div class="tag-row">
+              <span>Crop</span><span>Noise</span><span>Resample</span><span>Compression</span><span>Speed / Pitch</span>
+            </div>
+          </article>
+        </div>
+      </div>
     </section>
 
-    <section id="projects" class="bg-[var(--card-bg-color)]">
-        <div class="container mx-auto px-6">
-            <h2 class="text-4xl font-bold mb-16 text-center section-title animate-on-scroll text-[var(--text-color)]">Selected Projects</h2>
-            <div class="grid md:grid-cols-2 lg:grid-cols-3 gap-8">
-                
-                <div class="bg-[var(--bg-color)] rounded-lg shadow-xl overflow-hidden card-hover-effect flex flex-col animate-on-scroll">
-                    <img src="./Images/project-speech-enhancement.jpg" alt="Screenshot of Speech Enhancement Algorithm" class="w-full h-48 object-cover">
-                    <div class="p-6 flex flex-col flex-grow">
-                        <h3 class="text-xl font-bold primary-accent mb-2">Speech Enhancement</h3>
-                        <p class="text-[var(--secondary-text-color)] text-sm mb-4 flex-grow">Developed and optimized a DSP algorithm in MATLAB to isolate speech frequencies, significantly enhancing clarity and reducing background noise.</p>
-                        <div class="mb-5">
-                            <span class="inline-block bg-[var(--tag-bg-color)] text-[var(--tag-text-color)] text-xs px-2 py-1 rounded-full font-medium mr-1 mb-1">MATLAB</span>
-                            <span class="inline-block bg-[var(--tag-bg-color)] text-[var(--tag-text-color)] text-xs px-2 py-1 rounded-full font-medium mr-1 mb-1">DSP</span>
-                        </div>
-                        <a href="https://github.com/SAMortazavi/Speech-Enhancement-Algorithm" target="_blank" class="mt-auto inline-block text-center bg-primary-accent text-white font-semibold py-2 px-4 rounded-md hover-bg-primary-accent-darker transform hover:scale-105">View Repository</a>
-                    </div>
-                </div>
-
-                <div class="bg-[var(--bg-color)] rounded-lg shadow-xl overflow-hidden card-hover-effect flex flex-col animate-on-scroll" data-delay="100">
-                    <img src="./Images/project-nlp-fake-news.jpg" alt="Screenshot of NLP Fake News Detection Project" class="w-full h-48 object-cover">
-                    <div class="p-6 flex flex-col flex-grow">
-                        <h3 class="text-xl font-bold primary-accent mb-2">NLP Fake News Detection</h3>
-                        <p class="text-[var(--secondary-text-color)] text-sm mb-4 flex-grow">Designed and trained Natural Language Processing classification models using Python to identify misinformation, optimizing for high precision and recall.</p>
-                         <div class="mb-5">
-                            <span class="inline-block bg-[var(--tag-bg-color)] text-[var(--tag-text-color)] text-xs px-2 py-1 rounded-full font-medium mr-1 mb-1">Python</span>
-                            <span class="inline-block bg-[var(--tag-bg-color)] text-[var(--tag-text-color)] text-xs px-2 py-1 rounded-full font-medium mr-1 mb-1">NLP</span>
-                         </div>
-                        <a href="https://github.com/SAMortazavi/Neuromatch-NLP" target="_blank" class="mt-auto inline-block text-center bg-primary-accent text-white font-semibold py-2 px-4 rounded-md hover-bg-primary-accent-darker transform hover:scale-105">View Repository</a>
-                    </div>
-                </div>
-                
-                <div class="bg-[var(--bg-color)] rounded-lg shadow-xl overflow-hidden card-hover-effect flex flex-col animate-on-scroll" data-delay="200">
-                    <img src="./Images/project-image-classification.jpg" alt="Screenshot of Image Classification Project" class="w-full h-48 object-cover">
-                    <div class="p-6 flex flex-col flex-grow">
-                        <h3 class="text-xl font-bold primary-accent mb-2">Image Classification Pipeline</h3>
-                        <p class="text-[var(--secondary-text-color)] text-sm mb-4 flex-grow">Built a robust computer vision pipeline using Python and PyTorch, achieving an impressive 98.37% accuracy on custom image datasets.</p>
-                        <div class="mb-5">
-                            <span class="inline-block bg-[var(--tag-bg-color)] text-[var(--tag-text-color)] text-xs px-2 py-1 rounded-full font-medium mr-1 mb-1">Python</span>
-                            <span class="inline-block bg-[var(--tag-bg-color)] text-[var(--tag-text-color)] text-xs px-2 py-1 rounded-full font-medium mr-1 mb-1">PyTorch</span>
-                        </div>
-                        <a href="https://github.com/SAMortazavi/Computational-Intelligence" target="_blank" class="mt-auto inline-block text-center bg-primary-accent text-white font-semibold py-2 px-4 rounded-md hover-bg-primary-accent-darker transform hover:scale-105">View Repository</a>
-                    </div>
-                </div>
-
-                <div class="bg-[var(--bg-color)] rounded-lg shadow-xl overflow-hidden card-hover-effect flex flex-col animate-on-scroll" data-delay="300">
-                    <div class="bg-[var(--border-color)] w-full h-48 flex items-center justify-center">
-                        <svg class="w-16 h-16 text-[var(--secondary-text-color)]" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 3v2m6-2v2M9 19v2m6-2v2M5 9H3m2 6H3m18-6h-2m2 6h-2M7 19h10a2 2 0 002-2V7a2 2 0 00-2-2H7a2 2 0 00-2 2v10a2 2 0 002 2zM9 9h6v6H9V9z"></path></svg>
-                    </div>
-                    <div class="p-6 flex flex-col flex-grow">
-                        <h3 class="text-xl font-bold primary-accent mb-2">EEG Signal Quality Assessment</h3>
-                        <p class="text-[var(--secondary-text-color)] text-sm mb-4 flex-grow">Engineered and validated automated algorithms to objectively evaluate and quantify EEG signal integrity for neurological research.</p>
-                        <div class="mb-5">
-                            <span class="inline-block bg-[var(--tag-bg-color)] text-[var(--tag-text-color)] text-xs px-2 py-1 rounded-full font-medium mr-1 mb-1">MATLAB</span>
-                            <span class="inline-block bg-[var(--tag-bg-color)] text-[var(--tag-text-color)] text-xs px-2 py-1 rounded-full font-medium mr-1 mb-1">Python</span>
-                        </div>
-                    </div>
-                </div>
-                
-                <div class="bg-[var(--bg-color)] rounded-lg shadow-xl overflow-hidden card-hover-effect flex flex-col animate-on-scroll md:col-span-2" data-delay="400">
-                    <div class="p-8 flex flex-col flex-grow justify-center items-center text-center">
-                        <h3 class="text-2xl font-bold primary-accent mb-4">Other Notable Projects</h3>
-                        <p class="text-[var(--secondary-text-color)] text-md mb-6 max-w-2xl">Several advanced AI and DSP projects (including enterprise freelance client work) are housed in private repositories for confidentiality. Code walkthroughs and architectural details are available upon request.</p>
-                        <a href="https://github.com/SAMortazavi" target="_blank" class="inline-flex items-center text-center bg-primary-accent text-white font-semibold py-3 px-6 rounded-md hover-bg-primary-accent-darker transform hover:scale-105">
-                            <svg class="w-5 h-5 mr-2" fill="currentColor" viewBox="0 0 24 24"><path d="M12 0c-6.626 0-12 5.373-12 12 0 5.302 3.438 9.8 8.207 11.387.599.111.793-.261.793-.577v-2.234c-3.338.726-4.033-1.416-4.033-1.416-.546-1.387-1.333-1.756-1.333-1.756-1.089-.745.083-.729.083-.729 1.205.084 1.839 1.237 1.839 1.237 1.07 1.834 2.807 1.304 3.492.997.107-.775.418-1.305.762-1.604-2.665-.305-5.467-1.334-5.467-5.931 0-1.311.469-2.381 1.236-3.221-.124-.303-.535-1.524.117-3.176 0 0 1.008-.322 3.301 1.23.957-.266 1.983-.399 3.003-.404 1.02.005 2.047.138 3.006.404 2.291-1.552 3.297-1.23 3.297-1.23.653 1.653.242 2.874.118 3.176.77.84 1.235 1.911 1.235 3.221 0 4.609-2.807 5.624-5.479 5.921.43.372.823 1.102.823 2.222v3.293c0 .319.192.694.801.576 4.765-1.589 8.199-6.086 8.199-11.386 0-6.627-5.373-12-12-12z"/></svg>
-                            Explore Full GitHub Profile
-                        </a>
-                    </div>
-                </div>
-            </div>
+    <section class="section section-muted" id="experience" aria-labelledby="experience-title">
+      <div class="container">
+        <div class="section-heading reveal">
+          <p class="section-label">Experience</p>
+          <h2 id="experience-title">Production engineering backed by research discipline.</h2>
         </div>
+
+        <div class="timeline">
+          <article class="timeline-item reveal">
+            <div class="timeline-marker" aria-hidden="true"></div>
+            <div class="timeline-date">Jan 2025 — Present</div>
+            <div class="timeline-content">
+              <div class="timeline-heading">
+                <div>
+                  <h3>Data Scientist / AI Researcher — Speech Team</h3>
+                  <p>Shatel · Telecommunications</p>
+                </div>
+                <span class="pill pill-soft">Production AI</span>
+              </div>
+              <ul>
+                <li>Own large-scale speech, text and document data workflows and ML pipelines from preprocessing to evaluation and integration.</li>
+                <li>Built production systems spanning ASR, call-center QC, OCR, speech emotion, EOT and speech watermarking.</li>
+                <li>Performed operational and business analysis on customer-interaction data, producing technical reports and presenting findings to product/sales stakeholders.</li>
+                <li>Developed APIs and deployment workflows with FastAPI, Docker, MLflow, TensorBoard, Git and Linux.</li>
+              </ul>
+            </div>
+          </article>
+
+          <article class="timeline-item reveal">
+            <div class="timeline-marker" aria-hidden="true"></div>
+            <div class="timeline-date">Apr 2025 — Present</div>
+            <div class="timeline-content">
+              <div class="timeline-heading">
+                <div>
+                  <h3>Research Assistant & Thesis Mentor</h3>
+                  <p>Computational Neuroscience Lab · Amirkabir University of Technology</p>
+                </div>
+                <span class="pill pill-soft">Mentoring</span>
+              </div>
+              <ul>
+                <li>Currently mentor 1 B.Sc., 4 M.Sc. and 1 Ph.D. student across machine learning, signal processing and computational neuroscience topics.</li>
+                <li>Previously mentored two completed B.Sc. theses that received final grades of 20/20 and 19/20.</li>
+                <li>Support research design, data analysis, statistical evaluation, debugging and model validation.</li>
+              </ul>
+            </div>
+          </article>
+
+          <article class="timeline-item reveal">
+            <div class="timeline-marker" aria-hidden="true"></div>
+            <div class="timeline-date">Aug 2022 — Oct 2023</div>
+            <div class="timeline-content">
+              <div class="timeline-heading">
+                <div>
+                  <h3>BCI Researcher</h3>
+                  <p>Computational Neuroscience Lab · Amirkabir University of Technology</p>
+                </div>
+              </div>
+              <ul>
+                <li>Developed computational metrics for EEG signal-quality assessment and validated hypotheses using statistical tests including Chi-square and Kolmogorov–Smirnov.</li>
+              </ul>
+            </div>
+          </article>
+
+          <article class="timeline-item reveal">
+            <div class="timeline-marker" aria-hidden="true"></div>
+            <div class="timeline-date">Nov 2023 — Present</div>
+            <div class="timeline-content">
+              <div class="timeline-heading">
+                <div>
+                  <h3>Freelance AI & Signal Processing Engineer</h3>
+                  <p>Independent contractor · NDA-bound client work</p>
+                </div>
+              </div>
+              <ul>
+                <li>Delivered machine-learning, signal-processing and computer-vision work for private clients, from data preparation to model delivery.</li>
+              </ul>
+            </div>
+          </article>
+        </div>
+      </div>
     </section>
 
-    <section id="skills" class="bg-[var(--bg-color)]">
-        <div class="container mx-auto px-6">
-            <h2 class="text-4xl font-bold mb-16 text-center section-title animate-on-scroll text-[var(--text-color)]">Technical Skills</h2>
-            <div class="grid md:grid-cols-2 gap-8 max-w-5xl mx-auto">
-                <div class="bg-[var(--card-bg-color)] p-8 rounded-lg shadow-lg card-hover-effect animate-on-scroll">
-                    <h3 class="text-2xl font-bold primary-accent mb-6 border-b border-[var(--border-color)] pb-3">Programming & Frameworks</h3>
-                    <div class="space-y-4">
-                        <div>
-                            <p class="font-semibold text-[var(--text-color)] mb-2">Languages</p>
-                            <div class="flex flex-wrap gap-2">
-                                <span class="bg-[var(--bg-color)] text-[var(--secondary-text-color)] px-4 py-2 rounded border border-[var(--border-color)]">Python</span>
-                                <span class="bg-[var(--bg-color)] text-[var(--secondary-text-color)] px-4 py-2 rounded border border-[var(--border-color)]">MATLAB</span>
-                                <span class="bg-[var(--bg-color)] text-[var(--secondary-text-color)] px-4 py-2 rounded border border-[var(--border-color)]">LaTeX</span>
-                                <span class="bg-[var(--bg-color)] text-[var(--secondary-text-color)] px-4 py-2 rounded border border-[var(--border-color)]">HTML5/CSS3</span>
-                            </div>
-                        </div>
-                        <div>
-                            <p class="font-semibold text-[var(--text-color)] mb-2 mt-4">AI & Machine Learning</p>
-                            <div class="flex flex-wrap gap-2">
-                                <span class="bg-[var(--bg-color)] text-[var(--secondary-text-color)] px-4 py-2 rounded border border-[var(--border-color)]">PyTorch</span>
-                                <span class="bg-[var(--bg-color)] text-[var(--secondary-text-color)] px-4 py-2 rounded border border-[var(--border-color)]">TensorFlow</span>
-                                <span class="bg-[var(--bg-color)] text-[var(--secondary-text-color)] px-4 py-2 rounded border border-[var(--border-color)]">Hugging Face</span>
-                                <span class="bg-[var(--bg-color)] text-[var(--secondary-text-color)] px-4 py-2 rounded border border-[var(--border-color)]">Scikit-learn</span>
-                                <span class="bg-[var(--bg-color)] text-[var(--secondary-text-color)] px-4 py-2 rounded border border-[var(--border-color)]">MLFlow</span>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-
-                <div class="bg-[var(--card-bg-color)] p-8 rounded-lg shadow-lg card-hover-effect animate-on-scroll" data-delay="100">
-                    <h3 class="text-2xl font-bold primary-accent mb-6 border-b border-[var(--border-color)] pb-3">Data Science & Tools</h3>
-                    <div class="space-y-4">
-                        <div>
-                            <p class="font-semibold text-[var(--text-color)] mb-2">Data Science & Signal Processing</p>
-                            <div class="flex flex-wrap gap-2">
-                                <span class="bg-[var(--bg-color)] text-[var(--secondary-text-color)] px-4 py-2 rounded border border-[var(--border-color)]">Librosa</span>
-                                <span class="bg-[var(--bg-color)] text-[var(--secondary-text-color)] px-4 py-2 rounded border border-[var(--border-color)]">OpenCV</span>
-                                <span class="bg-[var(--bg-color)] text-[var(--secondary-text-color)] px-4 py-2 rounded border border-[var(--border-color)]">Pandas</span>
-                                <span class="bg-[var(--bg-color)] text-[var(--secondary-text-color)] px-4 py-2 rounded border border-[var(--border-color)]">NumPy</span>
-                                <span class="bg-[var(--bg-color)] text-[var(--secondary-text-color)] px-4 py-2 rounded border border-[var(--border-color)]">Matplotlib</span>
-                            </div>
-                        </div>
-                        <div>
-                            <p class="font-semibold text-[var(--text-color)] mb-2 mt-4">Platforms & Version Control</p>
-                            <div class="flex flex-wrap gap-2">
-                                <span class="bg-[var(--bg-color)] text-[var(--secondary-text-color)] px-4 py-2 rounded border border-[var(--border-color)]">Linux</span>
-                                <span class="bg-[var(--bg-color)] text-[var(--secondary-text-color)] px-4 py-2 rounded border border-[var(--border-color)]">Docker</span>
-                                <span class="bg-[var(--bg-color)] text-[var(--secondary-text-color)] px-4 py-2 rounded border border-[var(--border-color)]">Git / GitHub</span>
-                                <span class="bg-[var(--bg-color)] text-[var(--secondary-text-color)] px-4 py-2 rounded border border-[var(--border-color)]">Conda</span>
-                                <span class="bg-[var(--bg-color)] text-[var(--secondary-text-color)] px-4 py-2 rounded border border-[var(--border-color)]">IBM SPSS</span>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-            </div>
+    <section class="section" id="skills" aria-labelledby="skills-title">
+      <div class="container">
+        <div class="section-heading reveal">
+          <p class="section-label">Technical stack</p>
+          <h2 id="skills-title">A focused stack for data, models and production.</h2>
+          <p>No keyword stuffing: these are the tools and task families I actively use across work, research, and shipped systems.</p>
         </div>
+
+        <div class="skills-grid">
+          <article class="skill-group reveal">
+            <div class="skill-icon">DS</div>
+            <div>
+              <h3>Data Science & ML</h3>
+              <p>Python · NumPy · Pandas · SciPy · Scikit-learn · XGBoost · EDA · Feature Engineering · Hypothesis Testing · Model Evaluation</p>
+            </div>
+          </article>
+
+          <article class="skill-group reveal" data-delay="40">
+            <div class="skill-icon">DL</div>
+            <div>
+              <h3>Deep Learning</h3>
+              <p>PyTorch · PyTorch Lightning · TensorFlow · Hugging Face Transformers · Training / Validation Pipelines</p>
+            </div>
+          </article>
+
+          <article class="skill-group reveal" data-delay="80">
+            <div class="skill-icon">AU</div>
+            <div>
+              <h3>Speech & Audio</h3>
+              <p>ASR · VAD · End-of-Utterance · Speech Emotion · Audio Preprocessing · Augmentation · Robustness Testing · Librosa</p>
+            </div>
+          </article>
+
+          <article class="skill-group reveal" data-delay="120">
+            <div class="skill-icon">NL</div>
+            <div>
+              <h3>NLP & LLMs</h3>
+              <p>Text Classification · Sentiment Analysis · Conversation Analytics · Summarization · Prompt Engineering · Transformer-based Models</p>
+            </div>
+          </article>
+
+          <article class="skill-group reveal" data-delay="160">
+            <div class="skill-icon">CV</div>
+            <div>
+              <h3>Computer Vision</h3>
+              <p>Image Classification · Segmentation · Object Detection · OCR / Text Localization · Image Registration · Image Enhancement · OpenCV</p>
+            </div>
+          </article>
+
+          <article class="skill-group reveal" data-delay="200">
+            <div class="skill-icon">OP</div>
+            <div>
+              <h3>MLOps & AI Engineering</h3>
+              <p>FastAPI · Docker · MLflow · TensorBoard · Git / GitHub · Linux · Conda · API Integration</p>
+            </div>
+          </article>
+        </div>
+      </div>
     </section>
 
-    <section id="education" class="bg-[var(--card-bg-color)]">
-        <div class="container mx-auto px-6">
-            <h2 class="text-4xl font-bold mb-16 text-center section-title animate-on-scroll text-[var(--text-color)]">Education & Certifications</h2>
-            <div class="grid md:grid-cols-2 gap-12">
-                <div class="animate-on-scroll">
-                    <h3 class="text-3xl font-bold primary-accent mb-8 text-center md:text-left">Education</h3>
-                    <div class="space-y-6">
-                        <div class="bg-[var(--bg-color)] p-6 rounded-lg shadow-lg border-l-4 border-[var(--primary-accent-color)] card-hover-effect">
-                            <h4 class="text-xl font-bold text-[var(--text-color)]">M.Sc. Electrical Engineering (Bioelectric)</h4>
-                            <p class="primary-accent mb-2 font-medium">Sharif University of Technology | 2023 - 2025</p>
-                            <p class="text-[var(--text-color)] font-semibold">Ranked 1st in class <span class="text-[var(--secondary-text-color)] font-normal">(out of 17 students)</span></p>
-                            <p class="text-[var(--secondary-text-color)]">GPA: 19.02/20.0 (4.0 U.S. Scale)</p>
-                        </div>
-                        <div class="bg-[var(--bg-color)] p-6 rounded-lg shadow-lg border-l-4 border-[var(--primary-accent-color)] card-hover-effect">
-                            <h4 class="text-xl font-bold text-[var(--text-color)]">B.Sc. Biomedical Engineering (Bioelectric)</h4>
-                            <p class="primary-accent mb-2 font-medium">Amirkabir University of Technology | 2019 - 2023</p>
-                            <p class="text-[var(--text-color)] font-semibold">Ranked 1st in class <span class="text-[var(--secondary-text-color)] font-normal">(out of 121 students)</span></p>
-                            <p class="text-[var(--secondary-text-color)]">GPA: 19.07/20.0 (4.0 U.S. Scale)</p>
-                        </div>
-                        <div class="bg-[var(--bg-color)] p-6 rounded-lg shadow-lg border-l-4 border-[var(--primary-accent-color)] card-hover-effect">
-                            <h4 class="text-xl font-bold text-[var(--text-color)]">B.Sc. Electrical Engineering (Telecom)</h4>
-                            <p class="primary-accent mb-2 font-medium">Amirkabir University of Technology | 2019 - 2023</p>
-                            <p class="text-[var(--text-color)] font-semibold">Ranked 1st in class <span class="text-[var(--secondary-text-color)] font-normal">(out of 132 students)</span></p>
-                            <p class="text-[var(--secondary-text-color)]">GPA: 19.38/20.0 (4.0 U.S. Scale)</p>
-                        </div>
-                    </div>
-                </div>
-                <div class="animate-on-scroll" data-delay="100">
-                    <h3 class="text-3xl font-bold primary-accent mb-8 text-center md:text-left">Advanced Coursework</h3>
-                    <div class="space-y-4 bg-[var(--bg-color)] p-8 rounded-lg shadow-lg h-full card-hover-effect">
-                        <p class="text-[var(--secondary-text-color)] flex items-start text-lg"><svg class="h-6 w-6 mr-3 mt-1 primary-accent flex-shrink-0" viewBox="0 0 20 20" fill="currentColor"><path fill-rule="evenodd" d="M10 18a8 8 0 100-16 8 8 0 000 16zm3.707-9.293a1 1 0 00-1.414-1.414L9 10.586 7.707 9.293a1 1 0 00-1.414 1.414l2 2a1 1 0 001.414 0l4-4z" clip-rule="evenodd" /></svg><span class="font-medium text-[var(--text-color)] mr-2">Deep Learning Course</span> (Neuromatch Academy)</p>
-                        <p class="text-[var(--secondary-text-color)] flex items-start text-lg"><svg class="h-6 w-6 mr-3 mt-1 primary-accent flex-shrink-0" viewBox="0 0 20 20" fill="currentColor"><path fill-rule="evenodd" d="M10 18a8 8 0 100-16 8 8 0 000 16zm3.707-9.293a1 1 0 00-1.414-1.414L9 10.586 7.707 9.293a1 1 0 00-1.414 1.414l2 2a1 1 0 001.414 0l4-4z" clip-rule="evenodd" /></svg><span class="font-medium text-[var(--text-color)] mr-2">Neural Signal Processing & Analysis</span> (Udemy)</p>
-                        <p class="text-[var(--secondary-text-color)] flex items-start text-lg"><svg class="h-6 w-6 mr-3 mt-1 primary-accent flex-shrink-0" viewBox="0 0 20 20" fill="currentColor"><path fill-rule="evenodd" d="M10 18a8 8 0 100-16 8 8 0 000 16zm3.707-9.293a1 1 0 00-1.414-1.414L9 10.586 7.707 9.293a1 1 0 00-1.414 1.414l2 2a1 1 0 001.414 0l4-4z" clip-rule="evenodd" /></svg><span class="font-medium text-[var(--text-color)] mr-2">Deep Learning & LLMs</span> (Sharif University OCW)</p>
-                        <p class="text-[var(--secondary-text-color)] flex items-start text-lg"><svg class="h-6 w-6 mr-3 mt-1 primary-accent flex-shrink-0" viewBox="0 0 20 20" fill="currentColor"><path fill-rule="evenodd" d="M10 18a8 8 0 100-16 8 8 0 000 16zm3.707-9.293a1 1 0 00-1.414-1.414L9 10.586 7.707 9.293a1 1 0 00-1.414 1.414l2 2a1 1 0 001.414 0l4-4z" clip-rule="evenodd" /></svg><span class="font-medium text-[var(--text-color)] mr-2">Advanced Learning Algorithms</span> (Coursera)</p>
-                        <p class="text-[var(--secondary-text-color)] flex items-start text-lg"><svg class="h-6 w-6 mr-3 mt-1 primary-accent flex-shrink-0" viewBox="0 0 20 20" fill="currentColor"><path fill-rule="evenodd" d="M10 18a8 8 0 100-16 8 8 0 000 16zm3.707-9.293a1 1 0 00-1.414-1.414L9 10.586 7.707 9.293a1 1 0 00-1.414 1.414l2 2a1 1 0 001.414 0l4-4z" clip-rule="evenodd" /></svg><span class="font-medium text-[var(--text-color)] mr-2">EEG Signal Processing</span> (Amirkabir University)</p>
-                    </div>
-                </div>
-            </div>
+    <section class="section section-muted" id="work" aria-labelledby="work-title">
+      <div class="container">
+        <div class="section-heading section-heading-row reveal">
+          <div>
+            <p class="section-label">Public work</p>
+            <h2 id="work-title">Code you can inspect.</h2>
+          </div>
+          <a class="text-link" href="https://github.com/SAMortazavi?tab=repositories" target="_blank" rel="noreferrer">Explore GitHub →</a>
         </div>
+
+        <div class="project-filters reveal" role="group" aria-label="Filter public projects">
+          <button class="filter-button active" type="button" data-filter="all">All</button>
+          <button class="filter-button" type="button" data-filter="speech">Speech</button>
+          <button class="filter-button" type="button" data-filter="vision">Vision</button>
+          <button class="filter-button" type="button" data-filter="research">Research</button>
+        </div>
+
+        <div class="project-grid" id="projectGrid">
+          <article class="project-card reveal" data-tags="speech">
+            <div class="project-visual project-visual-wave" aria-hidden="true"><span></span></div>
+            <div class="project-body">
+              <div class="project-meta"><span>Speech / DSP</span><span>MATLAB</span></div>
+              <h3>Speech Enhancement Algorithm</h3>
+              <p>Implementation of a published speech-enhancement approach focused on improving voice quality and reducing background noise.</p>
+              <a class="project-link" href="https://github.com/SAMortazavi/Speech-Enhancement-Algorithm" target="_blank" rel="noreferrer">View repository <span>↗</span></a>
+            </div>
+          </article>
+
+          <article class="project-card reveal" data-tags="vision" data-delay="60">
+            <div class="project-visual project-visual-grid" aria-hidden="true"><span></span></div>
+            <div class="project-body">
+              <div class="project-meta"><span>Computer Vision</span><span>PyTorch</span></div>
+              <h3>Image Classification Pipeline</h3>
+              <p>Computer-vision training pipeline that achieved 98.37% accuracy on the project dataset, with reproducible experimentation code.</p>
+              <a class="project-link" href="https://github.com/SAMortazavi/Computational-Intelligence" target="_blank" rel="noreferrer">View repository <span>↗</span></a>
+            </div>
+          </article>
+
+          <article class="project-card reveal" data-tags="vision research" data-delay="120">
+            <div class="project-visual project-visual-scan" aria-hidden="true"><span></span></div>
+            <div class="project-body">
+              <div class="project-meta"><span>Medical Imaging</span><span>Graduate Coursework</span></div>
+              <h3>Medical Image Analysis & Processing</h3>
+              <p>Graduate-level work spanning medical-image analysis tasks; course assignments received 494/500 overall.</p>
+              <a class="project-link" href="https://github.com/SAMortazavi/Medical-Image-Analysis-and-Processing" target="_blank" rel="noreferrer">View repository <span>↗</span></a>
+            </div>
+          </article>
+
+          <article class="project-card reveal" data-tags="research" data-delay="180">
+            <div class="project-visual project-visual-eeg" aria-hidden="true"><span></span></div>
+            <div class="project-body">
+              <div class="project-meta"><span>EEG</span><span>Signal Processing</span></div>
+              <h3>EEG Signal Processing</h3>
+              <p>Signal-processing and analysis work supporting neural-data workflows, quality assessment, preprocessing and research experiments.</p>
+              <a class="project-link" href="https://github.com/SAMortazavi/EEG-Signal-Processing" target="_blank" rel="noreferrer">View repository <span>↗</span></a>
+            </div>
+          </article>
+        </div>
+
+        <div class="private-work-note reveal">
+          <span class="private-work-icon" aria-hidden="true">⌁</span>
+          <div>
+            <h3>Most production work is private by design.</h3>
+            <p>Enterprise datasets, customer information and proprietary implementation details are not published. The production case studies above summarize scope and measurable outcomes without exposing confidential internals.</p>
+          </div>
+        </div>
+      </div>
     </section>
 
-    <section id="contact" class="bg-[var(--bg-color)] pb-20">
-        <div class="container mx-auto px-6 text-center">
-            <h2 class="text-4xl font-bold mb-8 section-title animate-on-scroll text-[var(--text-color)]">Get In Touch</h2>
-            <p class="text-lg text-[var(--secondary-text-color)] mb-10 max-w-2xl mx-auto animate-on-scroll" data-delay="100">
-                Whether you have an interesting project, a research opportunity, or just want to connect, feel free to reach out. I'm always open to discussing new challenges in AI, signal processing, and beyond.
-            </p>
-            <div class="flex flex-col sm:flex-row justify-center items-center space-y-4 sm:space-y-0 sm:space-x-6 animate-on-scroll" data-delay="200">
-                <a href="mailto:seyyed79abolfazl@gamil.com" class="bg-primary-accent text-white font-bold py-4 px-10 rounded-lg shadow-lg hover-bg-primary-accent-darker text-lg transform hover:scale-105 transition-all">
-                    Say Hello
-                </a>
-                <a href="https://www.linkedin.com/in/SAMortazavi" target="_blank" class="bg-[var(--card-bg-color)] text-[var(--text-color)] border border-[var(--border-color)] font-bold py-4 px-10 rounded-lg shadow-lg hover:bg-[var(--card-bg-hover-color)] text-lg transform hover:scale-105 transition-all flex items-center">
-                    <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="currentColor" class="mr-3 text-[#0077b5]"><path d="M19 0h-14c-2.761 0-5 2.239-5 5v14c0 2.761 2.239 5 5 5h14c2.762 0 5-2.239 5-5v-14c0-2.761-2.238-5-5-5zm-11 19h-3v-11h3v11zm-1.5-12.268c-.966 0-1.75-.79-1.75-1.764s.784-1.764 1.75-1.764 1.75.79 1.75 1.764-.783 1.764-1.75 1.764zm13.5 12.268h-3v-5.604c0-3.368-4-3.113-4 0v5.604h-3v-11h3v1.765c1.396-2.586 7-2.777 7 2.476v6.759z"/></svg>
-                    LinkedIn
-                </a>
-            </div>
+    <section class="section" id="education" aria-labelledby="education-title">
+      <div class="container">
+        <div class="section-heading reveal">
+          <p class="section-label">Education & research</p>
+          <h2 id="education-title">Strong academic signal, applied to real systems.</h2>
         </div>
+
+        <div class="education-grid">
+          <article class="education-card reveal">
+            <div class="education-topline">
+              <span>2023 — 2025</span>
+              <span class="rank-badge">Rank 1 / 17</span>
+            </div>
+            <h3>M.Sc. Electrical Engineering — Bioelectric</h3>
+            <p class="education-school">Sharif University of Technology</p>
+            <div class="education-metrics">
+              <span><b>19.02 / 20</b> GPA</span>
+              <span><b>20 / 20</b> Thesis</span>
+            </div>
+            <p class="education-thesis"><strong>Thesis:</strong> Eye Tracking Using EEG Signals During Simultaneous Functional Magnetic Resonance Imaging.</p>
+            <p>Built subject-specific gaze classifiers with held-out test sets using EEG/fMRI data, temporal/frequency features, SVM, KNN, Random Forest and XGBoost.</p>
+          </article>
+
+          <article class="education-card reveal" data-delay="80">
+            <div class="education-topline">
+              <span>2019 — 2023</span>
+              <span class="rank-badge">Rank 1 / 121</span>
+            </div>
+            <h3>B.Sc. Biomedical Engineering — Bioelectric</h3>
+            <p class="education-school">Amirkabir University of Technology</p>
+            <div class="education-metrics">
+              <span><b>19.07 / 20</b> GPA</span>
+            </div>
+            <p>Foundation in biomedical signal processing, machine learning, neural engineering, mathematics and systems analysis.</p>
+
+            <div class="education-secondary">
+              <span class="mini-label">Concurrent double-major track</span>
+              <h4>Electrical Engineering — Telecommunications</h4>
+              <p>Additional undergraduate studies; not completed after admission to the M.Sc. program.</p>
+              <div class="education-metrics compact">
+                <span><b>19.38 / 20</b> GPA</span>
+                <span><b>Rank 1 / 132</b></span>
+              </div>
+            </div>
+          </article>
+        </div>
+      </div>
     </section>
 
-    <footer class="bg-[var(--card-bg-color)] border-t border-[var(--border-color)]">
-        <div class="container mx-auto px-6 py-8 text-center text-[var(--secondary-text-color)]">
-            <p>&copy; <span id="currentYear"></span> Seyed Abolfazl Mortazavi. All Rights Reserved.</p>
-            <p class="text-sm mt-1">Designed with <span class="primary-accent">&hearts;</span> using Tailwind CSS.</p>
+    <section class="section contact-section" id="contact" aria-labelledby="contact-title">
+      <div class="container contact-shell reveal">
+        <div>
+          <p class="section-label">Contact</p>
+          <h2 id="contact-title">Looking for someone who can own the messy middle?</h2>
+          <p>I’m open to Data Scientist, Machine Learning Engineer and AI Engineer roles in Iran or Europe, including remote, relocation and contract opportunities.</p>
         </div>
-    </footer>
 
-    <button id="back-to-top" class="fixed bottom-6 right-6 bg-primary-accent text-white p-3 rounded-full shadow-lg hover-bg-primary-accent-darker opacity-0 invisible transition-all duration-300 z-50 transform hover:scale-110">
-        <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="2.5" stroke="currentColor" class="w-6 h-6">
-            <path stroke-linecap="round" stroke-linejoin="round" d="M4.5 15.75l7.5-7.5 7.5 7.5" />
-        </svg>
-    </button>
-    <script>
-        // Preloader logic
-        window.addEventListener('load', () => {
-            const preloader = document.getElementById('preloader');
-            const body = document.body;
-            setTimeout(() => {
-                if(preloader) preloader.classList.add('hidden');
-                body.classList.add('loaded');
-            }, 200);
-        });
+        <div class="contact-actions">
+          <a class="button button-primary button-large" href="mailto:seyyed79abolfazl@gmail.com">Email me</a>
+          <button class="button button-ghost button-large" id="copyEmail" type="button" data-email="seyyed79abolfazl@gmail.com">Copy email</button>
+          <div class="social-links">
+            <a href="https://www.linkedin.com/in/SAMortazavi" target="_blank" rel="noreferrer">LinkedIn ↗</a>
+            <a href="https://github.com/SAMortazavi" target="_blank" rel="noreferrer">GitHub ↗</a>
+          </div>
+        </div>
+      </div>
+    </section>
+  </main>
 
-        // Theme toggle logic
-        const themeToggleBtn = document.getElementById('theme-toggle');
-        const themeToggleMobileBtn = document.getElementById('theme-toggle-mobile');
-        const sunIconDesktop = document.getElementById('theme-toggle-sun-icon');
-        const moonIconDesktop = document.getElementById('theme-toggle-moon-icon');
-        const docElement = document.documentElement;
+  <footer class="site-footer">
+    <div class="container footer-inner">
+      <p>© <span id="currentYear"></span> Seyed Abolfazl Mortazavi</p>
+      <p>Built as a fast, dependency-light static site for GitHub Pages.</p>
+    </div>
+  </footer>
 
-        if (sunIconDesktop && moonIconDesktop && themeToggleMobileBtn) {
-            const sunIconMobile = sunIconDesktop.cloneNode(true);
-            const moonIconMobile = moonIconDesktop.cloneNode(true);
-            sunIconMobile.id = 'theme-toggle-sun-icon-mobile';
-            moonIconMobile.id = 'theme-toggle-moon-icon-mobile';
-            themeToggleMobileBtn.appendChild(sunIconMobile);
-            themeToggleMobileBtn.appendChild(moonIconMobile);
-        }
-        
-        const sunIcons = [sunIconDesktop, document.getElementById('theme-toggle-sun-icon-mobile')];
-        const moonIcons = [moonIconDesktop, document.getElementById('theme-toggle-moon-icon-mobile')];
+  <div class="toast" id="toast" role="status" aria-live="polite"></div>
 
-        const applyTheme = (theme) => {
-            if (theme === 'light') {
-                docElement.classList.add('light-theme');
-                sunIcons.forEach(icon => icon && icon.classList.remove('hidden'));
-                moonIcons.forEach(icon => icon && icon.classList.add('hidden'));
-            } else {
-                docElement.classList.remove('light-theme');
-                moonIcons.forEach(icon => icon && icon.classList.remove('hidden'));
-                sunIcons.forEach(icon => icon && icon.classList.add('hidden'));
-            }
-            localStorage.setItem('theme', theme);
-        };
-
-        let currentTheme = localStorage.getItem('theme');
-        if (!currentTheme) {
-            currentTheme = window.matchMedia('(prefers-color-scheme: dark)').matches ? 'dark' : 'light';
-        }
-        applyTheme(currentTheme);
-
-        const toggleAction = () => {
-            const newTheme = docElement.classList.contains('light-theme') ? 'dark' : 'light';
-            applyTheme(newTheme);
-        };
-
-        if(themeToggleBtn) themeToggleBtn.addEventListener('click', toggleAction);
-        if(themeToggleMobileBtn) themeToggleMobileBtn.addEventListener('click', toggleAction);
-
-        // Mobile menu toggle
-        const mobileMenuButton = document.getElementById('mobile-menu-button');
-        const mobileMenu = document.getElementById('mobile-menu');
-        if(mobileMenuButton && mobileMenu) {
-            mobileMenuButton.addEventListener('click', () => {
-                mobileMenu.classList.toggle('hidden');
-                const expanded = mobileMenuButton.getAttribute('aria-expanded') === 'true' || false;
-                mobileMenuButton.setAttribute('aria-expanded', String(!expanded));
-            });
-            mobileMenu.querySelectorAll('a').forEach(link => {
-                link.addEventListener('click', () => {
-                    mobileMenu.classList.add('hidden');
-                    mobileMenuButton.setAttribute('aria-expanded', 'false');
-                });
-            });
-        }
-        
-        // Set current year
-        document.getElementById('currentYear').textContent = new Date().getFullYear();
-
-        // Smooth scroll for anchor links
-        document.querySelectorAll('a[href^="#"]').forEach(anchor => {
-            anchor.addEventListener('click', function (e) {
-                if (this.getAttribute('href').startsWith('#') && this.getAttribute('href').length > 1) {
-                    e.preventDefault();
-                    const targetId = this.getAttribute('href');
-                    const targetElement = document.querySelector(targetId);
-                    if (targetElement) {
-                        const headerOffset = document.querySelector('header')?.offsetHeight || 70;
-                        const elementPosition = targetElement.getBoundingClientRect().top;
-                        const offsetPosition = elementPosition + window.pageYOffset - headerOffset;
-                        window.scrollTo({ top: offsetPosition, behavior: 'smooth' });
-                    }
-                }
-            });
-        });
-
-        // Animate on scroll
-        const observerOptions = { root: null, rootMargin: '0px', threshold: 0.1 };
-        const observerCallback = (entries, observer) => {
-            entries.forEach(entry => {
-                if (entry.isIntersecting) {
-                    const target = entry.target;
-                    const delay = target.dataset.delay;
-                    const action = () => {
-                        target.classList.add('animated');
-                        if (target.classList.contains('section-title')) {
-                            target.classList.add('animate-underline');
-                        }
-                    };
-                    if (delay) setTimeout(action, parseInt(delay));
-                    else action();
-                    observer.unobserve(target);
-                }
-            });
-        };
-        const observer = new IntersectionObserver(observerCallback, observerOptions);
-        document.querySelectorAll('.animate-on-scroll').forEach(el => observer.observe(el));
-
-        // Back to Top Button Logic
-        const backToTopButton = document.getElementById('back-to-top');
-        if (backToTopButton) {
-            window.addEventListener('scroll', () => {
-                if (window.pageYOffset > 300) {
-                    backToTopButton.classList.remove('opacity-0', 'invisible');
-                    backToTopButton.classList.add('opacity-100', 'visible');
-                } else {
-                    backToTopButton.classList.remove('opacity-100', 'visible');
-                    backToTopButton.classList.add('opacity-0', 'invisible');
-                }
-            });
-            backToTopButton.addEventListener('click', () => {
-                window.scrollTo({ top: 0, behavior: 'smooth' });
-            });
-        }
-
-        // Active Navigation Highlighting Logic
-        const allNavLinks = document.querySelectorAll('.nav-link');
-        const sections = document.querySelectorAll('section[id]');
-        const headerOffsetForNav = document.querySelector('header')?.offsetHeight || 70;
-
-        const activeNavObserver = new IntersectionObserver((entries) => {
-            entries.forEach(entry => {
-                if (entry.isIntersecting) {
-                    const id = entry.target.getAttribute('id');
-                    const matchingLinks = document.querySelectorAll(`.nav-link[data-target="#${id}"]`);
-                    
-                    // Reset all links
-                    allNavLinks.forEach(link => {
-                        link.classList.remove('primary-accent', 'font-semibold');
-                        link.classList.add('text-[var(--secondary-text-color)]');
-                    });
-                    
-                    // Apply active style to the matching link
-                    matchingLinks.forEach(link => {
-                        link.classList.add('primary-accent', 'font-semibold');
-                        link.classList.remove('text-[var(--secondary-text-color)]');
-                    });
-                }
-            });
-        }, {
-            rootMargin: `-${headerOffsetForNav}px 0px -55% 0px`,
-            threshold: 0
-        });
-
-        sections.forEach(section => activeNavObserver.observe(section));
-
-    </script>
+  <script src="./script.js" defer></script>
 </body>
 </html>
