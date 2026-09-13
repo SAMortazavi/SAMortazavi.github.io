@@ -106,14 +106,26 @@
               See production impact
               <svg viewBox="0 0 24 24" aria-hidden="true"><path d="m9 18 6-6-6-6"/></svg>
             </a>
+
+            <a
+              class="button button-resume"
+              href="./Resumes/Seyed_Abolfazl_Mortazavi_Resume.pdf"
+              target="_blank"
+              rel="noreferrer"
+              aria-label="Open resume PDF"
+            >
+              <svg class="resume-icon" viewBox="0 0 24 24" aria-hidden="true">
+                <path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8Z"/>
+                <path d="M14 2v6h6"/>
+                <path d="M8 13h8"/>
+                <path d="M8 17h6"/>
+              </svg>
+              <span class="button-label">Resume</span>
+              <span class="resume-badge" aria-hidden="true">PDF</span>
+            </a>
+
             <a class="button button-ghost" href="https://github.com/SAMortazavi" target="_blank" rel="noreferrer">GitHub</a>
             <a class="button button-ghost" href="https://www.linkedin.com/in/SAMortazavi" target="_blank" rel="noreferrer">LinkedIn</a>
-          </div>
-
-          <div class="resume-links" id="resumeLinks" aria-label="Resume downloads" hidden>
-            <span>Resume:</span>
-            <span aria-hidden="true">·</span>
-            <a data-resume-link href="./Resumes/Seyed_Abolfazl_Mortazavi_Resume.pdf" download>Resume</a>
           </div>
         </div>
 
@@ -429,7 +441,26 @@
 
         <div class="project-grid" id="projectGrid">
           <article class="project-card reveal" data-tags="speech">
-            <div class="project-visual project-visual-wave" aria-hidden="true"><span></span></div>
+            <div class="project-visual project-visual-speech" aria-hidden="true">
+              <svg class="project-illustration" viewBox="0 0 640 220" role="presentation">
+                <g class="visual-grid-lines">
+                  <path d="M24 55H616M24 110H616M24 165H616"/>
+                  <path d="M120 22V198M224 22V198M328 22V198M432 22V198M536 22V198"/>
+                </g>
+                <text class="visual-label" x="32" y="35">NOISY INPUT</text>
+                <path class="visual-muted-stroke" d="M32 78 L44 69 L56 91 L68 59 L80 84 L92 61 L104 86 L116 67 L128 75 L140 51 L152 92 L164 65 L176 82 L188 57 L200 80 L212 66 L224 73 L236 54 L248 88 L260 63 L272 80 L284 60 L296 76"/>
+                <path class="visual-noise" d="M32 63L296 91M48 94L282 55M75 54L260 95"/>
+                <g class="visual-process-chip" transform="translate(304 55)">
+                  <rect width="72" height="52" rx="15"/>
+                  <path d="M20 26h32M28 18v16M44 18v16"/>
+                </g>
+                <path class="visual-arrow" d="M382 81h30m-8-8 8 8-8 8"/>
+                <text class="visual-label visual-label-accent" x="426" y="35">ENHANCED</text>
+                <path class="visual-accent-stroke visual-glow" d="M426 79 C440 79 444 76 450 76 C456 76 459 93 466 93 C473 93 477 58 484 58 C491 58 494 82 500 82 C506 82 510 71 516 71 C522 71 526 84 532 84 C538 84 541 65 548 65 C555 65 558 80 564 80 C570 80 574 73 580 73 C586 73 590 79 608 79"/>
+                <text class="visual-caption" x="32" y="190">noise + speech</text>
+                <text class="visual-caption" x="426" y="190">cleaner speech structure</text>
+              </svg>
+            </div>
             <div class="project-body">
               <div class="project-meta"><span>Speech / DSP</span><span>MATLAB</span></div>
               <h3>Speech Enhancement Algorithm</h3>
@@ -439,7 +470,35 @@
           </article>
 
           <article class="project-card reveal" data-tags="vision" data-delay="60">
-            <div class="project-visual project-visual-grid" aria-hidden="true"><span></span></div>
+            <div class="project-visual project-visual-classification" aria-hidden="true">
+              <svg class="project-illustration" viewBox="0 0 640 220" role="presentation">
+                <text class="visual-label" x="30" y="30">IMAGE BATCH</text>
+                <g class="image-tiles">
+                  <rect x="30" y="48" width="72" height="62" rx="11"/>
+                  <rect x="112" y="48" width="72" height="62" rx="11"/>
+                  <rect x="194" y="48" width="72" height="62" rx="11"/>
+                  <rect x="30" y="120" width="72" height="62" rx="11"/>
+                  <rect x="112" y="120" width="72" height="62" rx="11"/>
+                  <rect x="194" y="120" width="72" height="62" rx="11"/>
+                  <path d="M45 94 61 72l14 14 12-10 7 18ZM127 92l13-22 14 18 13-9 9 13ZM209 96l15-28 13 19 10-8 11 17"/>
+                  <circle cx="62" cy="137" r="9"/><circle cx="150" cy="145" r="15"/><circle cx="232" cy="141" r="11"/>
+                </g>
+                <path class="visual-arrow" d="M286 112h54m-9-9 9 9-9 9"/>
+                <g class="classifier-panel">
+                  <rect x="362" y="44" width="248" height="140" rx="18"/>
+                  <text class="visual-label" x="382" y="68">CLASS SCORES</text>
+                  <text class="visual-caption" x="382" y="96">class A</text>
+                  <rect class="score-track" x="438" y="86" width="142" height="10" rx="5"/>
+                  <rect class="score-fill score-fill-1" x="438" y="86" width="122" height="10" rx="5"/>
+                  <text class="visual-caption" x="382" y="126">class B</text>
+                  <rect class="score-track" x="438" y="116" width="142" height="10" rx="5"/>
+                  <rect class="score-fill score-fill-2" x="438" y="116" width="74" height="10" rx="5"/>
+                  <text class="visual-caption" x="382" y="156">class C</text>
+                  <rect class="score-track" x="438" y="146" width="142" height="10" rx="5"/>
+                  <rect class="score-fill score-fill-3" x="438" y="146" width="38" height="10" rx="5"/>
+                </g>
+              </svg>
+            </div>
             <div class="project-body">
               <div class="project-meta"><span>Computer Vision</span><span>PyTorch</span></div>
               <h3>Image Classification Pipeline</h3>
@@ -449,7 +508,29 @@
           </article>
 
           <article class="project-card reveal" data-tags="vision research" data-delay="120">
-            <div class="project-visual project-visual-scan" aria-hidden="true"><span></span></div>
+            <div class="project-visual project-visual-medical" aria-hidden="true">
+              <svg class="project-illustration" viewBox="0 0 640 220" role="presentation">
+                <g class="scan-frame">
+                  <rect x="32" y="24" width="330" height="172" rx="20"/>
+                  <ellipse class="scan-skull" cx="197" cy="110" rx="92" ry="74"/>
+                  <path class="scan-brain" d="M154 70c-24 8-39 29-39 50 0 29 29 55 66 55 18 0 31-6 39-17 8 11 21 17 39 17 37 0 66-26 66-55 0-21-15-42-39-50-17-6-33-2-46 10-13-12-29-16-46-10-18 6-30 19-39 33-9-14-21-27-39-33Z"/>
+                  <path class="scan-midline" d="M220 80v80"/>
+                  <path class="scan-contour" d="M146 111c18-19 33-19 51 0 18 18 32 18 49 0 18-19 34-19 51 0"/>
+                  <line class="scan-line" x1="86" y1="72" x2="308" y2="72"/>
+                </g>
+                <text class="visual-label" x="392" y="43">SLICE PIPELINE</text>
+                <g class="slice-stack">
+                  <rect x="394" y="59" width="92" height="52" rx="12"/>
+                  <ellipse cx="440" cy="85" rx="26" ry="19"/>
+                  <rect x="458" y="91" width="92" height="52" rx="12"/>
+                  <ellipse cx="504" cy="117" rx="26" ry="19"/>
+                  <rect x="522" y="123" width="92" height="52" rx="12"/>
+                  <ellipse cx="568" cy="149" rx="26" ry="19"/>
+                </g>
+                <path class="visual-accent-stroke" d="M382 178h232"/>
+                <circle class="scan-marker" cx="496" cy="178" r="5"/>
+              </svg>
+            </div>
             <div class="project-body">
               <div class="project-meta"><span>Medical Imaging</span><span>Graduate Coursework</span></div>
               <h3>Medical Image Analysis & Processing</h3>
@@ -459,7 +540,28 @@
           </article>
 
           <article class="project-card reveal" data-tags="research" data-delay="180">
-            <div class="project-visual project-visual-eeg" aria-hidden="true"><span></span></div>
+            <div class="project-visual project-visual-eeg" aria-hidden="true">
+              <svg class="project-illustration" viewBox="0 0 640 220" role="presentation">
+                <g class="eeg-grid">
+                  <path d="M58 48H480M58 88H480M58 128H480M58 168H480"/>
+                  <path d="M118 28V188M208 28V188M298 28V188M388 28V188"/>
+                </g>
+                <g class="eeg-labels">
+                  <text x="20" y="52">Fp1</text><text x="20" y="92">Fz</text><text x="20" y="132">Cz</text><text x="20" y="172">Pz</text>
+                </g>
+                <path class="eeg-trace eeg-trace-1" d="M58 48h24l7-4 7 8 8-20 8 32 8-16 8 2 8-6 8 8 8-3 9 0 8 4 8-9 8 18 8-28 8 17 8-3 8 4 8-8 8 6h32l7-5 7 11 8-19 8 25 8-13 8 1 8-5 8 7h48"/>
+                <path class="eeg-trace eeg-trace-2" d="M58 88h18l8-3 8 5 8-10 8 16 8-28 8 30 8-17 8 6 8-2 8 5 8-8 8 4 8 1 8-5 8 9 8-14 8 17 8-7 8 2h40l8-4 8 8 8-12 8 15 8-9 8 4 8-3 8 4h42"/>
+                <path class="eeg-trace eeg-trace-3" d="M58 128h22l8-5 8 10 8-18 8 29 8-35 8 30 8-12 8 1 8 7 8-10 8 5 8-3 8 8 8-16 8 20 8-8 8 3h36l8-5 8 7 8-11 8 17 8-20 8 14 8-4 8 6h48"/>
+                <path class="eeg-trace eeg-trace-4" d="M58 168h16l8-4 8 7 8-13 8 21 8-26 8 22 8-9 8 3 8 4 8-7 8 4 8-1 8-4 8 8 8-12 8 14 8-6 8 2h44l8-5 8 8 8-10 8 14 8-8 8 2 8-4 8 5h40"/>
+                <g class="eeg-head" transform="translate(512 42)">
+                  <circle cx="54" cy="64" r="49"/>
+                  <path d="M44 16 54 5l10 11M18 60 8 68l11 7M90 60l10 8-11 7"/>
+                  <circle cx="54" cy="38" r="5"/><circle cx="34" cy="58" r="5"/><circle cx="74" cy="58" r="5"/>
+                  <circle cx="54" cy="78" r="5"/><circle cx="34" cy="96" r="5"/><circle cx="74" cy="96" r="5"/>
+                </g>
+                <text class="visual-caption" x="514" y="178">multi-channel EEG</text>
+              </svg>
+            </div>
             <div class="project-body">
               <div class="project-meta"><span>EEG</span><span>Signal Processing</span></div>
               <h3>EEG Signal Processing</h3>

@@ -7,7 +7,6 @@
   const currentYear = document.getElementById('currentYear');
   const copyEmailButton = document.getElementById('copyEmail');
   const toast = document.getElementById('toast');
-  const resumeLinks = document.getElementById('resumeLinks');
 
   const reduceMotion = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
 
@@ -188,30 +187,6 @@
     });
   });
 
-  // Resume links: only expose links when the files actually exist -------
-  const hydrateResumeLinks = async () => {
-    if (!resumeLinks) return;
-    const links = [...resumeLinks.querySelectorAll('[data-resume-link]')];
-    if (!links.length) return;
-
-    const statuses = await Promise.all(links.map(async (link) => {
-      try {
-        const response = await fetch(link.getAttribute('href'), { method: 'HEAD', cache: 'no-store' });
-        if (!response.ok) {
-          link.hidden = true;
-          return false;
-        }
-        return true;
-      } catch {
-        link.hidden = true;
-        return false;
-      }
-    }));
-
-    resumeLinks.hidden = !statuses.some(Boolean);
-  };
-
-  hydrateResumeLinks();
 
   // Contact helpers -----------------------------------------------------
   let toastTimer;
