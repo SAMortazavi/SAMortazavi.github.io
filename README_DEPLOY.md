@@ -1,40 +1,63 @@
-# Seyed Abolfazl Mortazavi — Portfolio (GitHub Pages)
+# SAM Portfolio / Signature Edition (2026)
 
-## Deploy (existing repository)
+A responsive, dependency-light, English-only personal portfolio for Seyed Abolfazl Mortazavi, designed for both academic research opportunities and AI/ML engineering roles.
 
-1. Download and extract the ZIP.
-2. Copy **all contents** from the ZIP into the **root** of your existing `SAMortazavi.github.io` repository, replacing old `index.html`, `styles.css`, `script.js`, and `404.html` files.
-3. **Keep the folder structure intact**, especially `assets/images/` and `Resumes/`.
-4. Commit and push to the branch used by your GitHub Pages deployment (usually `main`).
-5. If Pages is set to deploy from the branch root, the site will update at `https://samortazavi.github.io/` when GitHub finishes publishing.
+## Deployment (GitHub Pages)
+
+1. Download and **extract** the ZIP.
+2. Copy **everything inside the extracted folder**, not the folder itself, into the root of the existing `SAMortazavi.github.io` repository. Overwrite matching files.
+3. Verify that `index.html`, `styles.css`, `script.js`, `assets/`, and `Resumes/` are directly inside the repository root.
+4. From that repository, run:
 
 ```bash
-# From the root of your already-cloned repository (after copying files):
-git add .
-git commit -m "Redesign portfolio: research, production AI and awards"
+git add --all
+git commit -m "Launch signature AI research and engineering portfolio"
 git push origin main
 ```
 
-## What changed
-- Complete responsive redesign with subtle motion, dark/light modes, functional project filters, and accessible navigation.
-- Research, publications (marked **Under review**), honors/awards, industrial AI, and mentoring details.
-- The **three original uploaded photos** used unchanged; no AI-generated/modified face appears in the published site.
-- Industry resume and academic CV PDFs are bundled and linked.
+If your GitHub Pages site uses a different branch, push to the branch configured under Repository → Settings → Pages. The static site does **not** require npm, a build step, or a server-side backend.
 
-## User-requested content choices
-- The portfolio **intentionally retains previous website GPAs**: **19.02/20** (Sharif M.Sc.) and **19.07/20** (Amirkabir B.Sc.). The bundled academic CV contains different GPA figures, because it is a separate previously prepared document. Review and reconcile before using both for formal applications.
-- Mentoring: **8 active (1 B.Sc., 6 M.Sc., 1 Ph.D.) + 3 completed B.Sc. theses** (20/20, 19/20, 20/20).
-- The iAAA award is presented as the user's stated achievement. The two publications are not described as accepted or published.
-- The domain, social links, and company references assume the existing GitHub Pages repository domain remains the same.
+Site address: https://samortazavi.github.io/
 
-## Technologies
-Static HTML, CSS and vanilla JavaScript; optional Google Fonts. No build process, Node installation, dependencies, API keys, or server required. Supports hosting at the repository root.
+## Included
 
-## Files
-- `index.html`, `styles.css`, `script.js` — site
-- `404.html`, `robots.txt`, `sitemap.xml` — site plumbing
-- `assets/favicon.svg` — icon
-- `assets/images/` — original user photos
-- `Resumes/` — PDFs
+- Responsive landing page (dark default, user-selectable light mode)
+- Separate Academic Research and Production AI sections
+- iAAA 2026 competition recognition, publications **under review**, research, and industrial case studies
+- Open-source project links, updated mentoring counts, teaching and education
+- Original user-supplied photographs (`assets/images/`) and two existing résumé PDFs (`Resumes/`)
+- Custom 404 page, favicon, sitemap, robots and `.nojekyll`
+- `.gitattributes` to keep text line endings consistent on Windows
 
-© Seyed Abolfazl Mortazavi
+## Editorial notes
+
+- Site education GPAs intentionally remain **19.02/20 (M.Sc.)**, **19.07/20 (B.Sc.)**, and **19.38/20 (additional coursework)**, as requested; the bundled academic CV has its own GPA values; only its mentorship section was refreshed.
+- Mentoring reflects 8 current students (1 B.Sc., 6 M.Sc., 1 Ph.D.) and 3 completed B.Sc. theses (20/20, 19/20, 20/20).
+- Both listed manuscripts are **under review**, not published or accepted.
+- Performance metrics refer to specific tested datasets and conditions; they are not universal/generalization claims.
+- The industry résumé is the original supplied PDF and may still reflect an earlier mentoring snapshot; website and updated Academic CV reflect the new counts.
+- Original portraits are used directly, without AI face generation or facial changes. CSS adjusts only their on-page presentation/cropping.
+- Google Fonts is used optionally, with system font fallbacks. There are no tracking scripts, frontend frameworks, or build tools.
+
+## Site layout
+
+```text
+index.html
+styles.css
+script.js
+404.html
+.gitattributes
+.nojekyll
+robots.txt
+sitemap.xml
+README_DEPLOY.md
+assets/
+  favicon.svg
+  images/
+    portrait-hero.jpg
+    graduation.jpg
+    portrait-contact.jpg
+Resumes/
+  Seyed_Abolfazl_Mortazavi_Academic_CV.pdf
+  Seyed_Abolfazl_Mortazavi_Resume.pdf
+```

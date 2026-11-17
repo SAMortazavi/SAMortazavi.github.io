@@ -1,107 +1,87 @@
 (() => {
   'use strict';
-  const doc = document.documentElement;
-  doc.classList.add('js');
-  const themeButton = document.getElementById('themeToggle');
-  const menuButton = document.getElementById('menuToggle');
-  const nav = document.getElementById('primaryNav');
-  const progress = document.getElementById('readingProgress');
-  const year = document.getElementById('currentYear');
-  const reducedMotion = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+  const root = document.documentElement;
+  const $ = selector => document.querySelector(selector);
+  const $$ = selector => [...document.querySelectorAll(selector)];
+  const themeButton = $('#themeToggle');
+  const nav = $('#primaryNav');
+  const menuButton = $('#menuToggle');
+  const reduceMotion = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
 
-  // Theme: dark by default; remember each visitor's explicit choice.
+  // Dark/light preference. Failing storage must not break the page.
   let savedTheme = null;
-  try { savedTheme = localStorage.getItem('sam-theme'); } catch (_) { /* private browsing */ }
-  const preferred = savedTheme === 'light' || savedTheme === 'dark' ? savedTheme : 'dark';
-  function setTheme(next) {
-    doc.setAttribute('data-theme', next);
-    themeButton?.setAttribute('aria-label', `Switch to ${next === 'dark' ? 'light' : 'dark'} theme`);
-    document.querySelector('meta[name="theme-color"]')?.setAttribute('content', next === 'dark' ? '#0b1118' : '#f4f6f3');
-    try { localStorage.setItem('sam-theme', next); } catch (_) { /* optional storage */ }
-  }
-  setTheme(preferred);
-  themeButton?.addEventListener('click', () => setTheme(doc.getAttribute('data-theme') === 'dark' ? 'light' : 'dark'));
+  try { savedTheme = localStorage.getItem('sam-portfolio-theme'); } catch (_) { /* private browsing */ }
+  const preferredTheme = savedTheme === 'light' || savedTheme === 'dark' ? savedTheme : 'dark';
+  const applyTheme = (value) => {
+    root.dataset.theme = value;
+    themeButton?.setAttribute('aria-label', `Switch to ${value === 'dark' ? 'light' : 'dark'} theme`);
+    $('meta[name="theme-color"]')?.setAttribute('content', value === 'dark' ? '#0b1014' : '#f5f5ef');
+    try { localStorage.setItem('sam-portfolio-theme', value); } catch (_) { /* storage optional */ }
+  };
+  applyTheme(preferredTheme);
+  themeButton?.addEventListener('click', () => applyTheme(root.dataset.theme === 'dark' ? 'light' : 'dark'));
 
-  // Mobile navigation.
-  function closeMenu() {
+  // Mobile menu, with Escape / route close.
+  const closeMenu = () => {
     nav?.classList.remove('open');
     menuButton?.setAttribute('aria-expanded', 'false');
-    menuButton?.setAttribute('aria-label', 'Open menu');
-  }
+    menuButton?.setAttribute('aria-label', 'Open navigation');
+    const cvDropdown = $('.cv-dropdown');
+    if (cvDropdown) cvDropdown.open = false;
+  };
   menuButton?.addEventListener('click', () => {
-    const opening = menuButton.getAttribute('aria-expanded') !== 'true';
-    nav?.classList.toggle('open', opening);
-    menuButton.setAttribute('aria-expanded', String(opening));
-    menuButton.setAttribute('aria-label', opening ? 'Close menu' : 'Open menu');
+    const open = menuButton.getAttribute('aria-expanded') !== 'true';
+    menuButton.setAttribute('aria-expanded', String(open));
+    menuButton.setAttribute('aria-label', open ? 'Close navigation' : 'Open navigation');
+    nav?.classList.toggle('open', open);
   });
-  nav?.querySelectorAll('a').forEach(a => a.addEventListener('click', closeMenu));
+  $$('.primary-nav a').forEach(a => a.addEventListener('click', closeMenu));
   document.addEventListener('keydown', e => { if (e.key === 'Escape') closeMenu(); });
-  window.addEventListener('resize', () => { if (window.innerWidth > 1020) closeMenu(); }, { passive: true });
-  document.addEventListener('click', e => {
-    if (nav?.classList.contains('open') && !nav.contains(e.target) && !menuButton?.contains(e.target)) closeMenu();
-  });
+  document.addEventListener('click', e => { const cvDropdown = $('.cv-dropdown'); if (cvDropdown && !cvDropdown.contains(e.target)) cvDropdown.open = false; });
+  window.addEventListener('resize', () => { if (innerWidth > 1020) closeMenu(); }, { passive: true });
 
-  // Scroll: progress indicator is passive and not a requirement for navigation.
-  let scrollQueued = false;
-  function onScroll() {
-    if (scrollQueued) return;
-    scrollQueued = true;
-    window.requestAnimationFrame(() => {
-      if (progress) {
-        const maxScroll = Math.max(1, document.documentElement.scrollHeight - window.innerHeight);
-        progress.style.width = `${Math.max(0, Math.min(100, 100 * window.scrollY / maxScroll))}%`;
-      }
-      scrollQueued = false;
+  // Scroll progress and active navigation.
+  let scrollRequested = false;
+  const updateScroll = () => {
+    const max = document.documentElement.scrollHeight - window.innerHeight;
+    const progress = max > 0 ? Math.min(100, Math.max(0, (window.scrollY / max) * 100)) : 0;
+    const bar = $('#readingProgress');
+    if (bar) bar.style.width = `${progress}%`;
+    scrollRequested = false;
+  };
+  window.addEventListener('scroll', () => {
+    if (!scrollRequested) { requestAnimationFrame(updateScroll); scrollRequested = true; }
+  }, { passive: true });
+  updateScroll();
+  if ('IntersectionObserver' in window) {
+    const links = $$('.primary-nav a[href^="#"]');
+    const sections = links.map(link => $(link.getAttribute('href'))).filter(Boolean);
+    const observer = new IntersectionObserver(entries => {
+      const candidate = entries.filter(e => e.isIntersecting).sort((a, b) => b.intersectionRatio - a.intersectionRatio)[0];
+      if (!candidate) return;
+      links.forEach(link => link.classList.toggle('active', link.getAttribute('href') === `#${candidate.target.id}`));
+    }, { rootMargin: '-25% 0px -55% 0px', threshold: [0, .2, .45] });
+    sections.forEach(section => observer.observe(section));
+  }
+
+  // Public project filtering. Links remain ordinary links for full keyboard support.
+  const filterButtons = $$('.project-filter');
+  const projects = $$('.project-card');
+  filterButtons.forEach(button => button.addEventListener('click', () => {
+    const filter = button.dataset.filter;
+    filterButtons.forEach(b => {
+      const selected = b === button;
+      b.classList.toggle('active', selected);
+      b.setAttribute('aria-pressed', String(selected));
     });
-  }
-  window.addEventListener('scroll', onScroll, { passive: true });
-  onScroll();
-
-  // Reduced-motion-aware entrance reveals.
-  const revealed = [...document.querySelectorAll('.reveal')];
-  revealed.forEach(el => el.style.setProperty('--reveal-delay', `${Number(el.dataset.delay || 0)}ms`));
-  if (reducedMotion || !('IntersectionObserver' in window)) {
-    revealed.forEach(el => el.classList.add('in-view'));
-  } else {
-    const revealObserver = new IntersectionObserver((entries, observer) => {
-      entries.forEach(entry => {
-        if (entry.isIntersecting) {
-          entry.target.classList.add('in-view');
-          observer.unobserve(entry.target);
-        }
-      });
-    }, { threshold: .08, rootMargin: '0px 0px -28px 0px' });
-    revealed.forEach(el => revealObserver.observe(el));
-  }
-
-  // Active section in both navigation layouts.
-  const navAnchors = [...document.querySelectorAll('.nav a')];
-  if ('IntersectionObserver' in window && navAnchors.length) {
-    const sections = navAnchors.map(a => document.querySelector(a.getAttribute('href'))).filter(Boolean);
-    const navigationObserver = new IntersectionObserver(entries => {
-      const visible = entries.filter(entry => entry.isIntersecting).sort((a, b) => b.intersectionRatio - a.intersectionRatio)[0];
-      if (!visible) return;
-      navAnchors.forEach(a => a.classList.toggle('active', a.getAttribute('href') === `#${visible.target.id}`));
-    }, { rootMargin: '-18% 0px -66% 0px', threshold: [0, .15, .45] });
-    sections.forEach(section => navigationObserver.observe(section));
-  }
-
-  // Public project filters: update accessible pressed state.
-  const filters = [...document.querySelectorAll('.filter-btn')];
-  const projects = [...document.querySelectorAll('.project-card')];
-  filters.forEach(button => button.addEventListener('click', () => {
-    const tag = button.dataset.filter || 'all';
-    filters.forEach(item => {
-      const selected = item === button;
-      item.classList.toggle('active', selected);
-      item.setAttribute('aria-pressed', String(selected));
-    });
-    projects.forEach(card => {
-      const visible = tag === 'all' || (card.dataset.tags || '').split(/\s+/).includes(tag);
-      card.classList.toggle('filtered-out', !visible);
-      card.hidden = !visible;
+    projects.forEach(project => {
+      const visible = filter === 'all' || (project.dataset.tags || '').split(' ').includes(filter);
+      project.classList.toggle('filtered-out', !visible);
+      project.hidden = !visible;
     });
   }));
 
+  const year = $('#currentYear');
   if (year) year.textContent = String(new Date().getFullYear());
+  if (reduceMotion) root.classList.add('reduce-motion');
 })();
