@@ -1,222 +1,107 @@
 (() => {
-  const root = document.documentElement;
-  const header = document.querySelector('.site-header');
-  const themeToggle = document.getElementById('themeToggle');
-  const menuButton = document.getElementById('menuButton');
-  const mobileNav = document.getElementById('mobileNav');
-  const currentYear = document.getElementById('currentYear');
-  const copyEmailButton = document.getElementById('copyEmail');
-  const toast = document.getElementById('toast');
+  'use strict';
+  const doc = document.documentElement;
+  doc.classList.add('js');
+  const themeButton = document.getElementById('themeToggle');
+  const menuButton = document.getElementById('menuToggle');
+  const nav = document.getElementById('primaryNav');
+  const progress = document.getElementById('readingProgress');
+  const year = document.getElementById('currentYear');
+  const reducedMotion = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
 
-  const reduceMotion = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+  // Theme: dark by default; remember each visitor's explicit choice.
+  let savedTheme = null;
+  try { savedTheme = localStorage.getItem('sam-theme'); } catch (_) { /* private browsing */ }
+  const preferred = savedTheme === 'light' || savedTheme === 'dark' ? savedTheme : 'dark';
+  function setTheme(next) {
+    doc.setAttribute('data-theme', next);
+    themeButton?.setAttribute('aria-label', `Switch to ${next === 'dark' ? 'light' : 'dark'} theme`);
+    document.querySelector('meta[name="theme-color"]')?.setAttribute('content', next === 'dark' ? '#0b1118' : '#f4f6f3');
+    try { localStorage.setItem('sam-theme', next); } catch (_) { /* optional storage */ }
+  }
+  setTheme(preferred);
+  themeButton?.addEventListener('click', () => setTheme(doc.getAttribute('data-theme') === 'dark' ? 'light' : 'dark'));
 
-  // Theme ---------------------------------------------------------------
-  const getPreferredTheme = () => {
-    const stored = localStorage.getItem('sam-theme');
-    if (stored === 'light' || stored === 'dark') return stored;
-    return window.matchMedia('(prefers-color-scheme: dark)').matches ? 'dark' : 'light';
-  };
-
-  const applyTheme = (theme) => {
-    root.dataset.theme = theme;
-    localStorage.setItem('sam-theme', theme);
-    document.querySelector('meta[name="theme-color"]')?.setAttribute(
-      'content',
-      theme === 'dark' ? '#080b14' : '#f7f8fc'
-    );
-  };
-
-  applyTheme(getPreferredTheme());
-
-  themeToggle?.addEventListener('click', () => {
-    applyTheme(root.dataset.theme === 'dark' ? 'light' : 'dark');
-  });
-
-  // Header + mobile navigation -----------------------------------------
-  const syncHeader = () => {
-    header?.classList.toggle('scrolled', window.scrollY > 12);
-  };
-
-  syncHeader();
-  window.addEventListener('scroll', syncHeader, { passive: true });
-
-  const closeMobileMenu = () => {
-    if (!mobileNav || !menuButton) return;
-    mobileNav.classList.remove('open');
-    menuButton.setAttribute('aria-expanded', 'false');
-  };
-
+  // Mobile navigation.
+  function closeMenu() {
+    nav?.classList.remove('open');
+    menuButton?.setAttribute('aria-expanded', 'false');
+    menuButton?.setAttribute('aria-label', 'Open menu');
+  }
   menuButton?.addEventListener('click', () => {
-    const nextState = menuButton.getAttribute('aria-expanded') !== 'true';
-    menuButton.setAttribute('aria-expanded', String(nextState));
-    mobileNav?.classList.toggle('open', nextState);
+    const opening = menuButton.getAttribute('aria-expanded') !== 'true';
+    nav?.classList.toggle('open', opening);
+    menuButton.setAttribute('aria-expanded', String(opening));
+    menuButton.setAttribute('aria-label', opening ? 'Close menu' : 'Open menu');
+  });
+  nav?.querySelectorAll('a').forEach(a => a.addEventListener('click', closeMenu));
+  document.addEventListener('keydown', e => { if (e.key === 'Escape') closeMenu(); });
+  window.addEventListener('resize', () => { if (window.innerWidth > 1020) closeMenu(); }, { passive: true });
+  document.addEventListener('click', e => {
+    if (nav?.classList.contains('open') && !nav.contains(e.target) && !menuButton?.contains(e.target)) closeMenu();
   });
 
-  mobileNav?.querySelectorAll('a').forEach((link) => {
-    link.addEventListener('click', closeMobileMenu);
-  });
+  // Scroll: progress indicator is passive and not a requirement for navigation.
+  let scrollQueued = false;
+  function onScroll() {
+    if (scrollQueued) return;
+    scrollQueued = true;
+    window.requestAnimationFrame(() => {
+      if (progress) {
+        const maxScroll = Math.max(1, document.documentElement.scrollHeight - window.innerHeight);
+        progress.style.width = `${Math.max(0, Math.min(100, 100 * window.scrollY / maxScroll))}%`;
+      }
+      scrollQueued = false;
+    });
+  }
+  window.addEventListener('scroll', onScroll, { passive: true });
+  onScroll();
 
-  window.addEventListener('resize', () => {
-    if (window.innerWidth > 1020) closeMobileMenu();
-  });
-
-  // Reveal-on-scroll ----------------------------------------------------
-  const revealElements = [...document.querySelectorAll('.reveal')];
-  revealElements.forEach((el) => {
-    const delay = Number(el.dataset.delay || 0);
-    el.style.setProperty('--reveal-delay', `${delay}ms`);
-  });
-
-  if (reduceMotion || !('IntersectionObserver' in window)) {
-    revealElements.forEach((el) => el.classList.add('is-visible'));
+  // Reduced-motion-aware entrance reveals.
+  const revealed = [...document.querySelectorAll('.reveal')];
+  revealed.forEach(el => el.style.setProperty('--reveal-delay', `${Number(el.dataset.delay || 0)}ms`));
+  if (reducedMotion || !('IntersectionObserver' in window)) {
+    revealed.forEach(el => el.classList.add('in-view'));
   } else {
     const revealObserver = new IntersectionObserver((entries, observer) => {
-      entries.forEach((entry) => {
-        if (!entry.isIntersecting) return;
-        entry.target.classList.add('is-visible');
-        observer.unobserve(entry.target);
+      entries.forEach(entry => {
+        if (entry.isIntersecting) {
+          entry.target.classList.add('in-view');
+          observer.unobserve(entry.target);
+        }
       });
-    }, { threshold: 0.12, rootMargin: '0px 0px -6% 0px' });
-
-    revealElements.forEach((el) => revealObserver.observe(el));
+    }, { threshold: .08, rootMargin: '0px 0px -28px 0px' });
+    revealed.forEach(el => revealObserver.observe(el));
   }
 
-  // Active navigation ---------------------------------------------------
-  const navLinks = [...document.querySelectorAll('.desktop-nav a, .mobile-nav a')];
-  const navSections = [...document.querySelectorAll('main section[id]')]
-    .filter((section) => navLinks.some((link) => link.getAttribute('href') === `#${section.id}`));
-
-  if ('IntersectionObserver' in window) {
-    const navObserver = new IntersectionObserver((entries) => {
-      const visible = entries
-        .filter((entry) => entry.isIntersecting)
-        .sort((a, b) => b.intersectionRatio - a.intersectionRatio)[0];
-
+  // Active section in both navigation layouts.
+  const navAnchors = [...document.querySelectorAll('.nav a')];
+  if ('IntersectionObserver' in window && navAnchors.length) {
+    const sections = navAnchors.map(a => document.querySelector(a.getAttribute('href'))).filter(Boolean);
+    const navigationObserver = new IntersectionObserver(entries => {
+      const visible = entries.filter(entry => entry.isIntersecting).sort((a, b) => b.intersectionRatio - a.intersectionRatio)[0];
       if (!visible) return;
-      navLinks.forEach((link) => {
-        link.classList.toggle('active', link.getAttribute('href') === `#${visible.target.id}`);
-      });
-    }, {
-      rootMargin: '-24% 0px -60% 0px',
-      threshold: [0.01, 0.2, 0.5]
-    });
-
-    navSections.forEach((section) => navObserver.observe(section));
+      navAnchors.forEach(a => a.classList.toggle('active', a.getAttribute('href') === `#${visible.target.id}`));
+    }, { rootMargin: '-18% 0px -66% 0px', threshold: [0, .15, .45] });
+    sections.forEach(section => navigationObserver.observe(section));
   }
 
-  // Animated metrics ----------------------------------------------------
-  const counters = [...document.querySelectorAll('[data-counter]')];
-
-  const renderCounter = (el, value) => {
-    const decimals = Number(el.dataset.decimals || 0);
-    const prefix = el.dataset.prefix || '';
-    const suffix = el.dataset.suffix || '';
-
-    let formatted;
-    if (value >= 10000) {
-      formatted = `${Math.round(value / 1000)}K`;
-    } else if (value >= 1000) {
-      formatted = `${(value / 1000).toFixed(value % 1000 === 0 ? 0 : 1)}K`;
-    } else {
-      formatted = Number(value).toFixed(decimals);
-    }
-
-    el.textContent = `${prefix}${formatted}${suffix}`;
-  };
-
-  const animateCounter = (el) => {
-    const target = Number(el.dataset.counter);
-    if (!Number.isFinite(target)) return;
-
-    if (reduceMotion) {
-      renderCounter(el, target);
-      return;
-    }
-
-    const start = performance.now();
-    const duration = 900;
-
-    const tick = (time) => {
-      const progress = Math.min((time - start) / duration, 1);
-      const eased = 1 - Math.pow(1 - progress, 3);
-      renderCounter(el, target * eased);
-      if (progress < 1) requestAnimationFrame(tick);
-    };
-
-    requestAnimationFrame(tick);
-  };
-
-  if ('IntersectionObserver' in window) {
-    const counterObserver = new IntersectionObserver((entries, observer) => {
-      entries.forEach((entry) => {
-        if (!entry.isIntersecting) return;
-        animateCounter(entry.target);
-        observer.unobserve(entry.target);
-      });
-    }, { threshold: 0.65 });
-
-    counters.forEach((counter) => counterObserver.observe(counter));
-  } else {
-    counters.forEach(animateCounter);
-  }
-
-  // Impact disclosure ---------------------------------------------------
-  document.querySelectorAll('.disclosure-button').forEach((button) => {
-    const panel = button.nextElementSibling;
-    button.addEventListener('click', () => {
-      const expanded = button.getAttribute('aria-expanded') === 'true';
-      button.setAttribute('aria-expanded', String(!expanded));
-      if (panel) panel.hidden = expanded;
+  // Public project filters: update accessible pressed state.
+  const filters = [...document.querySelectorAll('.filter-btn')];
+  const projects = [...document.querySelectorAll('.project-card')];
+  filters.forEach(button => button.addEventListener('click', () => {
+    const tag = button.dataset.filter || 'all';
+    filters.forEach(item => {
+      const selected = item === button;
+      item.classList.toggle('active', selected);
+      item.setAttribute('aria-pressed', String(selected));
     });
-  });
-
-  // Project filtering ---------------------------------------------------
-  const filterButtons = [...document.querySelectorAll('.filter-button')];
-  const projectCards = [...document.querySelectorAll('.project-card')];
-
-  filterButtons.forEach((button) => {
-    button.addEventListener('click', () => {
-      const filter = button.dataset.filter || 'all';
-      filterButtons.forEach((item) => item.classList.toggle('active', item === button));
-
-      projectCards.forEach((card) => {
-        const tags = (card.dataset.tags || '').split(/\s+/).filter(Boolean);
-        const shouldShow = filter === 'all' || tags.includes(filter);
-        card.classList.toggle('filtered-out', !shouldShow);
-      });
+    projects.forEach(card => {
+      const visible = tag === 'all' || (card.dataset.tags || '').split(/\s+/).includes(tag);
+      card.classList.toggle('filtered-out', !visible);
+      card.hidden = !visible;
     });
-  });
+  }));
 
-
-  // Contact helpers -----------------------------------------------------
-  let toastTimer;
-  const showToast = (message) => {
-    if (!toast) return;
-    clearTimeout(toastTimer);
-    toast.textContent = message;
-    toast.classList.add('show');
-    toastTimer = setTimeout(() => toast.classList.remove('show'), 2200);
-  };
-
-  copyEmailButton?.addEventListener('click', async () => {
-    const email = copyEmailButton.dataset.email;
-    if (!email) return;
-
-    try {
-      await navigator.clipboard.writeText(email);
-      showToast('Email copied');
-    } catch {
-      const textArea = document.createElement('textarea');
-      textArea.value = email;
-      textArea.style.position = 'fixed';
-      textArea.style.opacity = '0';
-      document.body.appendChild(textArea);
-      textArea.select();
-      document.execCommand('copy');
-      textArea.remove();
-      showToast('Email copied');
-    }
-  });
-
-  if (currentYear) currentYear.textContent = String(new Date().getFullYear());
+  if (year) year.textContent = String(new Date().getFullYear());
 })();
